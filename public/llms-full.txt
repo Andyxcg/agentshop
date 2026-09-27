@@ -1,0 +1,1369 @@
+# agentshop — full briefing for retrieval agents
+
+> Machine-to-machine macroeconomic report store. 80 catalog reports, 7 annual
+> editions, one bespoke-report product and one full-catalog bundle. Paid per fetch in USDC over x402 on
+> eip155:8453. No accounts, no API keys, no signup, no human in the loop. Delivery as HTML, JSON or CSV.
+> Upstream source: World Bank Open Data (CC BY 4.0, attribution required).
+
+This document is complete, not a summary. It lists every product with its exact price, indicators,
+economies, year window and endpoints; the payment parameters; the runnable purchase flow; the shape of
+the paid payload; and the answers to the questions buyers ask before spending. Nothing below is a
+placeholder and no section is truncated.
+
+service name: agentshop
+service slug: agentshop
+base url: https://reportbazaar.app.workbuddy.host
+service keywords: macroeconomic data, world bank data, cross-country comparison, economic indicators, time series data, gdp, inflation, trade, external debt, foreign direct investment, labour market, demographics, energy, co2 emissions, esg, health expenditure, military expenditure, digital adoption, fiscal policy, research and development, country risk, sovereign analysis, market research data, dataset api, tariffs, trade policy, population ageing, renewable electricity, high-technology exports, scientific research output, poverty, inequality, fiscal space, correlation matrix
+categories (20): agriculture, annual, defense, demographics, digital, education, energy, environment, finance, fiscal, health, innovation, investment, labor, macro, output, prices, society, structure, trade
+years published: 2015:2025
+delivery formats: html, json, csv, summary-csv
+license: World Bank Open Data, CC BY 4.0 — attribution required in derived work
+contact: https://reportbazaar.app.workbuddy.host/agent.json
+
+## Payment parameters
+- protocol: x402 (HTTP 402 challenge, retried with a signed payment)
+- scheme: exact
+- network: eip155:8453
+- asset: USDC (6 decimals)
+- payTo: 0xba7efeabfab91a6febc8d8088faa29ce95979b34
+- facilitator: https://facilitator.payai.network
+- pricing: dynamic — tier base x data-freshness factor x demand factor, re-quoted in every 402 response
+- ceiling: no product is priced above $0.95. The x402 buyer libraries apply a $1 per-payment
+  spend cap client-side and refuse to sign above it, so a higher price would simply be unbuyable.
+- floor: $0.06 (macro-patents-nonresident)
+
+## How to buy — the complete flow
+1. GET a paid endpoint unauthenticated. You receive HTTP 402 with the payment requirements in the
+   PAYMENT-REQUIRED header and in the body.
+2. Sign an EIP-3009 transferWithAuthorization for the quoted amount of USDC on eip155:8453, and replay the
+   same request with the payment payload. The payer needs no ETH: the facilitator submits and pays gas.
+3. On settlement you receive HTTP 200 with the document in the format you asked for (default HTML).
+Recommended first buy: macro-patents-nonresident at $0.06 — free preview https://reportbazaar.app.workbuddy.host/preview/macro-patents-nonresident, then
+buy https://reportbazaar.app.workbuddy.host/report/macro-patents-nonresident. One cheap purchase exercises the entire flow before you scale up.
+
+```bash
+# 1. see the challenge and the exact amount
+curl -i "https://reportbazaar.app.workbuddy.host/report/macro-patents-nonresident?format=json"
+# 2. pay and replay (any x402 client; this is the canonical shape)
+#    the PAYMENT-REQUIRED header carries amount, asset, payTo, network and scheme
+curl -H "X-PAYMENT: <base64 payment payload>" "https://reportbazaar.app.workbuddy.host/report/macro-patents-nonresident?format=json"
+```
+
+```js
+// Node, with the x402 fetch wrapper
+import { wrapFetchWithPayment } from '@x402/fetch';
+import { createWalletClient, http } from 'viem';
+const pay = wrapFetchWithPayment(fetch, walletClient);
+const res = await pay('https://reportbazaar.app.workbuddy.host/report/macro-patents-nonresident?format=json');
+const report = await res.json();
+```
+
+Free before you buy: every report has a free machine-readable cross-section at /preview/{id} (also
+?format=csv or ?format=md) that shows the exact field names and types the paid payload uses, the latest
+year for every economy, and an explicit list of what the purchase adds. HTML samples at /sample/{id}.
+
+## Product ladder (each rung is one payment)
+- One catalog report: $0.06 to $0.95
+- One annual edition (yearbook): $0.20, $0.23, $0.25, $0.31
+- One category bundle (?category=): agriculture $0.10, investment $0.11, structure $0.11, macro $0.11, prices $0.14, environment $0.15, digital $0.18, finance $0.20, labor $0.20, defense $0.20, education $0.20, health $0.22, society $0.24, demographics $0.29, innovation $0.29, energy $0.30, fiscal $0.34, output $0.36, trade $0.54, annual $0.60
+- Bespoke report (/report/custom): from $0.20, priced by indicators x economies x years
+- Full catalog (80 reports): $0.95
+
+## Annual editions — the year axis
+Each annual edition reviews the five years ending in its edition year, for twenty economies, across five
+headline indicators (output, real growth, consumer inflation, unemployment, population). Buy one when the
+question is about a specific year rather than a long-run trend.
+- yearbook-2019: 2019 Yearbook — World Economy, 2015-2019 — window 2015:2019, $0.20, preview https://reportbazaar.app.workbuddy.host/preview/yearbook-2019, buy https://reportbazaar.app.workbuddy.host/report/yearbook-2019
+- yearbook-2020: 2020 Yearbook — World Economy, 2016-2020 — window 2016:2020, $0.20, preview https://reportbazaar.app.workbuddy.host/preview/yearbook-2020, buy https://reportbazaar.app.workbuddy.host/report/yearbook-2020
+- yearbook-2021: 2021 Yearbook — World Economy, 2017-2021 — window 2017:2021, $0.20, preview https://reportbazaar.app.workbuddy.host/preview/yearbook-2021, buy https://reportbazaar.app.workbuddy.host/report/yearbook-2021
+- yearbook-2022: 2022 Yearbook — World Economy, 2018-2022 — window 2018:2022, $0.23, preview https://reportbazaar.app.workbuddy.host/preview/yearbook-2022, buy https://reportbazaar.app.workbuddy.host/report/yearbook-2022
+- yearbook-2023: 2023 Yearbook — World Economy, 2019-2023 — window 2019:2023, $0.23, preview https://reportbazaar.app.workbuddy.host/preview/yearbook-2023, buy https://reportbazaar.app.workbuddy.host/report/yearbook-2023
+- yearbook-2024: 2024 Yearbook — World Economy, 2020-2024 — window 2020:2024, $0.25, preview https://reportbazaar.app.workbuddy.host/preview/yearbook-2024, buy https://reportbazaar.app.workbuddy.host/report/yearbook-2024
+- yearbook-2025: 2025 Yearbook — World Economy, 2021-2025 — window 2021:2025, $0.31, preview https://reportbazaar.app.workbuddy.host/preview/yearbook-2025, buy https://reportbazaar.app.workbuddy.host/report/yearbook-2025
+
+Year index: https://reportbazaar.app.workbuddy.host/years (all 11 years with report counts)
+Year detail: https://reportbazaar.app.workbuddy.host/years/{year} — resolved into buyable endpoints, e.g. https://reportbazaar.app.workbuddy.host/years/2024
+Catalog filtered by year: https://reportbazaar.app.workbuddy.host/catalog?year={year}
+
+## Catalog — every product, in full
+### agriculture (3)
+#### Undernourishment Report
+- id: macro-undernourishment
+- price: $0.11
+- tier: standard
+- indicators: SN.ITK.DEFC.ZS (Prevalence of undernourishment (% of population))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 171 (77.7% of quoted)
+- sales: 0
+- summary: Prevalence of undernourishment — the food-security stress measure, published as a model-based estimate in three-year windows.
+- keywords: food security, undernourishment, hunger, nutrition, crop failure, supply risk
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-undernourishment  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-undernourishment?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-undernourishment?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-undernourishment  json: https://reportbazaar.app.workbuddy.host/report/macro-undernourishment?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-undernourishment?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-undernourishment?format=summary-csv
+
+#### Agricultural Land Report
+- id: macro-agri-land
+- price: $0.07
+- tier: basic
+- indicators: AG.LND.AGRI.ZS (Agricultural land (% of land area))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 180 (81.8% of quoted)
+- sales: 0
+- summary: Agricultural land as a share of total land area — the land base available for food and fibre production, the complement to forest-area cover.
+- keywords: agricultural land, farmland, land use, arable land, food production base
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-agri-land  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-agri-land?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-agri-land?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-agri-land  json: https://reportbazaar.app.workbuddy.host/report/macro-agri-land?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-agri-land?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-agri-land?format=summary-csv
+
+#### Cereal Yield Report
+- id: macro-cereal-yield
+- price: $0.08
+- tier: basic
+- indicators: AG.YLD.CREL.KG (Cereal yield (kg per hectare))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 189 (85.9% of quoted)
+- sales: 0
+- summary: Cereal yield in kilograms per hectare — the productivity of the grain base that feeds most calorie supply, distinct from the food-production index.
+- keywords: cereal yield, crop yield, agricultural productivity, grain, food security
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-cereal-yield  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-cereal-yield?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-cereal-yield?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-cereal-yield  json: https://reportbazaar.app.workbuddy.host/report/macro-cereal-yield?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-cereal-yield?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-cereal-yield?format=summary-csv
+
+### annual (7)
+#### 2019 Yearbook — World Economy, 2015-2019
+- id: yearbook-2019
+- price: $0.20
+- tier: premium
+- indicators: NY.GDP.MKTP.CD (GDP (current US$)) | NY.GDP.MKTP.KD.ZG (GDP growth (annual %)) | FP.CPI.TOTL.ZG (Inflation, consumer prices (annual %)) | SL.UEM.TOTL.ZS (Unemployment, total (% of labor force)) | SP.POP.TOTL (Total population)
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2019 (2015-2019)
+- cells quoted: 500
+- observations published: 497 (99.4% of quoted)
+- sales: 0
+- summary: Year-in-review for 2019: output, real growth, consumer inflation, unemployment and population for twenty economies over the five years 2015-2019. Carries the full cross-indicator correlation matrix, per-economy trend and momentum, outlier-year flags and the year-by-year matrix, so it answers both "where does 2019 sit" and "how did it get there".
+- keywords: 2019, year in review, yearbook, annual review, world economy, economic outlook 2019, macro snapshot, country comparison 2019
+- free preview: https://reportbazaar.app.workbuddy.host/preview/yearbook-2019  preview markdown: https://reportbazaar.app.workbuddy.host/preview/yearbook-2019?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/yearbook-2019?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/yearbook-2019  json: https://reportbazaar.app.workbuddy.host/report/yearbook-2019?format=json  csv: https://reportbazaar.app.workbuddy.host/report/yearbook-2019?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/yearbook-2019?format=summary-csv
+
+#### 2020 Yearbook — World Economy, 2016-2020
+- id: yearbook-2020
+- price: $0.20
+- tier: premium
+- indicators: NY.GDP.MKTP.CD (GDP (current US$)) | NY.GDP.MKTP.KD.ZG (GDP growth (annual %)) | FP.CPI.TOTL.ZG (Inflation, consumer prices (annual %)) | SL.UEM.TOTL.ZS (Unemployment, total (% of labor force)) | SP.POP.TOTL (Total population)
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2016:2020 (2016-2020)
+- cells quoted: 500
+- observations published: 498 (99.6% of quoted)
+- sales: 0
+- summary: Year-in-review for 2020: output, real growth, consumer inflation, unemployment and population for twenty economies over the five years 2016-2020. Carries the full cross-indicator correlation matrix, per-economy trend and momentum, outlier-year flags and the year-by-year matrix, so it answers both "where does 2020 sit" and "how did it get there".
+- keywords: 2020, year in review, yearbook, annual review, world economy, economic outlook 2020, macro snapshot, country comparison 2020
+- free preview: https://reportbazaar.app.workbuddy.host/preview/yearbook-2020  preview markdown: https://reportbazaar.app.workbuddy.host/preview/yearbook-2020?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/yearbook-2020?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/yearbook-2020  json: https://reportbazaar.app.workbuddy.host/report/yearbook-2020?format=json  csv: https://reportbazaar.app.workbuddy.host/report/yearbook-2020?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/yearbook-2020?format=summary-csv
+
+#### 2021 Yearbook — World Economy, 2017-2021
+- id: yearbook-2021
+- price: $0.20
+- tier: premium
+- indicators: NY.GDP.MKTP.CD (GDP (current US$)) | NY.GDP.MKTP.KD.ZG (GDP growth (annual %)) | FP.CPI.TOTL.ZG (Inflation, consumer prices (annual %)) | SL.UEM.TOTL.ZS (Unemployment, total (% of labor force)) | SP.POP.TOTL (Total population)
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2017:2021 (2017-2021)
+- cells quoted: 500
+- observations published: 499 (99.8% of quoted)
+- sales: 0
+- summary: Year-in-review for 2021: output, real growth, consumer inflation, unemployment and population for twenty economies over the five years 2017-2021. Carries the full cross-indicator correlation matrix, per-economy trend and momentum, outlier-year flags and the year-by-year matrix, so it answers both "where does 2021 sit" and "how did it get there".
+- keywords: 2021, year in review, yearbook, annual review, world economy, economic outlook 2021, macro snapshot, country comparison 2021
+- free preview: https://reportbazaar.app.workbuddy.host/preview/yearbook-2021  preview markdown: https://reportbazaar.app.workbuddy.host/preview/yearbook-2021?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/yearbook-2021?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/yearbook-2021  json: https://reportbazaar.app.workbuddy.host/report/yearbook-2021?format=json  csv: https://reportbazaar.app.workbuddy.host/report/yearbook-2021?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/yearbook-2021?format=summary-csv
+
+#### 2022 Yearbook — World Economy, 2018-2022
+- id: yearbook-2022
+- price: $0.23
+- tier: premium
+- indicators: NY.GDP.MKTP.CD (GDP (current US$)) | NY.GDP.MKTP.KD.ZG (GDP growth (annual %)) | FP.CPI.TOTL.ZG (Inflation, consumer prices (annual %)) | SL.UEM.TOTL.ZS (Unemployment, total (% of labor force)) | SP.POP.TOTL (Total population)
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2018:2022 (2018-2022)
+- cells quoted: 500
+- observations published: 500 (100% of quoted)
+- sales: 0
+- summary: Year-in-review for 2022: output, real growth, consumer inflation, unemployment and population for twenty economies over the five years 2018-2022. Carries the full cross-indicator correlation matrix, per-economy trend and momentum, outlier-year flags and the year-by-year matrix, so it answers both "where does 2022 sit" and "how did it get there".
+- keywords: 2022, year in review, yearbook, annual review, world economy, economic outlook 2022, macro snapshot, country comparison 2022
+- free preview: https://reportbazaar.app.workbuddy.host/preview/yearbook-2022  preview markdown: https://reportbazaar.app.workbuddy.host/preview/yearbook-2022?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/yearbook-2022?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/yearbook-2022  json: https://reportbazaar.app.workbuddy.host/report/yearbook-2022?format=json  csv: https://reportbazaar.app.workbuddy.host/report/yearbook-2022?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/yearbook-2022?format=summary-csv
+
+#### 2023 Yearbook — World Economy, 2019-2023
+- id: yearbook-2023
+- price: $0.23
+- tier: premium
+- indicators: NY.GDP.MKTP.CD (GDP (current US$)) | NY.GDP.MKTP.KD.ZG (GDP growth (annual %)) | FP.CPI.TOTL.ZG (Inflation, consumer prices (annual %)) | SL.UEM.TOTL.ZS (Unemployment, total (% of labor force)) | SP.POP.TOTL (Total population)
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2019:2023 (2019-2023)
+- cells quoted: 500
+- observations published: 500 (100% of quoted)
+- sales: 0
+- summary: Year-in-review for 2023: output, real growth, consumer inflation, unemployment and population for twenty economies over the five years 2019-2023. Carries the full cross-indicator correlation matrix, per-economy trend and momentum, outlier-year flags and the year-by-year matrix, so it answers both "where does 2023 sit" and "how did it get there".
+- keywords: 2023, year in review, yearbook, annual review, world economy, economic outlook 2023, macro snapshot, country comparison 2023
+- free preview: https://reportbazaar.app.workbuddy.host/preview/yearbook-2023  preview markdown: https://reportbazaar.app.workbuddy.host/preview/yearbook-2023?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/yearbook-2023?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/yearbook-2023  json: https://reportbazaar.app.workbuddy.host/report/yearbook-2023?format=json  csv: https://reportbazaar.app.workbuddy.host/report/yearbook-2023?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/yearbook-2023?format=summary-csv
+
+#### 2024 Yearbook — World Economy, 2020-2024
+- id: yearbook-2024
+- price: $0.25
+- tier: premium
+- indicators: NY.GDP.MKTP.CD (GDP (current US$)) | NY.GDP.MKTP.KD.ZG (GDP growth (annual %)) | FP.CPI.TOTL.ZG (Inflation, consumer prices (annual %)) | SL.UEM.TOTL.ZS (Unemployment, total (% of labor force)) | SP.POP.TOTL (Total population)
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2020:2024 (2020-2024)
+- cells quoted: 500
+- observations published: 500 (100% of quoted)
+- sales: 0
+- summary: Year-in-review for 2024: output, real growth, consumer inflation, unemployment and population for twenty economies over the five years 2020-2024. Carries the full cross-indicator correlation matrix, per-economy trend and momentum, outlier-year flags and the year-by-year matrix, so it answers both "where does 2024 sit" and "how did it get there".
+- keywords: 2024, year in review, yearbook, annual review, world economy, economic outlook 2024, macro snapshot, country comparison 2024
+- free preview: https://reportbazaar.app.workbuddy.host/preview/yearbook-2024  preview markdown: https://reportbazaar.app.workbuddy.host/preview/yearbook-2024?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/yearbook-2024?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/yearbook-2024  json: https://reportbazaar.app.workbuddy.host/report/yearbook-2024?format=json  csv: https://reportbazaar.app.workbuddy.host/report/yearbook-2024?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/yearbook-2024?format=summary-csv
+
+#### 2025 Yearbook — World Economy, 2021-2025
+- id: yearbook-2025
+- price: $0.31
+- tier: premium
+- indicators: NY.GDP.MKTP.CD (GDP (current US$)) | NY.GDP.MKTP.KD.ZG (GDP growth (annual %)) | FP.CPI.TOTL.ZG (Inflation, consumer prices (annual %)) | SL.UEM.TOTL.ZS (Unemployment, total (% of labor force)) | SP.POP.TOTL (Total population)
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2021:2025 (2021-2025)
+- cells quoted: 500
+- observations published: n/a
+- sales: 0
+- summary: Year-in-review for 2025: output, real growth, consumer inflation, unemployment and population for twenty economies over the five years 2021-2025. Carries the full cross-indicator correlation matrix, per-economy trend and momentum, outlier-year flags and the year-by-year matrix, so it answers both "where does 2025 sit" and "how did it get there".
+- keywords: 2025, year in review, yearbook, annual review, world economy, economic outlook 2025, macro snapshot, country comparison 2025
+- free preview: https://reportbazaar.app.workbuddy.host/preview/yearbook-2025  preview markdown: https://reportbazaar.app.workbuddy.host/preview/yearbook-2025?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/yearbook-2025?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/yearbook-2025  json: https://reportbazaar.app.workbuddy.host/report/yearbook-2025?format=json  csv: https://reportbazaar.app.workbuddy.host/report/yearbook-2025?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/yearbook-2025?format=summary-csv
+
+### defense (2)
+#### Military Expenditure Report
+- id: macro-military
+- price: $0.25
+- tier: premium
+- indicators: MS.MIL.XPND.GD.ZS (Military expenditure (% of GDP))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 200 (90.9% of quoted)
+- sales: 0
+- summary: Military expenditure as a percentage of GDP — defence burden and its trend since 2015, when several budgets inflected upward.
+- keywords: military spending, defence budget, defence burden, arms, geopolitics
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-military  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-military?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-military?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-military  json: https://reportbazaar.app.workbuddy.host/report/macro-military?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-military?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-military?format=summary-csv
+
+#### Military Expenditure in Dollars Report
+- id: macro-military-spend
+- price: $0.25
+- tier: premium
+- indicators: MS.MIL.XPND.CD (Military expenditure (current US$)) | MS.MIL.TOTL.P1 (Armed forces personnel, total)
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 440
+- observations published: 320 (72.7% of quoted)
+- sales: 0
+- summary: Military expenditure in current US dollars alongside armed-forces personnel — defence spending measured in absolute terms rather than as a GDP share.
+- keywords: military spending, defence budget dollars, armed forces, troop strength, arms race, geopolitics
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-military-spend  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-military-spend?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-military-spend?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-military-spend  json: https://reportbazaar.app.workbuddy.host/report/macro-military-spend?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-military-spend?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-military-spend?format=summary-csv
+
+### demographics (5)
+#### Population Comparison Report
+- id: macro-population
+- price: $0.09
+- tier: basic
+- indicators: SP.POP.TOTL (Total population)
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 220 (100% of quoted)
+- sales: 0
+- summary: Total population for ten economies with compound growth and share of the group.
+- keywords: population, demographics, headcount, population size
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-population  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-population?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-population?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-population  json: https://reportbazaar.app.workbuddy.host/report/macro-population?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-population?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-population?format=summary-csv
+
+#### Population Growth Report
+- id: macro-population-growth
+- price: $0.13
+- tier: standard
+- indicators: SP.POP.GROW (Population growth (annual %)) | SP.URB.TOTL.IN.ZS (Urban population (% of total population))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 440
+- observations published: 440 (100% of quoted)
+- sales: 0
+- summary: Annual population growth and urbanisation share — the demographic trajectory behind long-run demand.
+- keywords: population growth, urbanisation, demographic decline, urban population
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-population-growth  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-population-growth?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-population-growth?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-population-growth  json: https://reportbazaar.app.workbuddy.host/report/macro-population-growth?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-population-growth?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-population-growth?format=summary-csv
+
+#### Population Ageing Report
+- id: macro-population-aging
+- price: $0.13
+- tier: standard
+- indicators: SP.POP.65UP.TO.ZS (Population ages 65 and above (% of total))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 220 (100% of quoted)
+- sales: 0
+- summary: Population aged 65 and above as a share of the total — the ageing ratio that drives pension, healthcare and labour-supply projections.
+- keywords: ageing, aging population, pension, elderly share, dependency ratio, demographic cliff
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-population-aging  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-population-aging?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-population-aging?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-population-aging  json: https://reportbazaar.app.workbuddy.host/report/macro-population-aging?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-population-aging?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-population-aging?format=summary-csv
+
+#### Demographic Shift Report — Age Structure and Growth
+- id: theme-demographic-shift
+- price: $0.28
+- tier: premium
+- indicators: SP.POP.0014.TO.ZS (Population ages 0-14 (% of total)) | SP.POP.1564.TO.ZS (Population ages 15-64 (% of total)) | SP.POP.65UP.TO.ZS (Population ages 65 and above (% of total)) | SP.POP.GROW (Population growth (annual %))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 880
+- observations published: 880 (100% of quoted)
+- sales: 0
+- summary: The full age structure — children, working age and retired shares — plus population growth, in one document. This is the demographic dividend or drag behind every long-horizon demand forecast.
+- keywords: demographics, age structure, working age population, demographic dividend, dependency ratio, population decline, labour supply
+- free preview: https://reportbazaar.app.workbuddy.host/preview/theme-demographic-shift  preview markdown: https://reportbazaar.app.workbuddy.host/preview/theme-demographic-shift?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/theme-demographic-shift?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/theme-demographic-shift  json: https://reportbazaar.app.workbuddy.host/report/theme-demographic-shift?format=json  csv: https://reportbazaar.app.workbuddy.host/report/theme-demographic-shift?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/theme-demographic-shift?format=summary-csv
+
+#### Urban Population Growth Report
+- id: macro-urban-growth
+- price: $0.09
+- tier: basic
+- indicators: SP.URB.GROW (Urban population growth (annual %))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 220 (100% of quoted)
+- sales: 0
+- summary: Annual urban population growth — the pace of city expansion behind infrastructure, housing and congestion demand.
+- keywords: urban growth, urbanisation, city growth, megacity, urban demand
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-urban-growth  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-urban-growth?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-urban-growth?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-urban-growth  json: https://reportbazaar.app.workbuddy.host/report/macro-urban-growth?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-urban-growth?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-urban-growth?format=summary-csv
+
+### digital (4)
+#### Digital Adoption Report — Internet and Mobile
+- id: macro-digital
+- price: $0.13
+- tier: standard
+- indicators: IT.NET.USER.ZS (Individuals using the Internet (% of population)) | IT.CEL.SETS.P2 (Mobile cellular subscriptions (per 100 people))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 440
+- observations published: 401 (91.1% of quoted)
+- sales: 0
+- summary: Individuals using the Internet (% of population) and mobile cellular subscriptions per 100 people — digital-adoption depth for market sizing.
+- keywords: internet penetration, digital adoption, mobile subscriptions, connectivity, technology adoption
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-digital  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-digital?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-digital?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-digital  json: https://reportbazaar.app.workbuddy.host/report/macro-digital?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-digital?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-digital?format=summary-csv
+
+#### Fixed Broadband Penetration Report
+- id: macro-broadband
+- price: $0.12
+- tier: standard
+- indicators: IT.NET.BBND.P2 (Fixed broadband subscriptions (per 100 people))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 199 (90.5% of quoted)
+- sales: 0
+- summary: Fixed broadband subscriptions per 100 people — fixed-line connectivity depth, the infrastructure base for cloud and data-centre demand.
+- keywords: broadband, fixed internet, connectivity, telecom infrastructure, cloud readiness
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-broadband  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-broadband?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-broadband?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-broadband  json: https://reportbazaar.app.workbuddy.host/report/macro-broadband?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-broadband?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-broadband?format=summary-csv
+
+#### Secure Internet Servers Report
+- id: macro-internet-security
+- price: $0.12
+- tier: standard
+- indicators: IT.NET.SECR.P6 (Secure Internet servers (per 1 million people))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 200 (90.9% of quoted)
+- sales: 0
+- summary: Secure Internet servers (TLS) per 1 million people — the density of encrypted online infrastructure, which tracks where digital business is actually hosted.
+- keywords: secure servers, tls, encryption, cybersecurity, internet infrastructure, hosting
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-internet-security  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-internet-security?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-internet-security?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-internet-security  json: https://reportbazaar.app.workbuddy.host/report/macro-internet-security?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-internet-security?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-internet-security?format=summary-csv
+
+#### ICT Service Exports Report
+- id: macro-ict-exports
+- price: $0.09
+- tier: basic
+- indicators: BX.GSR.CMCP.ZS (ICT service exports (% of service exports))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 219 (99.5% of quoted)
+- sales: 0
+- summary: ICT service exports as a share of total service exports — the weight of high-margin digital trade in each economy's services balance.
+- keywords: ict exports, digital trade, service exports, software exports, telecom exports
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-ict-exports  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-ict-exports?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-ict-exports?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-ict-exports  json: https://reportbazaar.app.workbuddy.host/report/macro-ict-exports?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-ict-exports?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-ict-exports?format=summary-csv
+
+### education (3)
+#### Tertiary Education Enrolment Report
+- id: macro-tertiary-education
+- price: $0.13
+- tier: standard
+- indicators: SE.TER.ENRR (School enrolment, tertiary (% gross))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 189 (85.9% of quoted)
+- sales: 0
+- summary: Gross tertiary enrolment ratio — the share of the school-age cohort entering university, a leading indicator of future skilled-labour supply.
+- keywords: tertiary education, university enrolment, higher education, skilled labour, graduate supply
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-tertiary-education  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-tertiary-education?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-tertiary-education?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-tertiary-education  json: https://reportbazaar.app.workbuddy.host/report/macro-tertiary-education?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-tertiary-education?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-tertiary-education?format=summary-csv
+
+#### Human Capital Report — Education and Research Capacity
+- id: theme-human-capital
+- price: $0.28
+- tier: premium
+- indicators: SE.TER.ENRR (School enrolment, tertiary (% gross)) | SE.SEC.ENRR (School enrolment, secondary (% gross)) | GB.XPD.RSDV.GD.ZS (Research and development expenditure (% of GDP))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 660
+- observations published: 534 (80.9% of quoted)
+- sales: 0
+- summary: Tertiary and secondary enrolment alongside research spending as a share of GDP — the pipeline that determines an economy's skilled-labour supply a decade out.
+- keywords: human capital, education, enrolment, research spending, skill supply, talent pipeline, r&d intensity
+- free preview: https://reportbazaar.app.workbuddy.host/preview/theme-human-capital  preview markdown: https://reportbazaar.app.workbuddy.host/preview/theme-human-capital?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/theme-human-capital?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/theme-human-capital  json: https://reportbazaar.app.workbuddy.host/report/theme-human-capital?format=json  csv: https://reportbazaar.app.workbuddy.host/report/theme-human-capital?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/theme-human-capital?format=summary-csv
+
+#### Adult Literacy Report
+- id: macro-literacy
+- price: $0.08
+- tier: basic
+- indicators: SE.ADT.LITR.ZS (Adult literacy rate (% of people ages 15 and above))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 53 (24.1% of quoted)
+- sales: 0
+- summary: Adult literacy rate for people aged 15 and above — the foundational human-capital gate that precedes every higher-education measure.
+- keywords: literacy, adult literacy, education, human capital, basic skills
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-literacy  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-literacy?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-literacy?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-literacy  json: https://reportbazaar.app.workbuddy.host/report/macro-literacy?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-literacy?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-literacy?format=summary-csv
+
+### energy (6)
+#### Energy Use and Renewables Report
+- id: macro-energy
+- price: $0.12
+- tier: standard
+- indicators: EG.USE.PCAP.KG.OE (Energy use (kg of oil equivalent per capita)) | EG.FEC.RNEW.ZS (Renewable energy consumption (% of final energy use))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 440
+- observations published: 334 (75.9% of quoted)
+- sales: 0
+- summary: Energy use per capita (kg of oil equivalent) paired with the renewable share of final energy consumption — the energy-transition scoreboard.
+- keywords: energy, energy consumption, renewables, energy transition, oil equivalent, power
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-energy  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-energy?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-energy?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-energy  json: https://reportbazaar.app.workbuddy.host/report/macro-energy?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-energy?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-energy?format=summary-csv
+
+#### Renewable Electricity Output Report
+- id: macro-renewable-power
+- price: $0.10
+- tier: standard
+- indicators: EG.ELC.RNEW.ZS (Renewable electricity output (% of total electricity output))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 140 (63.6% of quoted)
+- sales: 0
+- summary: Renewable electricity as a share of total electricity output — the power-mix transition measured at the generation stage.
+- keywords: renewable electricity, solar, wind, power mix, energy transition, clean power
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-renewable-power  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-renewable-power?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-renewable-power?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-renewable-power  json: https://reportbazaar.app.workbuddy.host/report/macro-renewable-power?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-renewable-power?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-renewable-power?format=summary-csv
+
+#### Fossil Fuel Dependence Report
+- id: macro-fossil-share
+- price: $0.12
+- tier: standard
+- indicators: EG.USE.COMM.FO.ZS (Fossil fuel energy consumption (% of total))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 194 (88.2% of quoted)
+- sales: 0
+- summary: Fossil fuel consumption as a share of total energy use — the inverse of the transition, and a direct read on exposure to fuel-price shocks.
+- keywords: fossil fuels, oil dependence, coal, gas, energy security, carbon intensity
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-fossil-share  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-fossil-share?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-fossil-share?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-fossil-share  json: https://reportbazaar.app.workbuddy.host/report/macro-fossil-share?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-fossil-share?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-fossil-share?format=summary-csv
+
+#### Electricity Access Report
+- id: macro-electricity-access
+- price: $0.08
+- tier: basic
+- indicators: EG.ELC.ACCS.ZS (Access to electricity (% of population))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 200 (90.9% of quoted)
+- sales: 0
+- summary: Share of the population with access to electricity — the electrification baseline that conditions every downstream demand estimate.
+- keywords: electricity access, electrification, energy poverty, grid coverage, power access
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-electricity-access  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-electricity-access?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-electricity-access?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-electricity-access  json: https://reportbazaar.app.workbuddy.host/report/macro-electricity-access?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-electricity-access?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-electricity-access?format=summary-csv
+
+#### Energy Transition Scoreboard
+- id: theme-energy-transition
+- price: $0.25
+- tier: premium
+- indicators: EG.ELC.RNEW.ZS (Renewable electricity output (% of total electricity output)) | EG.USE.COMM.FO.ZS (Fossil fuel energy consumption (% of total)) | EG.ELC.ACCS.ZS (Access to electricity (% of population)) | EN.GHG.CO2.PC.CE.AR5 (CO2 emissions per capita (t CO2e))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 880
+- observations published: 734 (83.4% of quoted)
+- sales: 0
+- summary: Renewable generation share, fossil dependence, electricity access and CO2 intensity in one document, with the cross-indicator correlation matrix — the transition measured from four directions at once.
+- keywords: energy transition, decarbonisation, net zero, renewables, fossil dependence, co2 intensity, esg scoreboard, climate policy
+- free preview: https://reportbazaar.app.workbuddy.host/preview/theme-energy-transition  preview markdown: https://reportbazaar.app.workbuddy.host/preview/theme-energy-transition?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/theme-energy-transition?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/theme-energy-transition  json: https://reportbazaar.app.workbuddy.host/report/theme-energy-transition?format=json  csv: https://reportbazaar.app.workbuddy.host/report/theme-energy-transition?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/theme-energy-transition?format=summary-csv
+
+#### Net Energy Import Dependence Report
+- id: macro-energy-imports
+- price: $0.07
+- tier: basic
+- indicators: EG.IMP.CONS.ZS (Energy imports, net (% of energy use))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 178 (80.9% of quoted)
+- sales: 0
+- summary: Net energy imports as a share of energy use — how much of each economy's energy it must source from abroad, the flip side of the fossil-dependence measure.
+- keywords: energy imports, energy dependence, energy security, imported energy
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-energy-imports  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-energy-imports?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-energy-imports?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-energy-imports  json: https://reportbazaar.app.workbuddy.host/report/macro-energy-imports?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-energy-imports?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-energy-imports?format=summary-csv
+
+### environment (4)
+#### CO2 Emissions per Capita Report
+- id: macro-co2
+- price: $0.12
+- tier: standard
+- indicators: EN.GHG.CO2.PC.CE.AR5 (CO2 emissions per capita (t CO2e))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 200 (90.9% of quoted)
+- sales: 0
+- summary: Territorial CO2 emissions per capita in tonnes of CO2 equivalent — the standard climate-accounting intensity measure.
+- keywords: co2, emissions, carbon, climate, decarbonisation, greenhouse gas, esg
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-co2  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-co2?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-co2?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-co2  json: https://reportbazaar.app.workbuddy.host/report/macro-co2?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-co2?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-co2?format=summary-csv
+
+#### Air Quality and Water Stress Report
+- id: macro-air-quality
+- price: $0.11
+- tier: standard
+- indicators: EN.ATM.PM25.MC.M3 (PM2.5 air pollution (micrograms per cubic meter)) | ER.H2O.FWTL.ZS (Freshwater withdrawal (% of internal resources))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 440
+- observations published: 340 (77.3% of quoted)
+- sales: 0
+- summary: Mean PM2.5 concentration and freshwater withdrawal as a share of internal resources — environmental stress indicators relevant to operational and sovereign risk.
+- keywords: air quality, pm2.5, pollution, water stress, water withdrawal, esg risk
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-air-quality  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-air-quality?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-air-quality?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-air-quality  json: https://reportbazaar.app.workbuddy.host/report/macro-air-quality?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-air-quality?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-air-quality?format=summary-csv
+
+#### Food Production Index Report
+- id: macro-food
+- price: $0.07
+- tier: basic
+- indicators: AG.PRD.FOOD.XD (Food production index (2014-2016 = 100))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 160 (72.7% of quoted)
+- sales: 1
+- summary: Food production index (2014-2016 = 100) — agricultural output trajectory and food-security supply side.
+- keywords: food production, agriculture, food security, crop output
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-food  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-food?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-food?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-food  json: https://reportbazaar.app.workbuddy.host/report/macro-food?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-food?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-food?format=summary-csv
+
+#### Forest Area Report
+- id: macro-forest
+- price: $0.07
+- tier: basic
+- indicators: AG.LND.FRST.ZS (Forest area (% of land area))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 180 (81.8% of quoted)
+- sales: 0
+- summary: Forest area as a share of land area — land-use change and carbon-sink capacity, reported at multi-year intervals.
+- keywords: forest, deforestation, land use, carbon sink, biodiversity, esg
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-forest  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-forest?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-forest?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-forest  json: https://reportbazaar.app.workbuddy.host/report/macro-forest?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-forest?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-forest?format=summary-csv
+
+### finance (3)
+#### External Debt Stock Report
+- id: macro-debt
+- price: $0.25
+- tier: premium
+- indicators: DT.DOD.DECT.CD (External debt stocks, public and publicly guaranteed (current US$))
+- economies: 10 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 110
+- observations published: 38 (34.5% of quoted)
+- sales: 0
+- summary: Public and publicly guaranteed external debt stocks at current US dollars — sovereign repayment-risk reference with debt accumulation trend.
+- keywords: external debt, sovereign debt, debt burden, default risk, debt stock
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-debt  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-debt?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-debt?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-debt  json: https://reportbazaar.app.workbuddy.host/report/macro-debt?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-debt?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-debt?format=summary-csv
+
+#### Domestic Credit to Private Sector Report
+- id: macro-credit
+- price: $0.13
+- tier: standard
+- indicators: FS.AST.PRVT.GD.ZS (Domestic credit to private sector (% of GDP))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 187 (85% of quoted)
+- sales: 0
+- summary: Domestic credit to the private sector as a percentage of GDP — banking-system depth and leverage build-up.
+- keywords: private credit, leverage, banking depth, credit to gdp, financial deepening
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-credit  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-credit?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-credit?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-credit  json: https://reportbazaar.app.workbuddy.host/report/macro-credit?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-credit?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-credit?format=summary-csv
+
+#### Equity Market Capitalization Report
+- id: macro-market-cap
+- price: $0.13
+- tier: standard
+- indicators: CM.MKT.LCAP.CD (Market capitalization of listed companies (current US$))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 185 (84.1% of quoted)
+- sales: 0
+- summary: Market capitalization of listed domestic companies at current US dollars — listed-equity depth and capital-market development.
+- keywords: market cap, stock market, equity market, capitalisation, listed companies
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-market-cap  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-market-cap?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-market-cap?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-market-cap  json: https://reportbazaar.app.workbuddy.host/report/macro-market-cap?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-market-cap?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-market-cap?format=summary-csv
+
+### fiscal (4)
+#### Fiscal Position Report — Tax, Debt and Education Spending
+- id: macro-fiscal
+- price: $0.25
+- tier: premium
+- indicators: GC.TAX.TOTL.GD.ZS (Tax revenue (% of GDP)) | GC.DOD.TOTL.GD.ZS (Central government debt, total (% of GDP)) | SE.XPD.TOTL.GD.ZS (Government expenditure on education (% of GDP))
+- economies: 10 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 330
+- observations published: 208 (63% of quoted)
+- sales: 0
+- summary: Tax revenue, central government debt and education expenditure, all as a share of GDP — a three-indicator view of fiscal capacity.
+- keywords: fiscal policy, tax revenue, government debt, budget, public spending, sovereign
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-fiscal  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-fiscal?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-fiscal?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-fiscal  json: https://reportbazaar.app.workbuddy.host/report/macro-fiscal?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-fiscal?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-fiscal?format=summary-csv
+
+#### Government Interest Burden Report
+- id: macro-debt-interest
+- price: $0.23
+- tier: premium
+- indicators: GC.XPN.INTP.ZS (Interest payments (% of expense))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 143 (65% of quoted)
+- sales: 0
+- summary: Interest payments as a share of central government expense — how much of each budget is consumed servicing debt rather than funding policy. Only IMF-format reporters are covered.
+- keywords: interest payments, debt service, fiscal burden, sovereign risk, budget rigidity
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-debt-interest  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-debt-interest?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-debt-interest?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-debt-interest  json: https://reportbazaar.app.workbuddy.host/report/macro-debt-interest?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-debt-interest?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-debt-interest?format=summary-csv
+
+#### Fiscal Space Report — Debt, Interest and Revenue
+- id: theme-fiscal-space
+- price: $0.25
+- tier: premium
+- indicators: GC.DOD.TOTL.GD.ZS (Central government debt, total (% of GDP)) | GC.XPN.INTP.ZS (Interest payments (% of expense)) | GC.TAX.TOTL.GD.ZS (Tax revenue (% of GDP))
+- economies: 10 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 330
+- observations published: 203 (61.5% of quoted)
+- sales: 0
+- summary: Central government debt, the interest share of spending and tax revenue together — whether a sovereign still has room to borrow, and how much of the budget is already spoken for.
+- keywords: fiscal space, sovereign debt, debt service, tax revenue, austerity, bond risk, fiscal sustainability
+- free preview: https://reportbazaar.app.workbuddy.host/preview/theme-fiscal-space  preview markdown: https://reportbazaar.app.workbuddy.host/preview/theme-fiscal-space?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/theme-fiscal-space?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/theme-fiscal-space  json: https://reportbazaar.app.workbuddy.host/report/theme-fiscal-space?format=json  csv: https://reportbazaar.app.workbuddy.host/report/theme-fiscal-space?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/theme-fiscal-space?format=summary-csv
+
+#### Government Net Lending Report
+- id: macro-net-lending
+- price: $0.12
+- tier: standard
+- indicators: GC.NLD.TOTL.GD.ZS (Net lending (+) / net borrowing (-) (% of GDP))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 163 (74.1% of quoted)
+- sales: 0
+- summary: Net lending (+) or net borrowing (-) of general government as a percentage of GDP — the bottom-line fiscal stance after all revenue and spending.
+- keywords: net lending, fiscal balance, budget surplus, budget deficit, government balance
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-net-lending  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-net-lending?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-net-lending?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-net-lending  json: https://reportbazaar.app.workbuddy.host/report/macro-net-lending?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-net-lending?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-net-lending?format=summary-csv
+
+### health (6)
+#### Life Expectancy and Child Mortality Report
+- id: macro-life-expectancy
+- price: $0.12
+- tier: standard
+- indicators: SP.DYN.LE00.IN (Life expectancy at birth, total (years)) | SH.DYN.MORT (Mortality rate, under-5 (per 1,000 live births))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 440
+- observations published: 400 (90.9% of quoted)
+- sales: 0
+- summary: Life expectancy at birth and under-5 mortality per 1,000 live births — two complementary population-health measures.
+- keywords: life expectancy, mortality, public health, human development, longevity
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-life-expectancy  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-life-expectancy?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-life-expectancy?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-life-expectancy  json: https://reportbazaar.app.workbuddy.host/report/macro-life-expectancy?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-life-expectancy?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-life-expectancy?format=summary-csv
+
+#### Health Expenditure Report
+- id: macro-health
+- price: $0.08
+- tier: basic
+- indicators: SH.XPD.CHEX.GD.ZS (Current health expenditure (% of GDP))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 186 (84.5% of quoted)
+- sales: 0
+- summary: Current health expenditure as a percentage of GDP — the fiscal weight of each health system.
+- keywords: health expenditure, healthcare spending, health system, medical cost
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-health  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-health?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-health?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-health  json: https://reportbazaar.app.workbuddy.host/report/macro-health?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-health?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-health?format=summary-csv
+
+#### Hospital Beds and Physicians Report
+- id: macro-hospital-beds
+- price: $0.11
+- tier: standard
+- indicators: SH.MED.BEDS.ZS (Hospital beds (per 1,000 people)) | SH.MED.PHYS.ZS (Physicians (per 1,000 people))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 440
+- observations published: 301 (68.4% of quoted)
+- sales: 0
+- summary: Hospital beds and physicians per 1,000 people — the physical capacity of each health system, a key pandemic-preparedness input.
+- keywords: hospital beds, physicians, health capacity, healthcare infrastructure, pandemic preparedness
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-hospital-beds  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-hospital-beds?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-hospital-beds?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-hospital-beds  json: https://reportbazaar.app.workbuddy.host/report/macro-hospital-beds?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-hospital-beds?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-hospital-beds?format=summary-csv
+
+#### Life Expectancy by Sex Report
+- id: macro-life-expectancy-sex
+- price: $0.08
+- tier: basic
+- indicators: SP.DYN.LE00.FE.IN (Life expectancy at birth, female (years)) | SP.DYN.LE00.MA.IN (Life expectancy at birth, male (years))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 440
+- observations published: 400 (90.9% of quoted)
+- sales: 0
+- summary: Life expectancy at birth for females and males separately — the gender gap in longevity that the all-sex average hides.
+- keywords: life expectancy female, life expectancy male, gender life gap, longevity, public health
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-life-expectancy-sex  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-life-expectancy-sex?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-life-expectancy-sex?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-life-expectancy-sex  json: https://reportbazaar.app.workbuddy.host/report/macro-life-expectancy-sex?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-life-expectancy-sex?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-life-expectancy-sex?format=summary-csv
+
+#### Measles Immunization Report
+- id: macro-measles-immunization
+- price: $0.08
+- tier: basic
+- indicators: SH.IMM.MEAS (Immunization, measles (% of children ages 12-23 months))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 200 (90.9% of quoted)
+- sales: 0
+- summary: Measles immunization coverage among children aged 12-23 months — a frontline indicator of primary-health-system reach.
+- keywords: immunization, measles, vaccination, child health, preventive care
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-measles-immunization  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-measles-immunization?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-measles-immunization?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-measles-immunization  json: https://reportbazaar.app.workbuddy.host/report/macro-measles-immunization?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-measles-immunization?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-measles-immunization?format=summary-csv
+
+#### Basic Sanitation Access Report
+- id: macro-sanitation
+- price: $0.08
+- tier: basic
+- indicators: SH.STA.BASS.ZS (People using at least basic sanitation services (% of population))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 192 (87.3% of quoted)
+- sales: 0
+- summary: People using at least basic sanitation services as a share of the population — the sanitation-policy counterpart to basic drinking-water access.
+- keywords: sanitation, basic sanitation, water and sanitation, public health, hygiene
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-sanitation  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-sanitation?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-sanitation?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-sanitation  json: https://reportbazaar.app.workbuddy.host/report/macro-sanitation?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-sanitation?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-sanitation?format=summary-csv
+
+### innovation (6)
+#### Research and Development Expenditure Report
+- id: macro-rnd
+- price: $0.12
+- tier: standard
+- indicators: GB.XPD.RSDV.GD.ZS (Research and development expenditure (% of GDP))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 166 (75.5% of quoted)
+- sales: 0
+- summary: Gross domestic expenditure on R&D as a percentage of GDP — national innovation intensity.
+- keywords: r&d, research and development, innovation, science spending, technology investment
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-rnd  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-rnd?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-rnd?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-rnd  json: https://reportbazaar.app.workbuddy.host/report/macro-rnd?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-rnd?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-rnd?format=summary-csv
+
+#### Resident Patent Applications Report
+- id: macro-patents
+- price: $0.07
+- tier: basic
+- indicators: IP.PAT.RESD (Patent applications, residents)
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 139 (63.2% of quoted)
+- sales: 2
+- summary: Patent applications filed by residents — a direct measure of domestic inventive output. Coverage is limited to the most recent available years.
+- keywords: patents, intellectual property, innovation output, ip filings
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-patents  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-patents?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-patents?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-patents  json: https://reportbazaar.app.workbuddy.host/report/macro-patents?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-patents?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-patents?format=summary-csv
+
+#### High-Technology Exports Share Report
+- id: macro-tech-exports
+- price: $0.12
+- tier: standard
+- indicators: TX.VAL.TECH.MF.ZS (High-technology exports (% of manufactured exports))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 197 (89.5% of quoted)
+- sales: 0
+- summary: High-technology exports as a share of manufactured exports — the clearest single proxy for where advanced manufacturing and semiconductor-grade capability sits.
+- keywords: high technology exports, semiconductors, advanced manufacturing, tech exports, export sophistication, ai hardware
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-tech-exports  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-tech-exports?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-tech-exports?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-tech-exports  json: https://reportbazaar.app.workbuddy.host/report/macro-tech-exports?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-tech-exports?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-tech-exports?format=summary-csv
+
+#### Scientific Research Output Report
+- id: macro-scientific-output
+- price: $0.11
+- tier: standard
+- indicators: IP.JRN.ARTC.SC (Scientific and technical journal articles)
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 180 (81.8% of quoted)
+- sales: 0
+- summary: Scientific and technical journal articles published — the volume measure of national research output. Publication lags the reporting period by two to three years.
+- keywords: research output, scientific papers, journal articles, r&d capacity, science, publications
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-scientific-output  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-scientific-output?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-scientific-output?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-scientific-output  json: https://reportbazaar.app.workbuddy.host/report/macro-scientific-output?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-scientific-output?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-scientific-output?format=summary-csv
+
+#### Technology Capability Report — Exports, Research and Infrastructure
+- id: theme-tech-capability
+- price: $0.25
+- tier: premium
+- indicators: TX.VAL.TECH.MF.ZS (High-technology exports (% of manufactured exports)) | IT.NET.SECR.P6 (Secure Internet servers (per 1 million people)) | IP.JRN.ARTC.SC (Scientific and technical journal articles) | IT.NET.BBND.P2 (Fixed broadband subscriptions (per 100 people))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 880
+- observations published: 776 (88.2% of quoted)
+- sales: 0
+- summary: High-technology export share, secure-server density, scientific publication volume and broadband penetration, correlated against each other — a four-axis view of where advanced capability actually accumulates.
+- keywords: technology capability, ai capacity, semiconductors, research output, digital infrastructure, innovation index, tech stack
+- free preview: https://reportbazaar.app.workbuddy.host/preview/theme-tech-capability  preview markdown: https://reportbazaar.app.workbuddy.host/preview/theme-tech-capability?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/theme-tech-capability?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/theme-tech-capability  json: https://reportbazaar.app.workbuddy.host/report/theme-tech-capability?format=json  csv: https://reportbazaar.app.workbuddy.host/report/theme-tech-capability?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/theme-tech-capability?format=summary-csv
+
+#### Nonresident Patent Applications Report
+- id: macro-patents-nonresident
+- price: $0.06
+- tier: basic
+- indicators: IP.PAT.NRES (Patent applications, nonresidents)
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 139 (63.2% of quoted)
+- sales: 0
+- summary: Patent applications filed by nonresidents — the inbound side of inventive activity, complementing the resident-applicant series as a foreign-confidence signal.
+- keywords: nonresident patents, foreign patents, ip filings, invention inflow, technology transfer
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-patents-nonresident  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-patents-nonresident?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-patents-nonresident?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-patents-nonresident  json: https://reportbazaar.app.workbuddy.host/report/macro-patents-nonresident?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-patents-nonresident?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-patents-nonresident?format=summary-csv
+
+### investment (1)
+#### Foreign Direct Investment Net Inflows Report
+- id: macro-fdi
+- price: $0.28
+- tier: premium
+- indicators: BX.KLT.DINV.CD.WD (Foreign direct investment, net inflows (current US$))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 219 (99.5% of quoted)
+- sales: 0
+- summary: FDI net inflows on a balance-of-payments basis, current US dollars — cross-border capital confidence, share of group inflow and stability.
+- keywords: fdi, foreign direct investment, capital flows, investment climate
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-fdi  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-fdi?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-fdi?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-fdi  json: https://reportbazaar.app.workbuddy.host/report/macro-fdi?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-fdi?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-fdi?format=summary-csv
+
+### labor (3)
+#### Unemployment Rate Report
+- id: macro-unemployment
+- price: $0.13
+- tier: standard
+- indicators: SL.UEM.TOTL.ZS (Unemployment, total (% of labor force))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 220 (100% of quoted)
+- sales: 0
+- summary: Total unemployment as a share of the labor force — labor-market slack, best/worst year and period average.
+- keywords: unemployment, joblessness, labour market, employment, labour slack
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-unemployment  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-unemployment?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-unemployment?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-unemployment  json: https://reportbazaar.app.workbuddy.host/report/macro-unemployment?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-unemployment?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-unemployment?format=summary-csv
+
+#### Labor Force Participation Report
+- id: macro-labor-force
+- price: $0.13
+- tier: standard
+- indicators: SL.TLF.CACT.ZS (Labor force participation rate (% of population 15+)) | SP.DYN.TFRT.IN (Fertility rate (births per woman))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 440
+- observations published: 420 (95.5% of quoted)
+- sales: 0
+- summary: Labor force participation rate alongside the fertility rate — the two drivers of future labor supply.
+- keywords: labour force participation, fertility rate, workforce, labour supply, birth rate
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-labor-force  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-labor-force?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-labor-force?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-labor-force  json: https://reportbazaar.app.workbuddy.host/report/macro-labor-force?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-labor-force?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-labor-force?format=summary-csv
+
+#### Income Inequality Report
+- id: macro-gini
+- price: $0.25
+- tier: premium
+- indicators: SI.POV.GINI (Gini index (0-100))
+- economies: 10 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 110
+- observations published: 74 (67.3% of quoted)
+- sales: 0
+- summary: Gini index (0 = perfect equality, 100 = perfect inequality) — the standard distributional snapshot. Coverage is sparser than other indicators and is reported as such.
+- keywords: gini, inequality, income distribution, poverty, wealth gap
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-gini  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-gini?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-gini?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-gini  json: https://reportbazaar.app.workbuddy.host/report/macro-gini?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-gini?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-gini?format=summary-csv
+
+### macro (1)
+#### Growth, Inflation and Unemployment — Macro Stress Report
+- id: theme-growth-quality
+- price: $0.28
+- tier: premium
+- indicators: NY.GDP.MKTP.KD.ZG (GDP growth (annual %)) | FP.CPI.TOTL.ZG (Inflation, consumer prices (annual %)) | SL.UEM.TOTL.ZS (Unemployment, total (% of labor force))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 660
+- observations published: 655 (99.2% of quoted)
+- sales: 0
+- summary: Real growth, consumer-price inflation and unemployment side by side, with the pooled correlation between them — the three variables that define a stagflation or overheating call.
+- keywords: stagflation, macro stress, growth inflation unemployment, phillips curve, misery index, business cycle, overheating
+- free preview: https://reportbazaar.app.workbuddy.host/preview/theme-growth-quality  preview markdown: https://reportbazaar.app.workbuddy.host/preview/theme-growth-quality?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/theme-growth-quality?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/theme-growth-quality  json: https://reportbazaar.app.workbuddy.host/report/theme-growth-quality?format=json  csv: https://reportbazaar.app.workbuddy.host/report/theme-growth-quality?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/theme-growth-quality?format=summary-csv
+
+### output (7)
+#### GDP Comparison Report — Major Economies
+- id: macro-gdp
+- price: $0.13
+- tier: standard
+- indicators: NY.GDP.MKTP.CD (GDP (current US$))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 220 (100% of quoted)
+- sales: 1
+- summary: GDP at current US dollars for ten major economies, with period CAGR, share of group total, latest-year growth, volatility and a full year-by-year matrix.
+- keywords: gdp, gross domestic product, economy size, output, nominal gdp
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-gdp  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-gdp?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-gdp?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-gdp  json: https://reportbazaar.app.workbuddy.host/report/macro-gdp?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-gdp?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-gdp?format=summary-csv
+
+#### GDP per Capita Comparison Report
+- id: macro-gdp-per-capita
+- price: $0.13
+- tier: standard
+- indicators: NY.GDP.PCAP.CD (GDP per capita (current US$))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 220 (100% of quoted)
+- sales: 0
+- summary: GDP per capita at current US dollars — a productivity and living-standard proxy with CAGR, ranking and dispersion metrics.
+- keywords: gdp per capita, income per person, living standard, productivity, wealth
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-gdp-per-capita  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-gdp-per-capita?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-gdp-per-capita?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-gdp-per-capita  json: https://reportbazaar.app.workbuddy.host/report/macro-gdp-per-capita?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-gdp-per-capita?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-gdp-per-capita?format=summary-csv
+
+#### GDP at Purchasing Power Parity Report
+- id: macro-gdp-ppp
+- price: $0.13
+- tier: standard
+- indicators: NY.GDP.MKTP.PP.CD (GDP, PPP (current international $))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 220 (100% of quoted)
+- sales: 0
+- summary: GDP at PPP in current international dollars — real economic weight adjusted for price levels, a common basis for cross-country ranking.
+- keywords: ppp, purchasing power parity, real economy size, international dollars
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-gdp-ppp  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-gdp-ppp?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-gdp-ppp?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-gdp-ppp  json: https://reportbazaar.app.workbuddy.host/report/macro-gdp-ppp?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-gdp-ppp?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-gdp-ppp?format=summary-csv
+
+#### GDP Growth Rate Report
+- id: macro-gdp-growth
+- price: $0.13
+- tier: standard
+- indicators: NY.GDP.MKTP.KD.ZG (GDP growth (annual %))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 220 (100% of quoted)
+- sales: 0
+- summary: Real GDP growth (annual %) — expansion or contraction momentum, average growth, volatility and recession-year detection.
+- keywords: gdp growth, economic growth, recession, momentum, expansion
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-gdp-growth  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-gdp-growth?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-gdp-growth?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-gdp-growth  json: https://reportbazaar.app.workbuddy.host/report/macro-gdp-growth?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-gdp-growth?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-gdp-growth?format=summary-csv
+
+#### Real GDP Report (Constant Prices)
+- id: macro-real-gdp
+- price: $0.13
+- tier: standard
+- indicators: NY.GDP.MKTP.KD (GDP (constant 2015 US$))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 220 (100% of quoted)
+- sales: 0
+- summary: GDP at constant 2015 US dollars — volume growth stripped of price effects, the like-for-like basis for comparing economies over time.
+- keywords: real gdp, constant prices, volume growth, inflation adjusted output, real economy
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-real-gdp  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-real-gdp?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-real-gdp?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-real-gdp  json: https://reportbazaar.app.workbuddy.host/report/macro-real-gdp?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-real-gdp?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-real-gdp?format=summary-csv
+
+#### GNI per Capita Report (Atlas Method)
+- id: macro-gni-per-capita
+- price: $0.13
+- tier: standard
+- indicators: NY.GNP.PCAP.CD (GNI per capita, Atlas method (current US$))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 220 (100% of quoted)
+- sales: 0
+- summary: Gross national income per capita on the World Bank Atlas method (current US$) — the income yardstick behind development classifications and lending tiers.
+- keywords: gni per capita, atlas method, national income, income level, development tier
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-gni-per-capita  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-gni-per-capita?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-gni-per-capita?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-gni-per-capita  json: https://reportbazaar.app.workbuddy.host/report/macro-gni-per-capita?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-gni-per-capita?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-gni-per-capita?format=summary-csv
+
+#### Real GDP per Capita Report (Constant Prices)
+- id: macro-real-gdp-per-capita
+- price: $0.13
+- tier: standard
+- indicators: NY.GDP.PCAP.KD (GDP per capita (constant 2015 US$))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 220 (100% of quoted)
+- sales: 0
+- summary: GDP per capita at constant 2015 US dollars — inflation-adjusted living-standard trajectory, the like-for-like complement to the nominal per-capita series.
+- keywords: real gdp per capita, constant prices, living standard, inflation adjusted income, real income
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-real-gdp-per-capita  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-real-gdp-per-capita?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-real-gdp-per-capita?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-real-gdp-per-capita  json: https://reportbazaar.app.workbuddy.host/report/macro-real-gdp-per-capita?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-real-gdp-per-capita?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-real-gdp-per-capita?format=summary-csv
+
+### prices (3)
+#### Inflation Rate Comparison Report
+- id: macro-inflation
+- price: $0.13
+- tier: standard
+- indicators: FP.CPI.TOTL.ZG (Inflation, consumer prices (annual %))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 215 (97.7% of quoted)
+- sales: 0
+- summary: Consumer-price inflation across ten economies — monetary-policy stance, peak-inflation year and average inflation over the period.
+- keywords: inflation, cpi, consumer prices, cost of living, monetary policy
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-inflation  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-inflation?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-inflation?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-inflation  json: https://reportbazaar.app.workbuddy.host/report/macro-inflation?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-inflation?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-inflation?format=summary-csv
+
+#### GDP Deflator Inflation Report
+- id: macro-gdp-deflator
+- price: $0.09
+- tier: basic
+- indicators: NY.GDP.DEFL.KD.ZG (Inflation, GDP deflator (annual %))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 220 (100% of quoted)
+- sales: 0
+- summary: Inflation measured by the GDP deflator — the broadest domestic price gauge, useful as a cross-check against consumer-price inflation.
+- keywords: gdp deflator, broad inflation, price level, deflator
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-gdp-deflator  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-gdp-deflator?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-gdp-deflator?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-gdp-deflator  json: https://reportbazaar.app.workbuddy.host/report/macro-gdp-deflator?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-gdp-deflator?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-gdp-deflator?format=summary-csv
+
+#### Official Exchange Rate Report
+- id: macro-fx
+- price: $0.13
+- tier: standard
+- indicators: PA.NUS.FCRF (Official exchange rate (LCU per US$, period average))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 219 (99.5% of quoted)
+- sales: 0
+- summary: Official exchange rate, local currency units per US dollar (period average) — a currency-valuation baseline with cumulative depreciation.
+- keywords: exchange rate, currency, forex, depreciation, devaluation, fx
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-fx  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-fx?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-fx?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-fx  json: https://reportbazaar.app.workbuddy.host/report/macro-fx?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-fx?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-fx?format=summary-csv
+
+### society (3)
+#### Extreme Poverty Report
+- id: macro-poverty
+- price: $0.25
+- tier: premium
+- indicators: SI.POV.DDAY (Poverty headcount ratio at $2.15 a day (2017 PPP, % of population))
+- economies: 10 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 110
+- observations published: 74 (67.3% of quoted)
+- sales: 0
+- summary: Poverty headcount at $2.15 a day (2017 PPP) — the headline development measure. Survey-based, so observations arrive in irregular waves rather than every year.
+- keywords: poverty, extreme poverty, development, living standards, sdg, income floor
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-poverty  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-poverty?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-poverty?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-poverty  json: https://reportbazaar.app.workbuddy.host/report/macro-poverty?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-poverty?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-poverty?format=summary-csv
+
+#### Women in Parliament Report
+- id: macro-gender-parliament
+- price: $0.09
+- tier: basic
+- indicators: SG.GEN.PARL.ZS (Proportion of seats held by women in national parliaments (%))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 219 (99.5% of quoted)
+- sales: 0
+- summary: Proportion of national parliamentary seats held by women — a governance and institutional-quality measure used in ESG screening.
+- keywords: gender equality, women in parliament, governance, esg, representation, diversity
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-gender-parliament  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-gender-parliament?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-gender-parliament?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-gender-parliament  json: https://reportbazaar.app.workbuddy.host/report/macro-gender-parliament?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-gender-parliament?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-gender-parliament?format=summary-csv
+
+#### Inclusion and Poverty Report — Income, Access and Services
+- id: theme-inclusion-poverty
+- price: $0.25
+- tier: premium
+- indicators: SI.POV.DDAY (Poverty headcount ratio at $2.15 a day (2017 PPP, % of population)) | SI.POV.GINI (Gini index (0-100)) | FX.OWN.TOTL.ZS (Account ownership at a financial institution (% of population 15+)) | SH.H2O.BASW.ZS (People using at least basic drinking water services (% of population))
+- economies: 10 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 440
+- observations published: 278 (63.2% of quoted)
+- sales: 0
+- summary: Extreme-poverty headcount, income inequality, financial-account ownership and basic drinking-water access together — the distributional and service-access picture behind social-risk assessments.
+- keywords: inclusion, poverty, inequality, financial inclusion, water access, social risk, development, esg social
+- free preview: https://reportbazaar.app.workbuddy.host/preview/theme-inclusion-poverty  preview markdown: https://reportbazaar.app.workbuddy.host/preview/theme-inclusion-poverty?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/theme-inclusion-poverty?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/theme-inclusion-poverty  json: https://reportbazaar.app.workbuddy.host/report/theme-inclusion-poverty?format=json  csv: https://reportbazaar.app.workbuddy.host/report/theme-inclusion-poverty?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/theme-inclusion-poverty?format=summary-csv
+
+### structure (1)
+#### Economic Structure Report — Agriculture, Industry, Services
+- id: macro-economic-structure
+- price: $0.28
+- tier: premium
+- indicators: NV.AGR.TOTL.ZS (Agriculture, forestry and fishing value added (% of GDP)) | NV.IND.TOTL.ZS (Industry value added (% of GDP)) | NV.SRV.TOTL.ZS (Services value added (% of GDP))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 660
+- observations published: 636 (96.4% of quoted)
+- sales: 0
+- summary: Value added by agriculture, industry and services as a share of GDP — three indicators rendered together to show each economy's structural composition.
+- keywords: economic structure, sector composition, services share, industrialisation, agriculture share
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-economic-structure  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-economic-structure?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-economic-structure?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-economic-structure  json: https://reportbazaar.app.workbuddy.host/report/macro-economic-structure?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-economic-structure?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-economic-structure?format=summary-csv
+
+### trade (8)
+#### Merchandise and Services Exports Report
+- id: macro-trade
+- price: $0.13
+- tier: standard
+- indicators: NE.EXP.GNFS.CD (Exports of goods and services (current US$))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 218 (99.1% of quoted)
+- sales: 0
+- summary: Total exports of goods and services at current US dollars — global trade positioning, export share of the group and growth.
+- keywords: exports, trade, goods and services, export competitiveness
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-trade  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-trade?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-trade?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-trade  json: https://reportbazaar.app.workbuddy.host/report/macro-trade?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-trade?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-trade?format=summary-csv
+
+#### Merchandise and Services Imports Report
+- id: macro-imports
+- price: $0.13
+- tier: standard
+- indicators: NE.IMP.GNFS.CD (Imports of goods and services (current US$))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 218 (99.1% of quoted)
+- sales: 0
+- summary: Total imports of goods and services at current US dollars — domestic demand strength and external dependence.
+- keywords: imports, trade, domestic demand, import dependence
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-imports  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-imports?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-imports?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-imports  json: https://reportbazaar.app.workbuddy.host/report/macro-imports?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-imports?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-imports?format=summary-csv
+
+#### Trade Openness Report
+- id: macro-trade-openness
+- price: $0.13
+- tier: standard
+- indicators: NE.TRD.GNFS.ZS (Trade (% of GDP)) | TG.VAL.TOTL.GD.ZS (Merchandise trade (% of GDP))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 440
+- observations published: 438 (99.5% of quoted)
+- sales: 0
+- summary: Trade as a share of GDP and merchandise trade as a share of GDP — how open each economy is to cross-border flows.
+- keywords: trade openness, trade to gdp, globalisation, tariff exposure
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-trade-openness  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-trade-openness?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-trade-openness?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-trade-openness  json: https://reportbazaar.app.workbuddy.host/report/macro-trade-openness?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-trade-openness?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-trade-openness?format=summary-csv
+
+#### Current Account Balance Report
+- id: macro-current-account
+- price: $0.28
+- tier: premium
+- indicators: BN.CAB.XOKA.CD (Current account balance (current US$))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 219 (99.5% of quoted)
+- sales: 0
+- summary: Current account balance at current US dollars — external surplus or deficit position, with a surplus/deficit classification per economy.
+- keywords: current account, trade balance, external balance, surplus, deficit
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-current-account  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-current-account?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-current-account?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-current-account  json: https://reportbazaar.app.workbuddy.host/report/macro-current-account?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-current-account?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-current-account?format=summary-csv
+
+#### Personal Remittances Report
+- id: macro-remittances
+- price: $0.09
+- tier: basic
+- indicators: BX.TRF.PWKR.CD.DT (Personal remittances, received (current US$))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 219 (99.5% of quoted)
+- sales: 0
+- summary: Personal remittances received at current US dollars — a hard-currency inflow that often dwarfs FDI in emerging economies.
+- keywords: remittances, migrant transfers, diaspora flows, household income
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-remittances  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-remittances?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-remittances?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-remittances  json: https://reportbazaar.app.workbuddy.host/report/macro-remittances?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-remittances?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-remittances?format=summary-csv
+
+#### Applied Tariff Rate Report
+- id: macro-tariffs
+- price: $0.23
+- tier: premium
+- indicators: TM.TAX.MRCH.WM.AR.ZS (Tariff rate, applied, weighted mean, all products (%))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 150 (68.2% of quoted)
+- sales: 0
+- summary: Trade-weighted mean applied tariff across all products — the measured restrictiveness of each economy's border, relevant to supply-chain and sourcing exposure. Published intermittently.
+- keywords: tariffs, trade barriers, protectionism, import duty, trade war, customs
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-tariffs  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-tariffs?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-tariffs?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-tariffs  json: https://reportbazaar.app.workbuddy.host/report/macro-tariffs?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-tariffs?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-tariffs?format=summary-csv
+
+#### International Tourism Receipts Report
+- id: macro-tourism
+- price: $0.09
+- tier: basic
+- indicators: BX.GSR.TRVL.ZS (International tourism, receipts (% of total exports))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 220
+- observations published: 219 (99.5% of quoted)
+- sales: 0
+- summary: International tourism receipts as a share of total exports — the service-export concentration of each economy, and its pandemic-era rupture.
+- keywords: tourism, travel receipts, service exports, visitor economy, travel and tourism
+- free preview: https://reportbazaar.app.workbuddy.host/preview/macro-tourism  preview markdown: https://reportbazaar.app.workbuddy.host/preview/macro-tourism?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/macro-tourism?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/macro-tourism  json: https://reportbazaar.app.workbuddy.host/report/macro-tourism?format=json  csv: https://reportbazaar.app.workbuddy.host/report/macro-tourism?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/macro-tourism?format=summary-csv
+
+#### Trade Exposure Report — Flows, Intensity and Tariffs
+- id: theme-trade-exposure
+- price: $0.28
+- tier: premium
+- indicators: NE.EXP.GNFS.ZS (Exports of goods and services (% of GDP)) | NE.IMP.GNFS.ZS (Imports of goods and services (% of GDP)) | TM.TAX.MRCH.WM.AR.ZS (Tariff rate, applied, weighted mean, all products (%))
+- economies: 20 (US, CN, JP, DE, IN, GB, FR, BR, RU, KR, CA, IT, MX, ID, TR, SA, AU, ZA, AR, ES)
+- years: 2015:2025 (2015-2025)
+- cells quoted: 660
+- observations published: 586 (88.8% of quoted)
+- sales: 0
+- summary: Export and import intensity as a share of GDP alongside applied tariff rates — how exposed each economy is to cross-border trade, and how open its own border is.
+- keywords: trade exposure, tariffs, export intensity, import dependence, supply chain, protectionism, trade war, reshoring
+- free preview: https://reportbazaar.app.workbuddy.host/preview/theme-trade-exposure  preview markdown: https://reportbazaar.app.workbuddy.host/preview/theme-trade-exposure?format=md  csv: https://reportbazaar.app.workbuddy.host/preview/theme-trade-exposure?format=csv
+- buy: https://reportbazaar.app.workbuddy.host/report/theme-trade-exposure  json: https://reportbazaar.app.workbuddy.host/report/theme-trade-exposure?format=json  csv: https://reportbazaar.app.workbuddy.host/report/theme-trade-exposure?format=csv  metrics csv: https://reportbazaar.app.workbuddy.host/report/theme-trade-exposure?format=summary-csv
+
+## Every endpoint
+Free, no payment, no key:
+- GET /catalog[?year=YYYY][&category=name] — live prices, coverage, cells, formats, year index
+- GET /years — year index: report counts and the yearbook per year
+- GET /years/{year} — one year resolved into preview and buy URLs
+- GET /preview/{id}[?format=json|csv|md] — machine-readable cross-section, the field contract
+- GET /sample/{id} — reduced HTML preview
+- GET /search?q= — keyword search over titles, keywords, indicators and categories
+- GET /indicators — every supported indicator code with kind, theme and polarity
+- GET /schema/report.json — JSON Schema 2020-12 for the preview and paid payloads
+- GET /deliveries — delivery audit, ledger totals and per-attempt reasons
+- GET /purchases — chronological settled deliveries (chain-verified)
+- GET /api/activity — ticker-shaped recent settlement events
+- GET /start[?format=html] — one recommended first buy plus runnable samples
+- GET /llms.txt, GET /llms-full.txt (this document), GET /ai.txt, GET /robots.txt, GET /sitemap.xml
+- GET /agent.json, GET /.well-known/agent.json (A2A card), GET /.well-known/x402, GET /.well-known/ai-plugin.json, GET /.well-known/mcp.json
+- GET /openapi.json — OpenAPI 3.1
+Paid, one x402 payment each:
+- GET /report/{id}[?format=html|json|csv|summary-csv] — one catalog report or annual edition
+- GET /report/custom?indicators=&countries=&years=&format= — bespoke report, priced by request size
+- GET /report/bundle[?format=&category=] — every catalog report, or one category
+MCP:
+- POST /mcp — Model Context Protocol (streamable HTTP, JSON-RPC 2.0). Tools: search_reports,
+  list_catalog, list_years, preview_report, report_payment_requirements, buy_report. Free tools execute
+  inline; paid fetches return the exact price, asset, network and payTo so the calling runtime can pay
+  and then fetch over HTTP.
+
+## Shape of the paid JSON payload
+Validate against https://reportbazaar.app.workbuddy.host/schema/report.json. Top level: schemaVersion, generatedAt, report (id, title,
+category, indicators with kind/polarity/unit, economies, years, yearCount), totals (requestedCells,
+publishedObservations, coveragePct, indicators, economies, latestYear), indicators[] (per indicator:
+code, label, kind, isRate, polarity, economies, latestYear, shareMeaningful, group mean/median/HHI/
+dispersion/spread ratio, and rows[] — one per economy with rank, share, percentile, firstValue,
+lastValue, firstYear, lastYear, points, cagr, growthIndex, mean, median, stdev, cv, min, max,
+trendSlopePct, trendSlopePp, yoyMean, yoySd, momentum, halfShift, outliers[], missingYears[] and the
+full series[] of {year, value}), crossCorrelations[] (Pearson r of year-over-year changes between
+indicator pairs, with a direction label), attribution (licence string).
+CSV is the same data as a tidy long panel, one row per observation. summary-csv pivots to one row per
+economy carrying the derived metrics.
+
+## Questions buyers ask
+Q: Is there a free tier? — Yes. /preview/{id}, /sample/{id}, /search, /catalog, /years, /indicators and
+every discovery document are free with no key. Only the full documents are paid.
+Q: Do I need an account or an API key? — No. Authentication is the payment itself.
+Q: How much does one report cost? — $0.06 to $0.95 depending on tier and data
+freshness. The exact amount is always in the 402 response body; never assume a cached price.
+Q: Which chain and asset? — USDC on eip155:8453. Settlement is gasless for the payer.
+Q: Can I get the data as JSON instead of HTML? — Yes: append ?format=json, or send
+Accept: application/json. CSV and summary-csv are also available.
+Q: How complete is the data? — Each report states published observations against quoted cells, a
+coverage percentage, per-economy missing years and the latest published year. Nothing is silently
+interpolated; gaps are reported as gaps.
+Q: Where does the data come from and can I redistribute it? — World Bank Open Data under CC BY 4.0.
+Attribution is required and is included in every payload.
+Q: How do I know this store is real? — https://reportbazaar.app.workbuddy.host/purchases lists chain-verified settled payments with
+transaction hashes; the facilitator's public settlement index is
+https://facilitator.payai.network/discovery/resources?payTo=0xba7efeabfab91a6febc8d8088faa29ce95979b34.
+Q: Can I buy several reports at once? — Yes: /report/bundle, or ?category= for one category at a
+discount.
+Q: What if a payment fails? — The 402 body carries a structured error with a retryable flag and the
+specific fix, rather than an empty object.

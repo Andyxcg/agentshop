@@ -1,0 +1,25 @@
+# dependencies
+node_modules/
+
+# runtime cache (deployment-local, no secrets)
+.cache/
+
+# private keys / credentials — NEVER commit
+*.pem
+*.hex
+*.key
+.env
+.env.*
+keys/
+
+# logs
+*.log
+
+# OS
+.DS_Store
+
+# local drafts / external data dumps (not part of the published server)
+outreach-report.json
+registry-report.json
+stripe-signup.png
+awesome-x402-pr.md

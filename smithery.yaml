@@ -1,0 +1,16 @@
+version: "1.0.0"
+name: agentshop
+displayName: "agentshop — x402 macroeconomic report MCP"
+description: >-
+  Pay-per-fetch cross-country macroeconomic reports over x402 (USDC on Base).
+  98 reports across 23 categories, 86 indicators and 20 economies (annual
+  editions 2015–2025). Search and preview for free, then pay one USDC transfer
+  to download any report — or buy the full-catalog bundle for $0.95. Exposes
+  search_reports, list_catalog, list_years, preview_report,
+  report_payment_requirements and buy_report over streamable HTTP MCP.
+repository: "https://github.com/Andyxcg/agentshop"
+homepage: "https://reportbazaar.app.workbuddy.host"
+icon: "https://reportbazaar.app.workbuddy.host/icon.png"
+startCommand:
+  type: http
+  url: "https://reportbazaar.app.workbuddy.host/mcp"

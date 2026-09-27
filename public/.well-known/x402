@@ -1,0 +1,2510 @@
+{
+  "version": 2,
+  "serviceName": "agentshop",
+  "network": "eip155:8453",
+  "asset": "USDC",
+  "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+  "facilitator": "https://facilitator.payai.network",
+  "keywords": [
+    "macroeconomic data",
+    "world bank data",
+    "cross-country comparison",
+    "economic indicators",
+    "time series data",
+    "gdp",
+    "inflation",
+    "trade",
+    "external debt",
+    "foreign direct investment",
+    "labour market",
+    "demographics",
+    "energy",
+    "co2 emissions",
+    "esg",
+    "health expenditure",
+    "military expenditure",
+    "digital adoption",
+    "fiscal policy",
+    "research and development",
+    "country risk",
+    "sovereign analysis",
+    "market research data",
+    "dataset api",
+    "tariffs",
+    "trade policy",
+    "population ageing",
+    "renewable electricity",
+    "high-technology exports",
+    "scientific research output",
+    "poverty",
+    "inequality",
+    "fiscal space",
+    "correlation matrix"
+  ],
+  "discovery": {
+    "catalog": "https://reportbazaar.app.workbuddy.host/catalog",
+    "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+    "openapi": "https://reportbazaar.app.workbuddy.host/openapi.json",
+    "a2aCard": "https://reportbazaar.app.workbuddy.host/.well-known/agent.json",
+    "llmsTxt": "https://reportbazaar.app.workbuddy.host/llms.txt"
+  },
+  "deliveryFormats": [
+    "html",
+    "json",
+    "csv",
+    "summary-csv"
+  ],
+  "resources": [
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-gdp",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-gdp",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-gdp",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "GDP at current US dollars for ten major economies, with period CAGR, share of group total, latest-year growth, volatility and a full year-by-year matrix. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "gdp",
+        "gross domestic product",
+        "economy size",
+        "output",
+        "nominal gdp"
+      ],
+      "price": "$0.13",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-gdp-per-capita",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-gdp-per-capita",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-gdp-per-capita",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "GDP per capita at current US dollars — a productivity and living-standard proxy with CAGR, ranking and dispersion metrics. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "gdp per capita",
+        "income per person",
+        "living standard",
+        "productivity",
+        "wealth"
+      ],
+      "price": "$0.13",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-gdp-ppp",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-gdp-ppp",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-gdp-ppp",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "GDP at PPP in current international dollars — real economic weight adjusted for price levels, a common basis for cross-country ranking. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "gdp ppp",
+        "ppp",
+        "purchasing power parity",
+        "real economy size",
+        "international dollars"
+      ],
+      "price": "$0.13",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-gdp-growth",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-gdp-growth",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-gdp-growth",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Real GDP growth (annual %) — expansion or contraction momentum, average growth, volatility and recession-year detection. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "gdp growth",
+        "economic growth",
+        "recession",
+        "momentum",
+        "expansion"
+      ],
+      "price": "$0.13",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-inflation",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-inflation",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-inflation",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Consumer-price inflation across ten economies — monetary-policy stance, peak-inflation year and average inflation over the period. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "inflation consumer prices",
+        "inflation",
+        "cpi",
+        "consumer prices",
+        "cost of living"
+      ],
+      "price": "$0.13",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-gdp-deflator",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-gdp-deflator",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-gdp-deflator",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Inflation measured by the GDP deflator — the broadest domestic price gauge, useful as a cross-check against consumer-price inflation. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "inflation gdp deflator",
+        "gdp deflator",
+        "broad inflation",
+        "price level",
+        "deflator"
+      ],
+      "price": "$0.09",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-fx",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-fx",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-fx",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Official exchange rate, local currency units per US dollar (period average) — a currency-valuation baseline with cumulative depreciation. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "official exchange rate",
+        "exchange rate",
+        "currency",
+        "forex",
+        "depreciation"
+      ],
+      "price": "$0.13",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-trade",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-trade",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-trade",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Total exports of goods and services at current US dollars — global trade positioning, export share of the group and growth. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "exports of goods and services",
+        "exports",
+        "trade",
+        "goods and services",
+        "export competitiveness"
+      ],
+      "price": "$0.13",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-imports",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-imports",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-imports",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Total imports of goods and services at current US dollars — domestic demand strength and external dependence. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "imports of goods and services",
+        "imports",
+        "trade",
+        "domestic demand",
+        "import dependence"
+      ],
+      "price": "$0.13",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-trade-openness",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-trade-openness",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-trade-openness",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Trade as a share of GDP and merchandise trade as a share of GDP — how open each economy is to cross-border flows. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "trade",
+        "merchandise trade",
+        "trade openness",
+        "trade to gdp",
+        "globalisation"
+      ],
+      "price": "$0.13",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-current-account",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-current-account",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-current-account",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Current account balance at current US dollars — external surplus or deficit position, with a surplus/deficit classification per economy. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "current account balance",
+        "current account",
+        "trade balance",
+        "external balance",
+        "surplus"
+      ],
+      "price": "$0.28",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-remittances",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-remittances",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-remittances",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Personal remittances received at current US dollars — a hard-currency inflow that often dwarfs FDI in emerging economies. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "personal remittances received",
+        "remittances",
+        "migrant transfers",
+        "diaspora flows",
+        "household income"
+      ],
+      "price": "$0.09",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-fdi",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-fdi",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-fdi",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "FDI net inflows on a balance-of-payments basis, current US dollars — cross-border capital confidence, share of group inflow and stability. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "foreign direct investment net inflows",
+        "fdi",
+        "foreign direct investment",
+        "capital flows",
+        "investment climate"
+      ],
+      "price": "$0.28",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-debt",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-debt",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-debt",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Public and publicly guaranteed external debt stocks at current US dollars — sovereign repayment-risk reference with debt accumulation trend. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "external debt stocks public and publicly guaranteed",
+        "external debt",
+        "sovereign debt",
+        "debt burden",
+        "default risk"
+      ],
+      "price": "$0.25",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-credit",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-credit",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-credit",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Domestic credit to the private sector as a percentage of GDP — banking-system depth and leverage build-up. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "domestic credit to private sector",
+        "private credit",
+        "leverage",
+        "banking depth",
+        "credit to gdp"
+      ],
+      "price": "$0.13",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-market-cap",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-market-cap",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-market-cap",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Market capitalization of listed domestic companies at current US dollars — listed-equity depth and capital-market development. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "market capitalization of listed companies",
+        "market cap",
+        "stock market",
+        "equity market",
+        "capitalisation"
+      ],
+      "price": "$0.13",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-population",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-population",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-population",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Total population for ten economies with compound growth and share of the group. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "total population",
+        "population",
+        "demographics",
+        "headcount",
+        "population size"
+      ],
+      "price": "$0.09",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-population-growth",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-population-growth",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-population-growth",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Annual population growth and urbanisation share — the demographic trajectory behind long-run demand. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "population growth",
+        "urban population",
+        "urbanisation",
+        "demographic decline"
+      ],
+      "price": "$0.13",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-life-expectancy",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-life-expectancy",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-life-expectancy",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Life expectancy at birth and under-5 mortality per 1,000 live births — two complementary population-health measures. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "life expectancy at birth total",
+        "mortality rate under 5",
+        "life expectancy",
+        "mortality",
+        "public health"
+      ],
+      "price": "$0.12",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-unemployment",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-unemployment",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-unemployment",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Total unemployment as a share of the labor force — labor-market slack, best/worst year and period average. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "unemployment total",
+        "unemployment",
+        "joblessness",
+        "labour market",
+        "employment"
+      ],
+      "price": "$0.13",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-labor-force",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-labor-force",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-labor-force",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Labor force participation rate alongside the fertility rate — the two drivers of future labor supply. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "labor force participation rate",
+        "fertility rate",
+        "labour force participation",
+        "workforce",
+        "labour supply"
+      ],
+      "price": "$0.13",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-gini",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-gini",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-gini",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Gini index (0 = perfect equality, 100 = perfect inequality) — the standard distributional snapshot. Coverage is sparser than other indicators and is reported as such. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "gini index",
+        "gini",
+        "inequality",
+        "income distribution",
+        "poverty"
+      ],
+      "price": "$0.25",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-economic-structure",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-economic-structure",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-economic-structure",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Value added by agriculture, industry and services as a share of GDP — three indicators rendered together to show each economy's structural composition. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "agriculture forestry and fishing value added",
+        "industry value added",
+        "services value added",
+        "economic structure",
+        "sector composition"
+      ],
+      "price": "$0.28",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-fiscal",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-fiscal",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-fiscal",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Tax revenue, central government debt and education expenditure, all as a share of GDP — a three-indicator view of fiscal capacity. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "tax revenue",
+        "central government debt total",
+        "government expenditure on education",
+        "fiscal policy",
+        "government debt"
+      ],
+      "price": "$0.25",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-rnd",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-rnd",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-rnd",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Gross domestic expenditure on R&D as a percentage of GDP — national innovation intensity. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "research and development expenditure",
+        "r&d",
+        "research and development",
+        "innovation",
+        "science spending"
+      ],
+      "price": "$0.12",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-patents",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-patents",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-patents",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Patent applications filed by residents — a direct measure of domestic inventive output. Coverage is limited to the most recent available years. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "patent applications residents",
+        "patents",
+        "intellectual property",
+        "innovation output",
+        "ip filings"
+      ],
+      "price": "$0.07",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-energy",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-energy",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-energy",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Energy use per capita (kg of oil equivalent) paired with the renewable share of final energy consumption — the energy-transition scoreboard. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "energy use",
+        "renewable energy consumption",
+        "energy",
+        "energy consumption",
+        "renewables"
+      ],
+      "price": "$0.12",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-co2",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-co2",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-co2",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Territorial CO2 emissions per capita in tonnes of CO2 equivalent — the standard climate-accounting intensity measure. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "co2 emissions per capita",
+        "co2",
+        "emissions",
+        "carbon",
+        "climate"
+      ],
+      "price": "$0.12",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-air-quality",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-air-quality",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-air-quality",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Mean PM2.5 concentration and freshwater withdrawal as a share of internal resources — environmental stress indicators relevant to operational and sovereign risk. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "pm2 5 air pollution",
+        "freshwater withdrawal",
+        "air quality",
+        "pm2.5",
+        "pollution"
+      ],
+      "price": "$0.11",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-food",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-food",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-food",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Food production index (2014-2016 = 100) — agricultural output trajectory and food-security supply side. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "food production index",
+        "food production",
+        "agriculture",
+        "food security",
+        "crop output"
+      ],
+      "price": "$0.07",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-health",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-health",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-health",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Current health expenditure as a percentage of GDP — the fiscal weight of each health system. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "current health expenditure",
+        "health expenditure",
+        "healthcare spending",
+        "health system",
+        "medical cost"
+      ],
+      "price": "$0.08",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-military",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-military",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-military",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Military expenditure as a percentage of GDP — defence burden and its trend since 2015, when several budgets inflected upward. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "military expenditure",
+        "military spending",
+        "defence budget",
+        "defence burden",
+        "arms"
+      ],
+      "price": "$0.25",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-digital",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-digital",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-digital",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Individuals using the Internet (% of population) and mobile cellular subscriptions per 100 people — digital-adoption depth for market sizing. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "individuals using the internet",
+        "mobile cellular subscriptions",
+        "internet penetration",
+        "digital adoption",
+        "mobile subscriptions"
+      ],
+      "price": "$0.13",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-real-gdp",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-real-gdp",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-real-gdp",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "GDP at constant 2015 US dollars — volume growth stripped of price effects, the like-for-like basis for comparing economies over time. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "gdp",
+        "real gdp",
+        "constant prices",
+        "volume growth",
+        "inflation adjusted output"
+      ],
+      "price": "$0.13",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-gni-per-capita",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-gni-per-capita",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-gni-per-capita",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Gross national income per capita on the World Bank Atlas method (current US$) — the income yardstick behind development classifications and lending tiers. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "gni per capita atlas method",
+        "gni per capita",
+        "atlas method",
+        "national income",
+        "income level"
+      ],
+      "price": "$0.13",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-tech-exports",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-tech-exports",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-tech-exports",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "High-technology exports as a share of manufactured exports — the clearest single proxy for where advanced manufacturing and semiconductor-grade capability sits. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "high technology exports",
+        "semiconductors",
+        "advanced manufacturing",
+        "tech exports",
+        "export sophistication"
+      ],
+      "price": "$0.12",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-scientific-output",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-scientific-output",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-scientific-output",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Scientific and technical journal articles published — the volume measure of national research output. Publication lags the reporting period by two to three years. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "scientific and technical journal articles",
+        "research output",
+        "scientific papers",
+        "journal articles",
+        "r&d capacity"
+      ],
+      "price": "$0.11",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-tertiary-education",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-tertiary-education",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-tertiary-education",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Gross tertiary enrolment ratio — the share of the school-age cohort entering university, a leading indicator of future skilled-labour supply. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "school enrolment tertiary",
+        "tertiary education",
+        "university enrolment",
+        "higher education",
+        "skilled labour"
+      ],
+      "price": "$0.13",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-broadband",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-broadband",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-broadband",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Fixed broadband subscriptions per 100 people — fixed-line connectivity depth, the infrastructure base for cloud and data-centre demand. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "fixed broadband subscriptions",
+        "broadband",
+        "fixed internet",
+        "connectivity",
+        "telecom infrastructure"
+      ],
+      "price": "$0.12",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-internet-security",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-internet-security",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-internet-security",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Secure Internet servers (TLS) per 1 million people — the density of encrypted online infrastructure, which tracks where digital business is actually hosted. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "secure internet servers",
+        "secure servers",
+        "tls",
+        "encryption",
+        "cybersecurity"
+      ],
+      "price": "$0.12",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-renewable-power",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-renewable-power",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-renewable-power",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Renewable electricity as a share of total electricity output — the power-mix transition measured at the generation stage. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "renewable electricity output",
+        "renewable electricity",
+        "solar",
+        "wind",
+        "power mix"
+      ],
+      "price": "$0.10",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-fossil-share",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-fossil-share",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-fossil-share",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Fossil fuel consumption as a share of total energy use — the inverse of the transition, and a direct read on exposure to fuel-price shocks. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "fossil fuel energy consumption",
+        "fossil fuels",
+        "oil dependence",
+        "coal",
+        "gas"
+      ],
+      "price": "$0.12",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-electricity-access",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-electricity-access",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-electricity-access",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Share of the population with access to electricity — the electrification baseline that conditions every downstream demand estimate. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "access to electricity",
+        "electricity access",
+        "electrification",
+        "energy poverty",
+        "grid coverage"
+      ],
+      "price": "$0.08",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-tariffs",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-tariffs",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-tariffs",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Trade-weighted mean applied tariff across all products — the measured restrictiveness of each economy's border, relevant to supply-chain and sourcing exposure. Published intermittently. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "tariff rate applied weighted mean all products",
+        "tariffs",
+        "trade barriers",
+        "protectionism",
+        "import duty"
+      ],
+      "price": "$0.23",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-tourism",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-tourism",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-tourism",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "International tourism receipts as a share of total exports — the service-export concentration of each economy, and its pandemic-era rupture. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "international tourism receipts",
+        "tourism",
+        "travel receipts",
+        "service exports",
+        "visitor economy"
+      ],
+      "price": "$0.09",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-debt-interest",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-debt-interest",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-debt-interest",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Interest payments as a share of central government expense — how much of each budget is consumed servicing debt rather than funding policy. Only IMF-format reporters are covered. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "interest payments",
+        "debt service",
+        "fiscal burden",
+        "sovereign risk",
+        "budget rigidity"
+      ],
+      "price": "$0.23",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-population-aging",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-population-aging",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-population-aging",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Population aged 65 and above as a share of the total — the ageing ratio that drives pension, healthcare and labour-supply projections. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "population ages 65 and above",
+        "ageing",
+        "aging population",
+        "pension",
+        "elderly share"
+      ],
+      "price": "$0.13",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-poverty",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-poverty",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-poverty",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Poverty headcount at $2.15 a day (2017 PPP) — the headline development measure. Survey-based, so observations arrive in irregular waves rather than every year. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "poverty headcount ratio at 2 15 a day",
+        "poverty",
+        "extreme poverty",
+        "development",
+        "living standards"
+      ],
+      "price": "$0.25",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-gender-parliament",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-gender-parliament",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-gender-parliament",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Proportion of national parliamentary seats held by women — a governance and institutional-quality measure used in ESG screening. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "proportion of seats held by women in national parliaments",
+        "gender equality",
+        "women in parliament",
+        "governance",
+        "esg"
+      ],
+      "price": "$0.09",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-forest",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-forest",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-forest",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Forest area as a share of land area — land-use change and carbon-sink capacity, reported at multi-year intervals. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "forest area",
+        "forest",
+        "deforestation",
+        "land use",
+        "carbon sink"
+      ],
+      "price": "$0.07",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-undernourishment",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-undernourishment",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-undernourishment",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Prevalence of undernourishment — the food-security stress measure, published as a model-based estimate in three-year windows. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "prevalence of undernourishment",
+        "food security",
+        "undernourishment",
+        "hunger",
+        "nutrition"
+      ],
+      "price": "$0.11",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-hospital-beds",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-hospital-beds",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-hospital-beds",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Hospital beds and physicians per 1,000 people — the physical capacity of each health system, a key pandemic-preparedness input. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "hospital beds",
+        "physicians",
+        "health capacity",
+        "healthcare infrastructure",
+        "pandemic preparedness"
+      ],
+      "price": "$0.11",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-military-spend",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-military-spend",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-military-spend",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Military expenditure in current US dollars alongside armed-forces personnel — defence spending measured in absolute terms rather than as a GDP share. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "military expenditure",
+        "armed forces personnel total",
+        "military spending",
+        "defence budget dollars",
+        "armed forces"
+      ],
+      "price": "$0.25",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/theme-growth-quality",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/theme-growth-quality",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/theme-growth-quality",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Real growth, consumer-price inflation and unemployment side by side, with the pooled correlation between them — the three variables that define a stagflation or overheating call. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "gdp growth",
+        "inflation consumer prices",
+        "unemployment total",
+        "stagflation",
+        "macro stress"
+      ],
+      "price": "$0.28",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/theme-energy-transition",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/theme-energy-transition",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/theme-energy-transition",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Renewable generation share, fossil dependence, electricity access and CO2 intensity in one document, with the cross-indicator correlation matrix — the transition measured from four directions at once. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "renewable electricity output",
+        "fossil fuel energy consumption",
+        "access to electricity",
+        "co2 emissions per capita",
+        "energy transition"
+      ],
+      "price": "$0.25",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/theme-tech-capability",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/theme-tech-capability",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/theme-tech-capability",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "High-technology export share, secure-server density, scientific publication volume and broadband penetration, correlated against each other — a four-axis view of where advanced capability actually accumulates. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "high technology exports",
+        "secure internet servers",
+        "scientific and technical journal articles",
+        "fixed broadband subscriptions",
+        "technology capability"
+      ],
+      "price": "$0.25",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/theme-fiscal-space",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/theme-fiscal-space",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/theme-fiscal-space",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Central government debt, the interest share of spending and tax revenue together — whether a sovereign still has room to borrow, and how much of the budget is already spoken for. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "central government debt total",
+        "interest payments",
+        "tax revenue",
+        "fiscal space",
+        "sovereign debt"
+      ],
+      "price": "$0.25",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/theme-demographic-shift",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/theme-demographic-shift",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/theme-demographic-shift",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "The full age structure — children, working age and retired shares — plus population growth, in one document. This is the demographic dividend or drag behind every long-horizon demand forecast. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "population ages 0 14",
+        "population ages 15 64",
+        "population ages 65 and above",
+        "population growth",
+        "demographics"
+      ],
+      "price": "$0.28",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/theme-trade-exposure",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/theme-trade-exposure",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/theme-trade-exposure",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Export and import intensity as a share of GDP alongside applied tariff rates — how exposed each economy is to cross-border trade, and how open its own border is. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "exports of goods and services",
+        "imports of goods and services",
+        "tariff rate applied weighted mean all products",
+        "trade exposure",
+        "tariffs"
+      ],
+      "price": "$0.28",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/theme-human-capital",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/theme-human-capital",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/theme-human-capital",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Tertiary and secondary enrolment alongside research spending as a share of GDP — the pipeline that determines an economy's skilled-labour supply a decade out. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "school enrolment tertiary",
+        "school enrolment secondary",
+        "research and development expenditure",
+        "human capital",
+        "education"
+      ],
+      "price": "$0.28",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/theme-inclusion-poverty",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/theme-inclusion-poverty",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/theme-inclusion-poverty",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Extreme-poverty headcount, income inequality, financial-account ownership and basic drinking-water access together — the distributional and service-access picture behind social-risk assessments. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "poverty headcount ratio at 2 15 a day",
+        "gini index",
+        "account ownership at a financial institution",
+        "people using at least basic drinking water services",
+        "inclusion"
+      ],
+      "price": "$0.25",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-real-gdp-per-capita",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-real-gdp-per-capita",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-real-gdp-per-capita",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "GDP per capita at constant 2015 US dollars — inflation-adjusted living-standard trajectory, the like-for-like complement to the nominal per-capita series. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "gdp per capita",
+        "real gdp per capita",
+        "constant prices",
+        "living standard",
+        "inflation adjusted income"
+      ],
+      "price": "$0.13",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-ict-exports",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-ict-exports",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-ict-exports",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "ICT service exports as a share of total service exports — the weight of high-margin digital trade in each economy's services balance. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "ict service exports",
+        "ict exports",
+        "digital trade",
+        "service exports",
+        "software exports"
+      ],
+      "price": "$0.09",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-urban-growth",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-urban-growth",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-urban-growth",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Annual urban population growth — the pace of city expansion behind infrastructure, housing and congestion demand. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "urban population growth",
+        "urban growth",
+        "urbanisation",
+        "city growth",
+        "megacity"
+      ],
+      "price": "$0.09",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-life-expectancy-sex",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-life-expectancy-sex",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-life-expectancy-sex",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Life expectancy at birth for females and males separately — the gender gap in longevity that the all-sex average hides. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "life expectancy at birth female",
+        "life expectancy at birth male",
+        "life expectancy female",
+        "life expectancy male",
+        "gender life gap"
+      ],
+      "price": "$0.08",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-net-lending",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-net-lending",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-net-lending",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Net lending (+) or net borrowing (-) of general government as a percentage of GDP — the bottom-line fiscal stance after all revenue and spending. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "net lending net borrowing",
+        "net lending",
+        "fiscal balance",
+        "budget surplus",
+        "budget deficit"
+      ],
+      "price": "$0.12",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-literacy",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-literacy",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-literacy",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Adult literacy rate for people aged 15 and above — the foundational human-capital gate that precedes every higher-education measure. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "adult literacy rate",
+        "literacy",
+        "adult literacy",
+        "education",
+        "human capital"
+      ],
+      "price": "$0.08",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-patents-nonresident",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-patents-nonresident",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-patents-nonresident",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Patent applications filed by nonresidents — the inbound side of inventive activity, complementing the resident-applicant series as a foreign-confidence signal. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "patent applications nonresidents",
+        "nonresident patents",
+        "foreign patents",
+        "ip filings",
+        "invention inflow"
+      ],
+      "price": "$0.06",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-energy-imports",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-energy-imports",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-energy-imports",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Net energy imports as a share of energy use — how much of each economy's energy it must source from abroad, the flip side of the fossil-dependence measure. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "energy imports net",
+        "energy imports",
+        "energy dependence",
+        "energy security",
+        "imported energy"
+      ],
+      "price": "$0.07",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-agri-land",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-agri-land",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-agri-land",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Agricultural land as a share of total land area — the land base available for food and fibre production, the complement to forest-area cover. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "agricultural land",
+        "farmland",
+        "land use",
+        "arable land",
+        "food production base"
+      ],
+      "price": "$0.07",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-cereal-yield",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-cereal-yield",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-cereal-yield",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Cereal yield in kilograms per hectare — the productivity of the grain base that feeds most calorie supply, distinct from the food-production index. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "cereal yield",
+        "crop yield",
+        "agricultural productivity",
+        "grain",
+        "food security"
+      ],
+      "price": "$0.08",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-measles-immunization",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-measles-immunization",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-measles-immunization",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Measles immunization coverage among children aged 12-23 months — a frontline indicator of primary-health-system reach. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "immunization measles",
+        "immunization",
+        "measles",
+        "vaccination",
+        "child health"
+      ],
+      "price": "$0.08",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/macro-sanitation",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-sanitation",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-sanitation",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "People using at least basic sanitation services as a share of the population — the sanitation-policy counterpart to basic drinking-water access. Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "people using at least basic sanitation services",
+        "sanitation",
+        "basic sanitation",
+        "water and sanitation",
+        "public health"
+      ],
+      "price": "$0.08",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/yearbook-2019",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/yearbook-2019",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/yearbook-2019",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Year-in-review for 2019: output, real growth, consumer inflation, unemployment and population for twenty economies over the five years 2015-2019. Carries the full cross-indicator correlation matrix, per-economy trend and momentum, outlier-year flags and the year-by-year matrix, so it answers both \"where does 2019 sit\" and \"how did it get there\". Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "gdp",
+        "gdp growth",
+        "inflation consumer prices",
+        "unemployment total",
+        "total population"
+      ],
+      "price": "$0.20",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/yearbook-2020",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/yearbook-2020",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/yearbook-2020",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Year-in-review for 2020: output, real growth, consumer inflation, unemployment and population for twenty economies over the five years 2016-2020. Carries the full cross-indicator correlation matrix, per-economy trend and momentum, outlier-year flags and the year-by-year matrix, so it answers both \"where does 2020 sit\" and \"how did it get there\". Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "gdp",
+        "gdp growth",
+        "inflation consumer prices",
+        "unemployment total",
+        "total population"
+      ],
+      "price": "$0.20",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/yearbook-2021",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/yearbook-2021",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/yearbook-2021",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Year-in-review for 2021: output, real growth, consumer inflation, unemployment and population for twenty economies over the five years 2017-2021. Carries the full cross-indicator correlation matrix, per-economy trend and momentum, outlier-year flags and the year-by-year matrix, so it answers both \"where does 2021 sit\" and \"how did it get there\". Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "gdp",
+        "gdp growth",
+        "inflation consumer prices",
+        "unemployment total",
+        "total population"
+      ],
+      "price": "$0.20",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/yearbook-2022",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/yearbook-2022",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/yearbook-2022",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Year-in-review for 2022: output, real growth, consumer inflation, unemployment and population for twenty economies over the five years 2018-2022. Carries the full cross-indicator correlation matrix, per-economy trend and momentum, outlier-year flags and the year-by-year matrix, so it answers both \"where does 2022 sit\" and \"how did it get there\". Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "gdp",
+        "gdp growth",
+        "inflation consumer prices",
+        "unemployment total",
+        "total population"
+      ],
+      "price": "$0.23",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/yearbook-2023",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/yearbook-2023",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/yearbook-2023",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Year-in-review for 2023: output, real growth, consumer inflation, unemployment and population for twenty economies over the five years 2019-2023. Carries the full cross-indicator correlation matrix, per-economy trend and momentum, outlier-year flags and the year-by-year matrix, so it answers both \"where does 2023 sit\" and \"how did it get there\". Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "gdp",
+        "gdp growth",
+        "inflation consumer prices",
+        "unemployment total",
+        "total population"
+      ],
+      "price": "$0.23",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/yearbook-2024",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/yearbook-2024",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/yearbook-2024",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Year-in-review for 2024: output, real growth, consumer inflation, unemployment and population for twenty economies over the five years 2020-2024. Carries the full cross-indicator correlation matrix, per-economy trend and momentum, outlier-year flags and the year-by-year matrix, so it answers both \"where does 2024 sit\" and \"how did it get there\". Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "gdp",
+        "gdp growth",
+        "inflation consumer prices",
+        "unemployment total",
+        "total population"
+      ],
+      "price": "$0.25",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/yearbook-2025",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/yearbook-2025",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/yearbook-2025",
+      "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Year-in-review for 2025: output, real growth, consumer inflation, unemployment and population for twenty economies over the five years 2021-2025. Carries the full cross-indicator correlation matrix, per-economy trend and momentum, outlier-year flags and the year-by-year matrix, so it answers both \"where does 2025 sit\" and \"how did it get there\". Source: World Bank Open Data (CC BY 4.0).",
+      "tags": [
+        "gdp",
+        "gdp growth",
+        "inflation consumer prices",
+        "unemployment total",
+        "total population"
+      ],
+      "price": "$0.31",
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/custom",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Request any combination of supported indicators, economies and years. Priced by request size, so a single-indicator slice is cheap and a wide panel costs more.",
+      "tags": [
+        "custom report",
+        "bespoke",
+        "any indicator",
+        "any economy",
+        "world bank"
+      ],
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    },
+    {
+      "resource": "https://reportbazaar.app.workbuddy.host/report/bundle",
+      "method": "GET",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "USDC",
+      "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+      "serviceName": "agentshop",
+      "description": "Every catalog report in a single document — the entire dataset surface in one purchase at a substantial discount to buying each report separately. Available as html or json.",
+      "tags": [
+        "bundle",
+        "all reports",
+        "full catalog",
+        "dataset",
+        "world bank"
+      ],
+      "dynamicPricing": true,
+      "bazaarExtension": true
+    }
+  ]
+}

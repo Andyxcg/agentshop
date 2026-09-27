@@ -1,0 +1,197 @@
+{
+  "name": "agentshop",
+  "title": "agentshop",
+  "description": "Machine-to-machine macroeconomic report store: 80 catalog reports plus bespoke and bundle products, generated from World Bank Open Data (CC BY 4.0) and sold per fetch in USDC over x402.",
+  "version": "1.0.0",
+  "protocolVersion": "2025-06-18",
+  "transports": [
+    {
+      "type": "streamable-http",
+      "url": "https://reportbazaar.app.workbuddy.host/mcp"
+    }
+  ],
+  "websiteUrl": "https://reportbazaar.app.workbuddy.host/",
+  "documentationUrl": "https://reportbazaar.app.workbuddy.host/llms.txt",
+  "iconUrl": "https://reportbazaar.app.workbuddy.host/avatar.svg",
+  "license": "CC BY 4.0 (upstream World Bank Open Data)",
+  "payment": {
+    "protocol": "x402",
+    "scheme": "exact",
+    "network": "eip155:8453",
+    "asset": "USDC",
+    "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+    "facilitator": "https://facilitator.payai.network"
+  },
+  "capabilities": {
+    "tools": {}
+  },
+  "tools": [
+    {
+      "name": "search_reports",
+      "title": "Search macroeconomic reports",
+      "description": "Search the report catalog by keyword. Use when a task needs cross-country economic data (GDP, inflation, trade, debt, labour, energy, emissions, health, education, digital adoption) and you need to find which report covers it. Returns matching report ids with price, indicators, economies and a free preview URL.",
+      "paid": false,
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Keyword query, e.g. \"inflation\", \"renewable energy\", \"2024 economy\"."
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Maximum results to return (default 10).",
+            "minimum": 1,
+            "maximum": 50
+          }
+        },
+        "required": [
+          "query"
+        ]
+      }
+    },
+    {
+      "name": "list_catalog",
+      "title": "List the catalog, filtered by year or category",
+      "description": "List buyable reports with live prices. Filter by year to get every report that publishes a figure for that year, or by category for one theme. Use before choosing a purchase.",
+      "paid": false,
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "year": {
+            "type": "integer",
+            "description": "Only reports whose year window contains this year."
+          },
+          "category": {
+            "type": "string",
+            "description": "One of the catalog categories.",
+            "enum": [
+              "agriculture",
+              "annual",
+              "defense",
+              "demographics",
+              "digital",
+              "education",
+              "energy",
+              "environment",
+              "finance",
+              "fiscal",
+              "health",
+              "innovation",
+              "investment",
+              "labor",
+              "macro",
+              "output",
+              "prices",
+              "society",
+              "structure",
+              "trade"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "list_years",
+      "title": "List the years this store can answer for",
+      "description": "Return every published year with the number of reports covering it and the annual edition (yearbook) themed on it. Use when the question names a year.",
+      "paid": false,
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "preview_report",
+      "title": "Free preview of a report",
+      "description": "Fetch the free machine-readable cross-section for one report: the latest year for every economy, the exact field names and types the paid payload uses, and what the purchase adds. No payment. Use this to verify coverage before paying.",
+      "paid": false,
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Report id, e.g. \"macro-inflation\" or \"yearbook-2024\"."
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "report_payment_requirements",
+      "title": "Quote the x402 payment for a report",
+      "description": "Return the exact x402 payment requirements for a paid report: amount, asset, network, payTo, scheme and the endpoint to replay after signing. Nothing is charged by calling this.",
+      "paid": false,
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Report id, or \"bundle\"."
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "buy_report",
+      "title": "Get the URL to fetch a report after paying",
+      "description": "Return the delivery URL and the payment requirements for a paid report so the calling runtime can sign a payment and fetch it. This tool does not move funds.",
+      "paid": true,
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Report id, or \"bundle\"."
+          },
+          "format": {
+            "type": "string",
+            "description": "Delivery format.",
+            "enum": [
+              "html",
+              "json",
+              "csv",
+              "summary-csv"
+            ]
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    }
+  ],
+  "discovery": {
+    "licenses": [
+      "CC BY 4.0"
+    ],
+    "categories": [
+      "agriculture",
+      "annual",
+      "defense",
+      "demographics",
+      "digital",
+      "education",
+      "energy",
+      "environment",
+      "finance",
+      "fiscal",
+      "health",
+      "innovation",
+      "investment",
+      "labor",
+      "macro",
+      "output",
+      "prices",
+      "society",
+      "structure",
+      "trade"
+    ],
+    "years": "2015:2025"
+  }
+}

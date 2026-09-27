@@ -1,0 +1,3288 @@
+{
+  "protocolVersion": "0.2.6",
+  "name": "agentshop",
+  "description": "Machine-to-machine macroeconomic report store: 80 catalog reports plus bespoke and bundle products, generated from World Bank Open Data (CC BY 4.0) and sold per fetch in USDC over x402.",
+  "url": "https://reportbazaar.app.workbuddy.host/agent.json",
+  "documentationUrl": "https://reportbazaar.app.workbuddy.host/openapi.json",
+  "provider": {
+    "organization": "agentshop",
+    "url": "https://reportbazaar.app.workbuddy.host"
+  },
+  "iconUrl": "https://reportbazaar.app.workbuddy.host/avatar.svg",
+  "preferredTransport": "HTTP",
+  "defaultInputModes": [
+    "application/json"
+  ],
+  "defaultOutputModes": [
+    "text/html",
+    "application/json",
+    "text/csv"
+  ],
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "stateTransitionHistory": false
+  },
+  "keywords": [
+    "macroeconomic data",
+    "world bank data",
+    "cross-country comparison",
+    "economic indicators",
+    "time series data",
+    "gdp",
+    "inflation",
+    "trade",
+    "external debt",
+    "foreign direct investment",
+    "labour market",
+    "demographics",
+    "energy",
+    "co2 emissions",
+    "esg",
+    "health expenditure",
+    "military expenditure",
+    "digital adoption",
+    "fiscal policy",
+    "research and development",
+    "country risk",
+    "sovereign analysis",
+    "market research data",
+    "dataset api",
+    "tariffs",
+    "trade policy",
+    "population ageing",
+    "renewable electricity",
+    "high-technology exports",
+    "scientific research output",
+    "poverty",
+    "inequality",
+    "fiscal space",
+    "correlation matrix"
+  ],
+  "skills": [
+    {
+      "id": "macro-gdp",
+      "name": "GDP Comparison Report — Major Economies",
+      "description": "GDP at current US dollars for ten major economies, with period CAGR, share of group total, latest-year growth, volatility and a full year-by-year matrix.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "output",
+        "worldbank",
+        "x402",
+        "standard",
+        "gdp",
+        "gross domestic product",
+        "economy size",
+        "nominal gdp"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-gdp (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-gdp?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-gdp?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.13",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-gdp",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-gdp",
+      "dataPoints": 220,
+      "coveragePct": 100
+    },
+    {
+      "id": "macro-gdp-per-capita",
+      "name": "GDP per Capita Comparison Report",
+      "description": "GDP per capita at current US dollars — a productivity and living-standard proxy with CAGR, ranking and dispersion metrics.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "output",
+        "worldbank",
+        "x402",
+        "standard",
+        "gdp per capita",
+        "income per person",
+        "living standard",
+        "productivity",
+        "wealth"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-gdp-per-capita (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-gdp-per-capita?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-gdp-per-capita?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.13",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-gdp-per-capita",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-gdp-per-capita",
+      "dataPoints": 220,
+      "coveragePct": 100
+    },
+    {
+      "id": "macro-gdp-ppp",
+      "name": "GDP at Purchasing Power Parity Report",
+      "description": "GDP at PPP in current international dollars — real economic weight adjusted for price levels, a common basis for cross-country ranking.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "output",
+        "worldbank",
+        "x402",
+        "standard",
+        "ppp",
+        "purchasing power parity",
+        "real economy size",
+        "international dollars"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-gdp-ppp (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-gdp-ppp?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-gdp-ppp?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.13",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-gdp-ppp",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-gdp-ppp",
+      "dataPoints": 220,
+      "coveragePct": 100
+    },
+    {
+      "id": "macro-gdp-growth",
+      "name": "GDP Growth Rate Report",
+      "description": "Real GDP growth (annual %) — expansion or contraction momentum, average growth, volatility and recession-year detection.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "output",
+        "worldbank",
+        "x402",
+        "standard",
+        "gdp growth",
+        "economic growth",
+        "recession",
+        "momentum",
+        "expansion"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-gdp-growth (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-gdp-growth?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-gdp-growth?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.13",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-gdp-growth",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-gdp-growth",
+      "dataPoints": 220,
+      "coveragePct": 100
+    },
+    {
+      "id": "macro-inflation",
+      "name": "Inflation Rate Comparison Report",
+      "description": "Consumer-price inflation across ten economies — monetary-policy stance, peak-inflation year and average inflation over the period.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "prices",
+        "worldbank",
+        "x402",
+        "standard",
+        "inflation",
+        "cpi",
+        "consumer prices",
+        "cost of living",
+        "monetary policy"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-inflation (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-inflation?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-inflation?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.13",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-inflation",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-inflation",
+      "dataPoints": 215,
+      "coveragePct": 97.7
+    },
+    {
+      "id": "macro-gdp-deflator",
+      "name": "GDP Deflator Inflation Report",
+      "description": "Inflation measured by the GDP deflator — the broadest domestic price gauge, useful as a cross-check against consumer-price inflation.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "prices",
+        "worldbank",
+        "x402",
+        "basic",
+        "gdp deflator",
+        "broad inflation",
+        "price level",
+        "deflator"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-gdp-deflator (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-gdp-deflator?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-gdp-deflator?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.09",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-gdp-deflator",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-gdp-deflator",
+      "dataPoints": 220,
+      "coveragePct": 100
+    },
+    {
+      "id": "macro-fx",
+      "name": "Official Exchange Rate Report",
+      "description": "Official exchange rate, local currency units per US dollar (period average) — a currency-valuation baseline with cumulative depreciation.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "prices",
+        "worldbank",
+        "x402",
+        "standard",
+        "exchange rate",
+        "currency",
+        "forex",
+        "depreciation",
+        "devaluation",
+        "fx"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-fx (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-fx?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-fx?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.13",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-fx",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-fx",
+      "dataPoints": 219,
+      "coveragePct": 99.5
+    },
+    {
+      "id": "macro-trade",
+      "name": "Merchandise and Services Exports Report",
+      "description": "Total exports of goods and services at current US dollars — global trade positioning, export share of the group and growth.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "trade",
+        "worldbank",
+        "x402",
+        "standard",
+        "exports",
+        "goods and services",
+        "export competitiveness"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-trade (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-trade?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-trade?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.13",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-trade",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-trade",
+      "dataPoints": 218,
+      "coveragePct": 99.1
+    },
+    {
+      "id": "macro-imports",
+      "name": "Merchandise and Services Imports Report",
+      "description": "Total imports of goods and services at current US dollars — domestic demand strength and external dependence.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "trade",
+        "worldbank",
+        "x402",
+        "standard",
+        "imports",
+        "domestic demand",
+        "import dependence"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-imports (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-imports?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-imports?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.13",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-imports",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-imports",
+      "dataPoints": 218,
+      "coveragePct": 99.1
+    },
+    {
+      "id": "macro-trade-openness",
+      "name": "Trade Openness Report",
+      "description": "Trade as a share of GDP and merchandise trade as a share of GDP — how open each economy is to cross-border flows.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "trade",
+        "worldbank",
+        "x402",
+        "standard",
+        "trade openness",
+        "trade to gdp",
+        "globalisation",
+        "tariff exposure"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-trade-openness (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-trade-openness?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-trade-openness?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.13",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-trade-openness",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-trade-openness",
+      "dataPoints": 438,
+      "coveragePct": 99.5
+    },
+    {
+      "id": "macro-current-account",
+      "name": "Current Account Balance Report",
+      "description": "Current account balance at current US dollars — external surplus or deficit position, with a surplus/deficit classification per economy.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "trade",
+        "worldbank",
+        "x402",
+        "premium",
+        "current account",
+        "trade balance",
+        "external balance",
+        "surplus",
+        "deficit"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-current-account (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-current-account?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-current-account?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.28",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-current-account",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-current-account",
+      "dataPoints": 219,
+      "coveragePct": 99.5
+    },
+    {
+      "id": "macro-remittances",
+      "name": "Personal Remittances Report",
+      "description": "Personal remittances received at current US dollars — a hard-currency inflow that often dwarfs FDI in emerging economies.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "trade",
+        "worldbank",
+        "x402",
+        "basic",
+        "remittances",
+        "migrant transfers",
+        "diaspora flows",
+        "household income"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-remittances (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-remittances?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-remittances?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.09",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-remittances",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-remittances",
+      "dataPoints": 219,
+      "coveragePct": 99.5
+    },
+    {
+      "id": "macro-fdi",
+      "name": "Foreign Direct Investment Net Inflows Report",
+      "description": "FDI net inflows on a balance-of-payments basis, current US dollars — cross-border capital confidence, share of group inflow and stability.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "investment",
+        "worldbank",
+        "x402",
+        "premium",
+        "fdi",
+        "foreign direct investment",
+        "capital flows",
+        "investment climate"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-fdi (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-fdi?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-fdi?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.28",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-fdi",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-fdi",
+      "dataPoints": 219,
+      "coveragePct": 99.5
+    },
+    {
+      "id": "macro-debt",
+      "name": "External Debt Stock Report",
+      "description": "Public and publicly guaranteed external debt stocks at current US dollars — sovereign repayment-risk reference with debt accumulation trend.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "finance",
+        "worldbank",
+        "x402",
+        "premium",
+        "external debt",
+        "sovereign debt",
+        "debt burden",
+        "default risk",
+        "debt stock"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-debt (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-debt?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-debt?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.25",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-debt",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-debt",
+      "dataPoints": 38,
+      "coveragePct": 34.5
+    },
+    {
+      "id": "macro-credit",
+      "name": "Domestic Credit to Private Sector Report",
+      "description": "Domestic credit to the private sector as a percentage of GDP — banking-system depth and leverage build-up.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "finance",
+        "worldbank",
+        "x402",
+        "standard",
+        "private credit",
+        "leverage",
+        "banking depth",
+        "credit to gdp",
+        "financial deepening"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-credit (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-credit?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-credit?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.13",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-credit",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-credit",
+      "dataPoints": 187,
+      "coveragePct": 85
+    },
+    {
+      "id": "macro-market-cap",
+      "name": "Equity Market Capitalization Report",
+      "description": "Market capitalization of listed domestic companies at current US dollars — listed-equity depth and capital-market development.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "finance",
+        "worldbank",
+        "x402",
+        "standard",
+        "market cap",
+        "stock market",
+        "equity market",
+        "capitalisation",
+        "listed companies"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-market-cap (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-market-cap?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-market-cap?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.13",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-market-cap",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-market-cap",
+      "dataPoints": 185,
+      "coveragePct": 84.1
+    },
+    {
+      "id": "macro-population",
+      "name": "Population Comparison Report",
+      "description": "Total population for ten economies with compound growth and share of the group.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "demographics",
+        "worldbank",
+        "x402",
+        "basic",
+        "population",
+        "headcount",
+        "population size"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-population (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-population?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-population?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.09",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-population",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-population",
+      "dataPoints": 220,
+      "coveragePct": 100
+    },
+    {
+      "id": "macro-population-growth",
+      "name": "Population Growth Report",
+      "description": "Annual population growth and urbanisation share — the demographic trajectory behind long-run demand.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "demographics",
+        "worldbank",
+        "x402",
+        "standard",
+        "population growth",
+        "urbanisation",
+        "demographic decline",
+        "urban population"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-population-growth (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-population-growth?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-population-growth?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.13",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-population-growth",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-population-growth",
+      "dataPoints": 440,
+      "coveragePct": 100
+    },
+    {
+      "id": "macro-life-expectancy",
+      "name": "Life Expectancy and Child Mortality Report",
+      "description": "Life expectancy at birth and under-5 mortality per 1,000 live births — two complementary population-health measures.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "health",
+        "worldbank",
+        "x402",
+        "standard",
+        "life expectancy",
+        "mortality",
+        "public health",
+        "human development",
+        "longevity"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-life-expectancy (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-life-expectancy?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-life-expectancy?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.12",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-life-expectancy",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-life-expectancy",
+      "dataPoints": 400,
+      "coveragePct": 90.9
+    },
+    {
+      "id": "macro-unemployment",
+      "name": "Unemployment Rate Report",
+      "description": "Total unemployment as a share of the labor force — labor-market slack, best/worst year and period average.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "labor",
+        "worldbank",
+        "x402",
+        "standard",
+        "unemployment",
+        "joblessness",
+        "labour market",
+        "employment",
+        "labour slack"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-unemployment (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-unemployment?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-unemployment?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.13",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-unemployment",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-unemployment",
+      "dataPoints": 220,
+      "coveragePct": 100
+    },
+    {
+      "id": "macro-labor-force",
+      "name": "Labor Force Participation Report",
+      "description": "Labor force participation rate alongside the fertility rate — the two drivers of future labor supply.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "labor",
+        "worldbank",
+        "x402",
+        "standard",
+        "labour force participation",
+        "fertility rate",
+        "workforce",
+        "labour supply",
+        "birth rate"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-labor-force (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-labor-force?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-labor-force?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.13",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-labor-force",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-labor-force",
+      "dataPoints": 420,
+      "coveragePct": 95.5
+    },
+    {
+      "id": "macro-gini",
+      "name": "Income Inequality Report",
+      "description": "Gini index (0 = perfect equality, 100 = perfect inequality) — the standard distributional snapshot. Coverage is sparser than other indicators and is reported as such.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "labor",
+        "worldbank",
+        "x402",
+        "premium",
+        "gini",
+        "inequality",
+        "income distribution",
+        "poverty",
+        "wealth gap"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-gini (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-gini?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-gini?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.25",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-gini",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-gini",
+      "dataPoints": 74,
+      "coveragePct": 67.3
+    },
+    {
+      "id": "macro-economic-structure",
+      "name": "Economic Structure Report — Agriculture, Industry, Services",
+      "description": "Value added by agriculture, industry and services as a share of GDP — three indicators rendered together to show each economy's structural composition.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "structure",
+        "worldbank",
+        "x402",
+        "premium",
+        "economic structure",
+        "sector composition",
+        "services share",
+        "industrialisation",
+        "agriculture share"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-economic-structure (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-economic-structure?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-economic-structure?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.28",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-economic-structure",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-economic-structure",
+      "dataPoints": 636,
+      "coveragePct": 96.4
+    },
+    {
+      "id": "macro-fiscal",
+      "name": "Fiscal Position Report — Tax, Debt and Education Spending",
+      "description": "Tax revenue, central government debt and education expenditure, all as a share of GDP — a three-indicator view of fiscal capacity.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "fiscal",
+        "worldbank",
+        "x402",
+        "premium",
+        "fiscal policy",
+        "tax revenue",
+        "government debt",
+        "budget",
+        "public spending",
+        "sovereign"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-fiscal (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-fiscal?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-fiscal?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.25",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-fiscal",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-fiscal",
+      "dataPoints": 208,
+      "coveragePct": 63
+    },
+    {
+      "id": "macro-rnd",
+      "name": "Research and Development Expenditure Report",
+      "description": "Gross domestic expenditure on R&D as a percentage of GDP — national innovation intensity.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "innovation",
+        "worldbank",
+        "x402",
+        "standard",
+        "r&d",
+        "research and development",
+        "science spending",
+        "technology investment"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-rnd (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-rnd?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-rnd?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.12",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-rnd",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-rnd",
+      "dataPoints": 166,
+      "coveragePct": 75.5
+    },
+    {
+      "id": "macro-patents",
+      "name": "Resident Patent Applications Report",
+      "description": "Patent applications filed by residents — a direct measure of domestic inventive output. Coverage is limited to the most recent available years.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "innovation",
+        "worldbank",
+        "x402",
+        "basic",
+        "patents",
+        "intellectual property",
+        "innovation output",
+        "ip filings"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-patents (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-patents?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-patents?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.07",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-patents",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-patents",
+      "dataPoints": 139,
+      "coveragePct": 63.2
+    },
+    {
+      "id": "macro-energy",
+      "name": "Energy Use and Renewables Report",
+      "description": "Energy use per capita (kg of oil equivalent) paired with the renewable share of final energy consumption — the energy-transition scoreboard.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "energy",
+        "worldbank",
+        "x402",
+        "standard",
+        "energy consumption",
+        "renewables",
+        "energy transition",
+        "oil equivalent",
+        "power"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-energy (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-energy?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-energy?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.12",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-energy",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-energy",
+      "dataPoints": 334,
+      "coveragePct": 75.9
+    },
+    {
+      "id": "macro-co2",
+      "name": "CO2 Emissions per Capita Report",
+      "description": "Territorial CO2 emissions per capita in tonnes of CO2 equivalent — the standard climate-accounting intensity measure.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "environment",
+        "worldbank",
+        "x402",
+        "standard",
+        "co2",
+        "emissions",
+        "carbon",
+        "climate",
+        "decarbonisation",
+        "greenhouse gas",
+        "esg"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-co2 (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-co2?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-co2?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.12",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-co2",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-co2",
+      "dataPoints": 200,
+      "coveragePct": 90.9
+    },
+    {
+      "id": "macro-air-quality",
+      "name": "Air Quality and Water Stress Report",
+      "description": "Mean PM2.5 concentration and freshwater withdrawal as a share of internal resources — environmental stress indicators relevant to operational and sovereign risk.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "environment",
+        "worldbank",
+        "x402",
+        "standard",
+        "air quality",
+        "pm2.5",
+        "pollution",
+        "water stress",
+        "water withdrawal",
+        "esg risk"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-air-quality (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-air-quality?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-air-quality?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.11",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-air-quality",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-air-quality",
+      "dataPoints": 340,
+      "coveragePct": 77.3
+    },
+    {
+      "id": "macro-food",
+      "name": "Food Production Index Report",
+      "description": "Food production index (2014-2016 = 100) — agricultural output trajectory and food-security supply side.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "environment",
+        "worldbank",
+        "x402",
+        "basic",
+        "food production",
+        "agriculture",
+        "food security",
+        "crop output"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-food (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-food?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-food?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.07",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-food",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-food",
+      "dataPoints": 160,
+      "coveragePct": 72.7
+    },
+    {
+      "id": "macro-health",
+      "name": "Health Expenditure Report",
+      "description": "Current health expenditure as a percentage of GDP — the fiscal weight of each health system.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "health",
+        "worldbank",
+        "x402",
+        "basic",
+        "health expenditure",
+        "healthcare spending",
+        "health system",
+        "medical cost"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-health (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-health?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-health?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.08",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-health",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-health",
+      "dataPoints": 186,
+      "coveragePct": 84.5
+    },
+    {
+      "id": "macro-military",
+      "name": "Military Expenditure Report",
+      "description": "Military expenditure as a percentage of GDP — defence burden and its trend since 2015, when several budgets inflected upward.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "defense",
+        "worldbank",
+        "x402",
+        "premium",
+        "military spending",
+        "defence budget",
+        "defence burden",
+        "arms",
+        "geopolitics"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-military (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-military?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-military?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.25",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-military",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-military",
+      "dataPoints": 200,
+      "coveragePct": 90.9
+    },
+    {
+      "id": "macro-digital",
+      "name": "Digital Adoption Report — Internet and Mobile",
+      "description": "Individuals using the Internet (% of population) and mobile cellular subscriptions per 100 people — digital-adoption depth for market sizing.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "digital",
+        "worldbank",
+        "x402",
+        "standard",
+        "internet penetration",
+        "digital adoption",
+        "mobile subscriptions",
+        "connectivity",
+        "technology adoption"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-digital (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-digital?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-digital?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.13",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-digital",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-digital",
+      "dataPoints": 401,
+      "coveragePct": 91.1
+    },
+    {
+      "id": "macro-real-gdp",
+      "name": "Real GDP Report (Constant Prices)",
+      "description": "GDP at constant 2015 US dollars — volume growth stripped of price effects, the like-for-like basis for comparing economies over time.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "output",
+        "worldbank",
+        "x402",
+        "standard",
+        "real gdp",
+        "constant prices",
+        "volume growth",
+        "inflation adjusted output",
+        "real economy"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-real-gdp (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-real-gdp?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-real-gdp?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.13",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-real-gdp",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-real-gdp",
+      "dataPoints": 220,
+      "coveragePct": 100
+    },
+    {
+      "id": "macro-gni-per-capita",
+      "name": "GNI per Capita Report (Atlas Method)",
+      "description": "Gross national income per capita on the World Bank Atlas method (current US$) — the income yardstick behind development classifications and lending tiers.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "output",
+        "worldbank",
+        "x402",
+        "standard",
+        "gni per capita",
+        "atlas method",
+        "national income",
+        "income level",
+        "development tier"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-gni-per-capita (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-gni-per-capita?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-gni-per-capita?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.13",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-gni-per-capita",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-gni-per-capita",
+      "dataPoints": 220,
+      "coveragePct": 100
+    },
+    {
+      "id": "macro-tech-exports",
+      "name": "High-Technology Exports Share Report",
+      "description": "High-technology exports as a share of manufactured exports — the clearest single proxy for where advanced manufacturing and semiconductor-grade capability sits.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "innovation",
+        "worldbank",
+        "x402",
+        "standard",
+        "high technology exports",
+        "semiconductors",
+        "advanced manufacturing",
+        "tech exports",
+        "export sophistication",
+        "ai hardware"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-tech-exports (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-tech-exports?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-tech-exports?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.12",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-tech-exports",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-tech-exports",
+      "dataPoints": 197,
+      "coveragePct": 89.5
+    },
+    {
+      "id": "macro-scientific-output",
+      "name": "Scientific Research Output Report",
+      "description": "Scientific and technical journal articles published — the volume measure of national research output. Publication lags the reporting period by two to three years.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "innovation",
+        "worldbank",
+        "x402",
+        "standard",
+        "research output",
+        "scientific papers",
+        "journal articles",
+        "r&d capacity",
+        "science",
+        "publications"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-scientific-output (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-scientific-output?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-scientific-output?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.11",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-scientific-output",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-scientific-output",
+      "dataPoints": 180,
+      "coveragePct": 81.8
+    },
+    {
+      "id": "macro-tertiary-education",
+      "name": "Tertiary Education Enrolment Report",
+      "description": "Gross tertiary enrolment ratio — the share of the school-age cohort entering university, a leading indicator of future skilled-labour supply.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "education",
+        "worldbank",
+        "x402",
+        "standard",
+        "tertiary education",
+        "university enrolment",
+        "higher education",
+        "skilled labour",
+        "graduate supply"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-tertiary-education (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-tertiary-education?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-tertiary-education?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.13",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-tertiary-education",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-tertiary-education",
+      "dataPoints": 189,
+      "coveragePct": 85.9
+    },
+    {
+      "id": "macro-broadband",
+      "name": "Fixed Broadband Penetration Report",
+      "description": "Fixed broadband subscriptions per 100 people — fixed-line connectivity depth, the infrastructure base for cloud and data-centre demand.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "digital",
+        "worldbank",
+        "x402",
+        "standard",
+        "broadband",
+        "fixed internet",
+        "connectivity",
+        "telecom infrastructure",
+        "cloud readiness"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-broadband (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-broadband?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-broadband?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.12",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-broadband",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-broadband",
+      "dataPoints": 199,
+      "coveragePct": 90.5
+    },
+    {
+      "id": "macro-internet-security",
+      "name": "Secure Internet Servers Report",
+      "description": "Secure Internet servers (TLS) per 1 million people — the density of encrypted online infrastructure, which tracks where digital business is actually hosted.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "digital",
+        "worldbank",
+        "x402",
+        "standard",
+        "secure servers",
+        "tls",
+        "encryption",
+        "cybersecurity",
+        "internet infrastructure",
+        "hosting"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-internet-security (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-internet-security?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-internet-security?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.12",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-internet-security",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-internet-security",
+      "dataPoints": 200,
+      "coveragePct": 90.9
+    },
+    {
+      "id": "macro-renewable-power",
+      "name": "Renewable Electricity Output Report",
+      "description": "Renewable electricity as a share of total electricity output — the power-mix transition measured at the generation stage.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "energy",
+        "worldbank",
+        "x402",
+        "standard",
+        "renewable electricity",
+        "solar",
+        "wind",
+        "power mix",
+        "energy transition",
+        "clean power"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-renewable-power (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-renewable-power?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-renewable-power?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.10",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-renewable-power",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-renewable-power",
+      "dataPoints": 140,
+      "coveragePct": 63.6
+    },
+    {
+      "id": "macro-fossil-share",
+      "name": "Fossil Fuel Dependence Report",
+      "description": "Fossil fuel consumption as a share of total energy use — the inverse of the transition, and a direct read on exposure to fuel-price shocks.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "energy",
+        "worldbank",
+        "x402",
+        "standard",
+        "fossil fuels",
+        "oil dependence",
+        "coal",
+        "gas",
+        "energy security",
+        "carbon intensity"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-fossil-share (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-fossil-share?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-fossil-share?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.12",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-fossil-share",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-fossil-share",
+      "dataPoints": 194,
+      "coveragePct": 88.2
+    },
+    {
+      "id": "macro-electricity-access",
+      "name": "Electricity Access Report",
+      "description": "Share of the population with access to electricity — the electrification baseline that conditions every downstream demand estimate.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "energy",
+        "worldbank",
+        "x402",
+        "basic",
+        "electricity access",
+        "electrification",
+        "energy poverty",
+        "grid coverage",
+        "power access"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-electricity-access (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-electricity-access?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-electricity-access?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.08",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-electricity-access",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-electricity-access",
+      "dataPoints": 200,
+      "coveragePct": 90.9
+    },
+    {
+      "id": "macro-tariffs",
+      "name": "Applied Tariff Rate Report",
+      "description": "Trade-weighted mean applied tariff across all products — the measured restrictiveness of each economy's border, relevant to supply-chain and sourcing exposure. Published intermittently.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "trade",
+        "worldbank",
+        "x402",
+        "premium",
+        "tariffs",
+        "trade barriers",
+        "protectionism",
+        "import duty",
+        "trade war",
+        "customs"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-tariffs (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-tariffs?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-tariffs?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.23",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-tariffs",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-tariffs",
+      "dataPoints": 150,
+      "coveragePct": 68.2
+    },
+    {
+      "id": "macro-tourism",
+      "name": "International Tourism Receipts Report",
+      "description": "International tourism receipts as a share of total exports — the service-export concentration of each economy, and its pandemic-era rupture.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "trade",
+        "worldbank",
+        "x402",
+        "basic",
+        "tourism",
+        "travel receipts",
+        "service exports",
+        "visitor economy",
+        "travel and tourism"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-tourism (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-tourism?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-tourism?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.09",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-tourism",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-tourism",
+      "dataPoints": 219,
+      "coveragePct": 99.5
+    },
+    {
+      "id": "macro-debt-interest",
+      "name": "Government Interest Burden Report",
+      "description": "Interest payments as a share of central government expense — how much of each budget is consumed servicing debt rather than funding policy. Only IMF-format reporters are covered.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "fiscal",
+        "worldbank",
+        "x402",
+        "premium",
+        "interest payments",
+        "debt service",
+        "fiscal burden",
+        "sovereign risk",
+        "budget rigidity"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-debt-interest (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-debt-interest?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-debt-interest?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.23",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-debt-interest",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-debt-interest",
+      "dataPoints": 143,
+      "coveragePct": 65
+    },
+    {
+      "id": "macro-population-aging",
+      "name": "Population Ageing Report",
+      "description": "Population aged 65 and above as a share of the total — the ageing ratio that drives pension, healthcare and labour-supply projections.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "demographics",
+        "worldbank",
+        "x402",
+        "standard",
+        "ageing",
+        "aging population",
+        "pension",
+        "elderly share",
+        "dependency ratio",
+        "demographic cliff"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-population-aging (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-population-aging?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-population-aging?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.13",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-population-aging",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-population-aging",
+      "dataPoints": 220,
+      "coveragePct": 100
+    },
+    {
+      "id": "macro-poverty",
+      "name": "Extreme Poverty Report",
+      "description": "Poverty headcount at $2.15 a day (2017 PPP) — the headline development measure. Survey-based, so observations arrive in irregular waves rather than every year.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "society",
+        "worldbank",
+        "x402",
+        "premium",
+        "poverty",
+        "extreme poverty",
+        "development",
+        "living standards",
+        "sdg",
+        "income floor"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-poverty (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-poverty?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-poverty?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.25",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-poverty",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-poverty",
+      "dataPoints": 74,
+      "coveragePct": 67.3
+    },
+    {
+      "id": "macro-gender-parliament",
+      "name": "Women in Parliament Report",
+      "description": "Proportion of national parliamentary seats held by women — a governance and institutional-quality measure used in ESG screening.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "society",
+        "worldbank",
+        "x402",
+        "basic",
+        "gender equality",
+        "women in parliament",
+        "governance",
+        "esg",
+        "representation",
+        "diversity"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-gender-parliament (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-gender-parliament?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-gender-parliament?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.09",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-gender-parliament",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-gender-parliament",
+      "dataPoints": 219,
+      "coveragePct": 99.5
+    },
+    {
+      "id": "macro-forest",
+      "name": "Forest Area Report",
+      "description": "Forest area as a share of land area — land-use change and carbon-sink capacity, reported at multi-year intervals.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "environment",
+        "worldbank",
+        "x402",
+        "basic",
+        "forest",
+        "deforestation",
+        "land use",
+        "carbon sink",
+        "biodiversity",
+        "esg"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-forest (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-forest?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-forest?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.07",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-forest",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-forest",
+      "dataPoints": 180,
+      "coveragePct": 81.8
+    },
+    {
+      "id": "macro-undernourishment",
+      "name": "Undernourishment Report",
+      "description": "Prevalence of undernourishment — the food-security stress measure, published as a model-based estimate in three-year windows.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "agriculture",
+        "worldbank",
+        "x402",
+        "standard",
+        "food security",
+        "undernourishment",
+        "hunger",
+        "nutrition",
+        "crop failure",
+        "supply risk"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-undernourishment (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-undernourishment?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-undernourishment?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.11",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-undernourishment",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-undernourishment",
+      "dataPoints": 171,
+      "coveragePct": 77.7
+    },
+    {
+      "id": "macro-hospital-beds",
+      "name": "Hospital Beds and Physicians Report",
+      "description": "Hospital beds and physicians per 1,000 people — the physical capacity of each health system, a key pandemic-preparedness input.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "health",
+        "worldbank",
+        "x402",
+        "standard",
+        "hospital beds",
+        "physicians",
+        "health capacity",
+        "healthcare infrastructure",
+        "pandemic preparedness"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-hospital-beds (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-hospital-beds?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-hospital-beds?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.11",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-hospital-beds",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-hospital-beds",
+      "dataPoints": 301,
+      "coveragePct": 68.4
+    },
+    {
+      "id": "macro-military-spend",
+      "name": "Military Expenditure in Dollars Report",
+      "description": "Military expenditure in current US dollars alongside armed-forces personnel — defence spending measured in absolute terms rather than as a GDP share.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "defense",
+        "worldbank",
+        "x402",
+        "premium",
+        "military spending",
+        "defence budget dollars",
+        "armed forces",
+        "troop strength",
+        "arms race",
+        "geopolitics"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-military-spend (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-military-spend?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-military-spend?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.25",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-military-spend",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-military-spend",
+      "dataPoints": 320,
+      "coveragePct": 72.7
+    },
+    {
+      "id": "theme-growth-quality",
+      "name": "Growth, Inflation and Unemployment — Macro Stress Report",
+      "description": "Real growth, consumer-price inflation and unemployment side by side, with the pooled correlation between them — the three variables that define a stagflation or overheating call.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "worldbank",
+        "x402",
+        "premium",
+        "stagflation",
+        "macro stress",
+        "growth inflation unemployment",
+        "phillips curve",
+        "misery index",
+        "business cycle",
+        "overheating"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/theme-growth-quality (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/theme-growth-quality?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/theme-growth-quality?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.28",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/theme-growth-quality",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/theme-growth-quality",
+      "dataPoints": 655,
+      "coveragePct": 99.2
+    },
+    {
+      "id": "theme-energy-transition",
+      "name": "Energy Transition Scoreboard",
+      "description": "Renewable generation share, fossil dependence, electricity access and CO2 intensity in one document, with the cross-indicator correlation matrix — the transition measured from four directions at once.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "energy",
+        "worldbank",
+        "x402",
+        "premium",
+        "energy transition",
+        "decarbonisation",
+        "net zero",
+        "renewables",
+        "fossil dependence",
+        "co2 intensity",
+        "esg scoreboard",
+        "climate policy"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/theme-energy-transition (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/theme-energy-transition?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/theme-energy-transition?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.25",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/theme-energy-transition",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/theme-energy-transition",
+      "dataPoints": 734,
+      "coveragePct": 83.4
+    },
+    {
+      "id": "theme-tech-capability",
+      "name": "Technology Capability Report — Exports, Research and Infrastructure",
+      "description": "High-technology export share, secure-server density, scientific publication volume and broadband penetration, correlated against each other — a four-axis view of where advanced capability actually accumulates.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "innovation",
+        "worldbank",
+        "x402",
+        "premium",
+        "technology capability",
+        "ai capacity",
+        "semiconductors",
+        "research output",
+        "digital infrastructure",
+        "innovation index",
+        "tech stack"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/theme-tech-capability (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/theme-tech-capability?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/theme-tech-capability?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.25",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/theme-tech-capability",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/theme-tech-capability",
+      "dataPoints": 776,
+      "coveragePct": 88.2
+    },
+    {
+      "id": "theme-fiscal-space",
+      "name": "Fiscal Space Report — Debt, Interest and Revenue",
+      "description": "Central government debt, the interest share of spending and tax revenue together — whether a sovereign still has room to borrow, and how much of the budget is already spoken for.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "fiscal",
+        "worldbank",
+        "x402",
+        "premium",
+        "fiscal space",
+        "sovereign debt",
+        "debt service",
+        "tax revenue",
+        "austerity",
+        "bond risk",
+        "fiscal sustainability"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/theme-fiscal-space (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/theme-fiscal-space?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/theme-fiscal-space?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.25",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/theme-fiscal-space",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/theme-fiscal-space",
+      "dataPoints": 203,
+      "coveragePct": 61.5
+    },
+    {
+      "id": "theme-demographic-shift",
+      "name": "Demographic Shift Report — Age Structure and Growth",
+      "description": "The full age structure — children, working age and retired shares — plus population growth, in one document. This is the demographic dividend or drag behind every long-horizon demand forecast.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "demographics",
+        "worldbank",
+        "x402",
+        "premium",
+        "age structure",
+        "working age population",
+        "demographic dividend",
+        "dependency ratio",
+        "population decline",
+        "labour supply"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/theme-demographic-shift (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/theme-demographic-shift?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/theme-demographic-shift?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.28",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/theme-demographic-shift",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/theme-demographic-shift",
+      "dataPoints": 880,
+      "coveragePct": 100
+    },
+    {
+      "id": "theme-trade-exposure",
+      "name": "Trade Exposure Report — Flows, Intensity and Tariffs",
+      "description": "Export and import intensity as a share of GDP alongside applied tariff rates — how exposed each economy is to cross-border trade, and how open its own border is.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "trade",
+        "worldbank",
+        "x402",
+        "premium",
+        "trade exposure",
+        "tariffs",
+        "export intensity",
+        "import dependence",
+        "supply chain",
+        "protectionism",
+        "trade war",
+        "reshoring"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/theme-trade-exposure (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/theme-trade-exposure?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/theme-trade-exposure?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.28",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/theme-trade-exposure",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/theme-trade-exposure",
+      "dataPoints": 586,
+      "coveragePct": 88.8
+    },
+    {
+      "id": "theme-human-capital",
+      "name": "Human Capital Report — Education and Research Capacity",
+      "description": "Tertiary and secondary enrolment alongside research spending as a share of GDP — the pipeline that determines an economy's skilled-labour supply a decade out.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "education",
+        "worldbank",
+        "x402",
+        "premium",
+        "human capital",
+        "enrolment",
+        "research spending",
+        "skill supply",
+        "talent pipeline",
+        "r&d intensity"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/theme-human-capital (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/theme-human-capital?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/theme-human-capital?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.28",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/theme-human-capital",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/theme-human-capital",
+      "dataPoints": 534,
+      "coveragePct": 80.9
+    },
+    {
+      "id": "theme-inclusion-poverty",
+      "name": "Inclusion and Poverty Report — Income, Access and Services",
+      "description": "Extreme-poverty headcount, income inequality, financial-account ownership and basic drinking-water access together — the distributional and service-access picture behind social-risk assessments.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "society",
+        "worldbank",
+        "x402",
+        "premium",
+        "inclusion",
+        "poverty",
+        "inequality",
+        "financial inclusion",
+        "water access",
+        "social risk",
+        "development",
+        "esg social"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/theme-inclusion-poverty (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/theme-inclusion-poverty?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/theme-inclusion-poverty?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.25",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/theme-inclusion-poverty",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/theme-inclusion-poverty",
+      "dataPoints": 278,
+      "coveragePct": 63.2
+    },
+    {
+      "id": "macro-real-gdp-per-capita",
+      "name": "Real GDP per Capita Report (Constant Prices)",
+      "description": "GDP per capita at constant 2015 US dollars — inflation-adjusted living-standard trajectory, the like-for-like complement to the nominal per-capita series.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "output",
+        "worldbank",
+        "x402",
+        "standard",
+        "real gdp per capita",
+        "constant prices",
+        "living standard",
+        "inflation adjusted income",
+        "real income"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-real-gdp-per-capita (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-real-gdp-per-capita?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-real-gdp-per-capita?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.13",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-real-gdp-per-capita",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-real-gdp-per-capita",
+      "dataPoints": 220,
+      "coveragePct": 100
+    },
+    {
+      "id": "macro-ict-exports",
+      "name": "ICT Service Exports Report",
+      "description": "ICT service exports as a share of total service exports — the weight of high-margin digital trade in each economy's services balance.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "digital",
+        "worldbank",
+        "x402",
+        "basic",
+        "ict exports",
+        "digital trade",
+        "service exports",
+        "software exports",
+        "telecom exports"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-ict-exports (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-ict-exports?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-ict-exports?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.09",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-ict-exports",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-ict-exports",
+      "dataPoints": 219,
+      "coveragePct": 99.5
+    },
+    {
+      "id": "macro-urban-growth",
+      "name": "Urban Population Growth Report",
+      "description": "Annual urban population growth — the pace of city expansion behind infrastructure, housing and congestion demand.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "demographics",
+        "worldbank",
+        "x402",
+        "basic",
+        "urban growth",
+        "urbanisation",
+        "city growth",
+        "megacity",
+        "urban demand"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-urban-growth (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-urban-growth?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-urban-growth?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.09",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-urban-growth",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-urban-growth",
+      "dataPoints": 220,
+      "coveragePct": 100
+    },
+    {
+      "id": "macro-life-expectancy-sex",
+      "name": "Life Expectancy by Sex Report",
+      "description": "Life expectancy at birth for females and males separately — the gender gap in longevity that the all-sex average hides.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "health",
+        "worldbank",
+        "x402",
+        "basic",
+        "life expectancy female",
+        "life expectancy male",
+        "gender life gap",
+        "longevity",
+        "public health"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-life-expectancy-sex (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-life-expectancy-sex?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-life-expectancy-sex?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.08",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-life-expectancy-sex",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-life-expectancy-sex",
+      "dataPoints": 400,
+      "coveragePct": 90.9
+    },
+    {
+      "id": "macro-net-lending",
+      "name": "Government Net Lending Report",
+      "description": "Net lending (+) or net borrowing (-) of general government as a percentage of GDP — the bottom-line fiscal stance after all revenue and spending.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "fiscal",
+        "worldbank",
+        "x402",
+        "standard",
+        "net lending",
+        "fiscal balance",
+        "budget surplus",
+        "budget deficit",
+        "government balance"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-net-lending (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-net-lending?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-net-lending?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.12",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-net-lending",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-net-lending",
+      "dataPoints": 163,
+      "coveragePct": 74.1
+    },
+    {
+      "id": "macro-literacy",
+      "name": "Adult Literacy Report",
+      "description": "Adult literacy rate for people aged 15 and above — the foundational human-capital gate that precedes every higher-education measure.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "education",
+        "worldbank",
+        "x402",
+        "basic",
+        "literacy",
+        "adult literacy",
+        "human capital",
+        "basic skills"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-literacy (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-literacy?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-literacy?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.08",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-literacy",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-literacy",
+      "dataPoints": 53,
+      "coveragePct": 24.1
+    },
+    {
+      "id": "macro-patents-nonresident",
+      "name": "Nonresident Patent Applications Report",
+      "description": "Patent applications filed by nonresidents — the inbound side of inventive activity, complementing the resident-applicant series as a foreign-confidence signal.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "innovation",
+        "worldbank",
+        "x402",
+        "basic",
+        "nonresident patents",
+        "foreign patents",
+        "ip filings",
+        "invention inflow",
+        "technology transfer"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-patents-nonresident (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-patents-nonresident?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-patents-nonresident?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.06",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-patents-nonresident",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-patents-nonresident",
+      "dataPoints": 139,
+      "coveragePct": 63.2
+    },
+    {
+      "id": "macro-energy-imports",
+      "name": "Net Energy Import Dependence Report",
+      "description": "Net energy imports as a share of energy use — how much of each economy's energy it must source from abroad, the flip side of the fossil-dependence measure.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "energy",
+        "worldbank",
+        "x402",
+        "basic",
+        "energy imports",
+        "energy dependence",
+        "energy security",
+        "imported energy"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-energy-imports (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-energy-imports?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-energy-imports?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.07",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-energy-imports",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-energy-imports",
+      "dataPoints": 178,
+      "coveragePct": 80.9
+    },
+    {
+      "id": "macro-agri-land",
+      "name": "Agricultural Land Report",
+      "description": "Agricultural land as a share of total land area — the land base available for food and fibre production, the complement to forest-area cover.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "agriculture",
+        "worldbank",
+        "x402",
+        "basic",
+        "agricultural land",
+        "farmland",
+        "land use",
+        "arable land",
+        "food production base"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-agri-land (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-agri-land?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-agri-land?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.07",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-agri-land",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-agri-land",
+      "dataPoints": 180,
+      "coveragePct": 81.8
+    },
+    {
+      "id": "macro-cereal-yield",
+      "name": "Cereal Yield Report",
+      "description": "Cereal yield in kilograms per hectare — the productivity of the grain base that feeds most calorie supply, distinct from the food-production index.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "agriculture",
+        "worldbank",
+        "x402",
+        "basic",
+        "cereal yield",
+        "crop yield",
+        "agricultural productivity",
+        "grain",
+        "food security"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-cereal-yield (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-cereal-yield?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-cereal-yield?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.08",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-cereal-yield",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-cereal-yield",
+      "dataPoints": 189,
+      "coveragePct": 85.9
+    },
+    {
+      "id": "macro-measles-immunization",
+      "name": "Measles Immunization Report",
+      "description": "Measles immunization coverage among children aged 12-23 months — a frontline indicator of primary-health-system reach.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "health",
+        "worldbank",
+        "x402",
+        "basic",
+        "immunization",
+        "measles",
+        "vaccination",
+        "child health",
+        "preventive care"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-measles-immunization (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-measles-immunization?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-measles-immunization?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.08",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-measles-immunization",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-measles-immunization",
+      "dataPoints": 200,
+      "coveragePct": 90.9
+    },
+    {
+      "id": "macro-sanitation",
+      "name": "Basic Sanitation Access Report",
+      "description": "People using at least basic sanitation services as a share of the population — the sanitation-policy counterpart to basic drinking-water access.",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "health",
+        "worldbank",
+        "x402",
+        "basic",
+        "sanitation",
+        "basic sanitation",
+        "water and sanitation",
+        "public health",
+        "hygiene"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/macro-sanitation (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-sanitation?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/macro-sanitation?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.08",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/macro-sanitation",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-sanitation",
+      "dataPoints": 192,
+      "coveragePct": 87.3
+    },
+    {
+      "id": "yearbook-2019",
+      "name": "2019 Yearbook — World Economy, 2015-2019",
+      "description": "Year-in-review for 2019: output, real growth, consumer inflation, unemployment and population for twenty economies over the five years 2015-2019. Carries the full cross-indicator correlation matrix, per-economy trend and momentum, outlier-year flags and the year-by-year matrix, so it answers both \"where does 2019 sit\" and \"how did it get there\".",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "annual",
+        "worldbank",
+        "x402",
+        "premium",
+        "2019",
+        "year in review",
+        "yearbook",
+        "annual review",
+        "world economy",
+        "economic outlook 2019",
+        "macro snapshot",
+        "country comparison 2019"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/yearbook-2019 (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/yearbook-2019?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/yearbook-2019?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.20",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/yearbook-2019",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/yearbook-2019",
+      "dataPoints": 497,
+      "coveragePct": 99.4
+    },
+    {
+      "id": "yearbook-2020",
+      "name": "2020 Yearbook — World Economy, 2016-2020",
+      "description": "Year-in-review for 2020: output, real growth, consumer inflation, unemployment and population for twenty economies over the five years 2016-2020. Carries the full cross-indicator correlation matrix, per-economy trend and momentum, outlier-year flags and the year-by-year matrix, so it answers both \"where does 2020 sit\" and \"how did it get there\".",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "annual",
+        "worldbank",
+        "x402",
+        "premium",
+        "2020",
+        "year in review",
+        "yearbook",
+        "annual review",
+        "world economy",
+        "economic outlook 2020",
+        "macro snapshot",
+        "country comparison 2020"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/yearbook-2020 (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/yearbook-2020?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/yearbook-2020?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.20",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/yearbook-2020",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/yearbook-2020",
+      "dataPoints": 498,
+      "coveragePct": 99.6
+    },
+    {
+      "id": "yearbook-2021",
+      "name": "2021 Yearbook — World Economy, 2017-2021",
+      "description": "Year-in-review for 2021: output, real growth, consumer inflation, unemployment and population for twenty economies over the five years 2017-2021. Carries the full cross-indicator correlation matrix, per-economy trend and momentum, outlier-year flags and the year-by-year matrix, so it answers both \"where does 2021 sit\" and \"how did it get there\".",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "annual",
+        "worldbank",
+        "x402",
+        "premium",
+        "2021",
+        "year in review",
+        "yearbook",
+        "annual review",
+        "world economy",
+        "economic outlook 2021",
+        "macro snapshot",
+        "country comparison 2021"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/yearbook-2021 (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/yearbook-2021?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/yearbook-2021?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.20",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/yearbook-2021",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/yearbook-2021",
+      "dataPoints": 499,
+      "coveragePct": 99.8
+    },
+    {
+      "id": "yearbook-2022",
+      "name": "2022 Yearbook — World Economy, 2018-2022",
+      "description": "Year-in-review for 2022: output, real growth, consumer inflation, unemployment and population for twenty economies over the five years 2018-2022. Carries the full cross-indicator correlation matrix, per-economy trend and momentum, outlier-year flags and the year-by-year matrix, so it answers both \"where does 2022 sit\" and \"how did it get there\".",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "annual",
+        "worldbank",
+        "x402",
+        "premium",
+        "2022",
+        "year in review",
+        "yearbook",
+        "annual review",
+        "world economy",
+        "economic outlook 2022",
+        "macro snapshot",
+        "country comparison 2022"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/yearbook-2022 (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/yearbook-2022?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/yearbook-2022?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.23",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/yearbook-2022",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/yearbook-2022",
+      "dataPoints": 500,
+      "coveragePct": 100
+    },
+    {
+      "id": "yearbook-2023",
+      "name": "2023 Yearbook — World Economy, 2019-2023",
+      "description": "Year-in-review for 2023: output, real growth, consumer inflation, unemployment and population for twenty economies over the five years 2019-2023. Carries the full cross-indicator correlation matrix, per-economy trend and momentum, outlier-year flags and the year-by-year matrix, so it answers both \"where does 2023 sit\" and \"how did it get there\".",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "annual",
+        "worldbank",
+        "x402",
+        "premium",
+        "2023",
+        "year in review",
+        "yearbook",
+        "annual review",
+        "world economy",
+        "economic outlook 2023",
+        "macro snapshot",
+        "country comparison 2023"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/yearbook-2023 (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/yearbook-2023?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/yearbook-2023?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.23",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/yearbook-2023",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/yearbook-2023",
+      "dataPoints": 500,
+      "coveragePct": 100
+    },
+    {
+      "id": "yearbook-2024",
+      "name": "2024 Yearbook — World Economy, 2020-2024",
+      "description": "Year-in-review for 2024: output, real growth, consumer inflation, unemployment and population for twenty economies over the five years 2020-2024. Carries the full cross-indicator correlation matrix, per-economy trend and momentum, outlier-year flags and the year-by-year matrix, so it answers both \"where does 2024 sit\" and \"how did it get there\".",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "annual",
+        "worldbank",
+        "x402",
+        "premium",
+        "2024",
+        "year in review",
+        "yearbook",
+        "annual review",
+        "world economy",
+        "economic outlook 2024",
+        "macro snapshot",
+        "country comparison 2024"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/yearbook-2024 (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/yearbook-2024?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/yearbook-2024?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.25",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/yearbook-2024",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/yearbook-2024",
+      "dataPoints": 500,
+      "coveragePct": 100
+    },
+    {
+      "id": "yearbook-2025",
+      "name": "2025 Yearbook — World Economy, 2021-2025",
+      "description": "Year-in-review for 2025: output, real growth, consumer inflation, unemployment and population for twenty economies over the five years 2021-2025. Carries the full cross-indicator correlation matrix, per-economy trend and momentum, outlier-year flags and the year-by-year matrix, so it answers both \"where does 2025 sit\" and \"how did it get there\".",
+      "tags": [
+        "data",
+        "report",
+        "macro",
+        "annual",
+        "worldbank",
+        "x402",
+        "premium",
+        "2025",
+        "year in review",
+        "yearbook",
+        "annual review",
+        "world economy",
+        "economic outlook 2025",
+        "macro snapshot",
+        "country comparison 2025"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/html",
+        "application/json",
+        "text/csv"
+      ],
+      "examples": [
+        "GET https://reportbazaar.app.workbuddy.host/preview/yearbook-2025 (free, machine-readable cross-section)",
+        "GET https://reportbazaar.app.workbuddy.host/report/yearbook-2025?format=json (paid, full panel)",
+        "GET https://reportbazaar.app.workbuddy.host/report/yearbook-2025?format=csv (paid, tidy panel)"
+      ],
+      "price": "$0.31",
+      "endpoint": "https://reportbazaar.app.workbuddy.host/report/yearbook-2025",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/yearbook-2025",
+      "dataPoints": null,
+      "coveragePct": null
+    }
+  ],
+  "x402-payment": {
+    "scheme": "exact",
+    "network": "eip155:8453",
+    "asset": "USDC",
+    "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+    "facilitator": "https://facilitator.payai.network",
+    "pricing": "dynamic",
+    "endpoints": [
+      "https://reportbazaar.app.workbuddy.host/report/macro-gdp",
+      "https://reportbazaar.app.workbuddy.host/report/macro-gdp-per-capita",
+      "https://reportbazaar.app.workbuddy.host/report/macro-gdp-ppp",
+      "https://reportbazaar.app.workbuddy.host/report/macro-gdp-growth",
+      "https://reportbazaar.app.workbuddy.host/report/macro-inflation",
+      "https://reportbazaar.app.workbuddy.host/report/macro-gdp-deflator",
+      "https://reportbazaar.app.workbuddy.host/report/macro-fx",
+      "https://reportbazaar.app.workbuddy.host/report/macro-trade",
+      "https://reportbazaar.app.workbuddy.host/report/macro-imports",
+      "https://reportbazaar.app.workbuddy.host/report/macro-trade-openness",
+      "https://reportbazaar.app.workbuddy.host/report/macro-current-account",
+      "https://reportbazaar.app.workbuddy.host/report/macro-remittances",
+      "https://reportbazaar.app.workbuddy.host/report/macro-fdi",
+      "https://reportbazaar.app.workbuddy.host/report/macro-debt",
+      "https://reportbazaar.app.workbuddy.host/report/macro-credit",
+      "https://reportbazaar.app.workbuddy.host/report/macro-market-cap",
+      "https://reportbazaar.app.workbuddy.host/report/macro-population",
+      "https://reportbazaar.app.workbuddy.host/report/macro-population-growth",
+      "https://reportbazaar.app.workbuddy.host/report/macro-life-expectancy",
+      "https://reportbazaar.app.workbuddy.host/report/macro-unemployment",
+      "https://reportbazaar.app.workbuddy.host/report/macro-labor-force",
+      "https://reportbazaar.app.workbuddy.host/report/macro-gini",
+      "https://reportbazaar.app.workbuddy.host/report/macro-economic-structure",
+      "https://reportbazaar.app.workbuddy.host/report/macro-fiscal",
+      "https://reportbazaar.app.workbuddy.host/report/macro-rnd",
+      "https://reportbazaar.app.workbuddy.host/report/macro-patents",
+      "https://reportbazaar.app.workbuddy.host/report/macro-energy",
+      "https://reportbazaar.app.workbuddy.host/report/macro-co2",
+      "https://reportbazaar.app.workbuddy.host/report/macro-air-quality",
+      "https://reportbazaar.app.workbuddy.host/report/macro-food",
+      "https://reportbazaar.app.workbuddy.host/report/macro-health",
+      "https://reportbazaar.app.workbuddy.host/report/macro-military",
+      "https://reportbazaar.app.workbuddy.host/report/macro-digital",
+      "https://reportbazaar.app.workbuddy.host/report/macro-real-gdp",
+      "https://reportbazaar.app.workbuddy.host/report/macro-gni-per-capita",
+      "https://reportbazaar.app.workbuddy.host/report/macro-tech-exports",
+      "https://reportbazaar.app.workbuddy.host/report/macro-scientific-output",
+      "https://reportbazaar.app.workbuddy.host/report/macro-tertiary-education",
+      "https://reportbazaar.app.workbuddy.host/report/macro-broadband",
+      "https://reportbazaar.app.workbuddy.host/report/macro-internet-security",
+      "https://reportbazaar.app.workbuddy.host/report/macro-renewable-power",
+      "https://reportbazaar.app.workbuddy.host/report/macro-fossil-share",
+      "https://reportbazaar.app.workbuddy.host/report/macro-electricity-access",
+      "https://reportbazaar.app.workbuddy.host/report/macro-tariffs",
+      "https://reportbazaar.app.workbuddy.host/report/macro-tourism",
+      "https://reportbazaar.app.workbuddy.host/report/macro-debt-interest",
+      "https://reportbazaar.app.workbuddy.host/report/macro-population-aging",
+      "https://reportbazaar.app.workbuddy.host/report/macro-poverty",
+      "https://reportbazaar.app.workbuddy.host/report/macro-gender-parliament",
+      "https://reportbazaar.app.workbuddy.host/report/macro-forest",
+      "https://reportbazaar.app.workbuddy.host/report/macro-undernourishment",
+      "https://reportbazaar.app.workbuddy.host/report/macro-hospital-beds",
+      "https://reportbazaar.app.workbuddy.host/report/macro-military-spend",
+      "https://reportbazaar.app.workbuddy.host/report/theme-growth-quality",
+      "https://reportbazaar.app.workbuddy.host/report/theme-energy-transition",
+      "https://reportbazaar.app.workbuddy.host/report/theme-tech-capability",
+      "https://reportbazaar.app.workbuddy.host/report/theme-fiscal-space",
+      "https://reportbazaar.app.workbuddy.host/report/theme-demographic-shift",
+      "https://reportbazaar.app.workbuddy.host/report/theme-trade-exposure",
+      "https://reportbazaar.app.workbuddy.host/report/theme-human-capital",
+      "https://reportbazaar.app.workbuddy.host/report/theme-inclusion-poverty",
+      "https://reportbazaar.app.workbuddy.host/report/macro-real-gdp-per-capita",
+      "https://reportbazaar.app.workbuddy.host/report/macro-ict-exports",
+      "https://reportbazaar.app.workbuddy.host/report/macro-urban-growth",
+      "https://reportbazaar.app.workbuddy.host/report/macro-life-expectancy-sex",
+      "https://reportbazaar.app.workbuddy.host/report/macro-net-lending",
+      "https://reportbazaar.app.workbuddy.host/report/macro-literacy",
+      "https://reportbazaar.app.workbuddy.host/report/macro-patents-nonresident",
+      "https://reportbazaar.app.workbuddy.host/report/macro-energy-imports",
+      "https://reportbazaar.app.workbuddy.host/report/macro-agri-land",
+      "https://reportbazaar.app.workbuddy.host/report/macro-cereal-yield",
+      "https://reportbazaar.app.workbuddy.host/report/macro-measles-immunization",
+      "https://reportbazaar.app.workbuddy.host/report/macro-sanitation",
+      "https://reportbazaar.app.workbuddy.host/report/yearbook-2019",
+      "https://reportbazaar.app.workbuddy.host/report/yearbook-2020",
+      "https://reportbazaar.app.workbuddy.host/report/yearbook-2021",
+      "https://reportbazaar.app.workbuddy.host/report/yearbook-2022",
+      "https://reportbazaar.app.workbuddy.host/report/yearbook-2023",
+      "https://reportbazaar.app.workbuddy.host/report/yearbook-2024",
+      "https://reportbazaar.app.workbuddy.host/report/yearbook-2025",
+      "https://reportbazaar.app.workbuddy.host/report/custom",
+      "https://reportbazaar.app.workbuddy.host/report/bundle"
+    ],
+    "formats": [
+      "html",
+      "json",
+      "csv",
+      "summary-csv"
+    ],
+    "schema": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+    "discovery": "https://facilitator.payai.network/discovery/resources?payTo=0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+    "ceilingUsd": 0.95,
+    "ceilingReason": "Kept under the $1 per-payment default spend cap that x402 buyer libraries enforce client-side.",
+    "bundleTiers": [
+      {
+        "category": "agriculture",
+        "reports": 3,
+        "price": "$0.10",
+        "url": "https://reportbazaar.app.workbuddy.host/report/bundle?category=agriculture"
+      },
+      {
+        "category": "investment",
+        "reports": 1,
+        "price": "$0.11",
+        "url": "https://reportbazaar.app.workbuddy.host/report/bundle?category=investment"
+      },
+      {
+        "category": "structure",
+        "reports": 1,
+        "price": "$0.11",
+        "url": "https://reportbazaar.app.workbuddy.host/report/bundle?category=structure"
+      },
+      {
+        "category": "macro",
+        "reports": 1,
+        "price": "$0.11",
+        "url": "https://reportbazaar.app.workbuddy.host/report/bundle?category=macro"
+      },
+      {
+        "category": "prices",
+        "reports": 3,
+        "price": "$0.14",
+        "url": "https://reportbazaar.app.workbuddy.host/report/bundle?category=prices"
+      },
+      {
+        "category": "environment",
+        "reports": 4,
+        "price": "$0.15",
+        "url": "https://reportbazaar.app.workbuddy.host/report/bundle?category=environment"
+      },
+      {
+        "category": "digital",
+        "reports": 4,
+        "price": "$0.18",
+        "url": "https://reportbazaar.app.workbuddy.host/report/bundle?category=digital"
+      },
+      {
+        "category": "finance",
+        "reports": 3,
+        "price": "$0.20",
+        "url": "https://reportbazaar.app.workbuddy.host/report/bundle?category=finance"
+      },
+      {
+        "category": "labor",
+        "reports": 3,
+        "price": "$0.20",
+        "url": "https://reportbazaar.app.workbuddy.host/report/bundle?category=labor"
+      },
+      {
+        "category": "defense",
+        "reports": 2,
+        "price": "$0.20",
+        "url": "https://reportbazaar.app.workbuddy.host/report/bundle?category=defense"
+      },
+      {
+        "category": "education",
+        "reports": 3,
+        "price": "$0.20",
+        "url": "https://reportbazaar.app.workbuddy.host/report/bundle?category=education"
+      },
+      {
+        "category": "health",
+        "reports": 6,
+        "price": "$0.22",
+        "url": "https://reportbazaar.app.workbuddy.host/report/bundle?category=health"
+      },
+      {
+        "category": "society",
+        "reports": 3,
+        "price": "$0.24",
+        "url": "https://reportbazaar.app.workbuddy.host/report/bundle?category=society"
+      },
+      {
+        "category": "demographics",
+        "reports": 5,
+        "price": "$0.29",
+        "url": "https://reportbazaar.app.workbuddy.host/report/bundle?category=demographics"
+      },
+      {
+        "category": "innovation",
+        "reports": 6,
+        "price": "$0.29",
+        "url": "https://reportbazaar.app.workbuddy.host/report/bundle?category=innovation"
+      },
+      {
+        "category": "energy",
+        "reports": 6,
+        "price": "$0.30",
+        "url": "https://reportbazaar.app.workbuddy.host/report/bundle?category=energy"
+      },
+      {
+        "category": "fiscal",
+        "reports": 4,
+        "price": "$0.34",
+        "url": "https://reportbazaar.app.workbuddy.host/report/bundle?category=fiscal"
+      },
+      {
+        "category": "output",
+        "reports": 7,
+        "price": "$0.36",
+        "url": "https://reportbazaar.app.workbuddy.host/report/bundle?category=output"
+      },
+      {
+        "category": "trade",
+        "reports": 8,
+        "price": "$0.54",
+        "url": "https://reportbazaar.app.workbuddy.host/report/bundle?category=trade"
+      },
+      {
+        "category": "annual",
+        "reports": 7,
+        "price": "$0.60",
+        "url": "https://reportbazaar.app.workbuddy.host/report/bundle?category=annual"
+      }
+    ],
+    "fullCatalog": {
+      "price": "$0.95",
+      "reports": 80,
+      "url": "https://reportbazaar.app.workbuddy.host/report/bundle"
+    }
+  }
+}

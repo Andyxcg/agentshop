@@ -1,0 +1,7 @@
+node_modules
+.git
+.cache
+.workbuddy
+.env.local
+npm-debug.log
+.DS_Store

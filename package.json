@@ -1,0 +1,23 @@
+{
+  "name": "agentshop",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "description": "Machine-to-machine data report store: World Bank Open Data turned into analytical reports, sold per fetch in USDC over x402 with no accounts and no API keys.",
+  "scripts": {
+    "start": "node server.js",
+    "report": "node generate-report.js",
+    "pay-client": "node agent-pay-client.js"
+  },
+  "dependencies": {
+    "@coinbase/cdp-sdk": "^1.56.0",
+    "@coinbase/x402": "^2.1.0",
+    "@x402/core": "^2.26.0",
+    "@x402/evm": "^2.26.0",
+    "@x402/express": "^2.26.0",
+    "@x402/fetch": "^2.26.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "viem": "^2.21.26"
+  }
+}

@@ -1,0 +1,28 @@
+# ai.txt — usage policy for automated agents
+# agentshop
+User-Agent: *
+Allow: /
+Allow: /report/
+Allow: /preview/
+Allow: /sample/
+Allow: /search
+Allow: /catalog
+Allow: /years
+Allow: /indicators
+Allow: /schema/
+Allow: /openapi.json
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /mcp
+Allow: /.well-known/
+
+# Machine-to-machine access is the intended use. Paid endpoints settle in USDC over x402;
+# free endpoints require no payment and no attribution beyond the data licence below.
+# Prefer ?format=json or ?format=csv over scraping HTML.
+Formats: html, json, csv, summary-csv (query parameter ?format=; Accept header honoured)
+Preferred: json
+Schema: https://reportbazaar.app.workbuddy.host/schema/report.json
+License: Report content generated from World Bank Open Data (CC BY 4.0) — attribution required.
+Attribution: World Bank Open Data (https://data.worldbank.org), CC BY 4.0
+Payment: x402 (scheme=exact, network=eip155:8453, asset=USDC, payTo=0xba7efeabfab91a6febc8d8088faa29ce95979b34)
+Contact: https://reportbazaar.app.workbuddy.host/agent.json

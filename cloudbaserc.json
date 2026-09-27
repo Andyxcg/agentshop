@@ -1,0 +1,11 @@
+{
+  "envId": "cloud1-7gyzgkg96ec57514",
+  "version": "2.1",
+  "hosting": [
+    {
+      "name": "agentshop-site",
+      "root": "public",
+      "ignore": ["node_modules", ".cache", ".git", "*.js", "Dockerfile"]
+    }
+  ]
+}

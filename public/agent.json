@@ -1,0 +1,5780 @@
+{
+  "name": "agentshop",
+  "description": "Machine-to-machine macroeconomic report store: 80 catalog reports plus bespoke and bundle products, generated from World Bank Open Data (CC BY 4.0) and sold per fetch in USDC over x402.",
+  "iconUrl": "https://reportbazaar.app.workbuddy.host/avatar.svg",
+  "protocol": "x402",
+  "version": "2.0",
+  "baseUrl": "https://reportbazaar.app.workbuddy.host",
+  "currency": "USDC",
+  "network": "eip155:8453",
+  "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+  "keywords": [
+    "macroeconomic data",
+    "world bank data",
+    "cross-country comparison",
+    "economic indicators",
+    "time series data",
+    "gdp",
+    "inflation",
+    "trade",
+    "external debt",
+    "foreign direct investment",
+    "labour market",
+    "demographics",
+    "energy",
+    "co2 emissions",
+    "esg",
+    "health expenditure",
+    "military expenditure",
+    "digital adoption",
+    "fiscal policy",
+    "research and development",
+    "country risk",
+    "sovereign analysis",
+    "market research data",
+    "dataset api",
+    "tariffs",
+    "trade policy",
+    "population ageing",
+    "renewable electricity",
+    "high-technology exports",
+    "scientific research output",
+    "poverty",
+    "inequality",
+    "fiscal space",
+    "correlation matrix"
+  ],
+  "categories": [
+    "agriculture",
+    "annual",
+    "defense",
+    "demographics",
+    "digital",
+    "education",
+    "energy",
+    "environment",
+    "finance",
+    "fiscal",
+    "health",
+    "innovation",
+    "investment",
+    "labor",
+    "macro",
+    "output",
+    "prices",
+    "society",
+    "structure",
+    "trade"
+  ],
+  "years": {
+    "range": "2015:2025",
+    "published": [
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "annualEditions": [
+      "yearbook-2019",
+      "yearbook-2020",
+      "yearbook-2021",
+      "yearbook-2022",
+      "yearbook-2023",
+      "yearbook-2024",
+      "yearbook-2025"
+    ],
+    "annualEditionYears": [
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "index": "/years",
+    "filter": "/catalog?year=YYYY",
+    "note": "Every report covers an inclusive year range; the yearbook annual editions review the five years ending in their edition year."
+  },
+  "payment": {
+    "type": "x402",
+    "scheme": "exact",
+    "asset": "USDC",
+    "facilitator": "https://facilitator.payai.network",
+    "dynamicPricing": true
+  },
+  "discovery": {
+    "catalog": "/catalog",
+    "years": "/years",
+    "yearDetail": "/years/:year",
+    "search": "/search?q=",
+    "indicators": "/indicators",
+    "preview": "/preview/:id",
+    "sample": "/sample/:id",
+    "schema": "/schema/report.json",
+    "agentJson": "/agent.json",
+    "a2aCard": "/.well-known/agent.json",
+    "x402WellKnown": "/.well-known/x402",
+    "aiPlugin": "/.well-known/ai-plugin.json",
+    "mcp": "/.well-known/mcp.json",
+    "openapi": "/openapi.json",
+    "llmsTxt": "/llms.txt",
+    "llmsFullTxt": "/llms-full.txt",
+    "robots": "/robots.txt",
+    "sitemap": "/sitemap.xml",
+    "purchases": "/purchases",
+    "activity": "/api/activity",
+    "bazaarExtension": true,
+    "facilitatorDiscovery": "https://facilitator.payai.network/discovery/resources?payTo=0xba7efeabfab91a6febc8d8088faa29ce95979b34"
+  },
+  "deliveryFormats": [
+    "html",
+    "json",
+    "csv",
+    "summary-csv"
+  ],
+  "formatHelp": {
+    "html": "The full analytical report as a document.",
+    "json": "Structured payload: report metadata, one block per indicator, per-economy rows carrying the complete year-by-year series plus every derived metric (CAGR, growth index, OLS trend and R², momentum, half-period shift, volatility, percentile, outlier years, data quality), and the cross-indicator correlation matrix. Schema: /schema/report.json",
+    "csv": "Tidy long panel — one row per observation. Columns: report_id, indicator_code, indicator_label, economy_code, economy_name, year, value, measurement_kind, source.",
+    "summary-csv": "One row per economy per indicator carrying the derived metrics: latest value, period mean, rank, percentile, share, CAGR, growth index, YoY, volatility, trend slope with R², momentum, peak/trough and coverage."
+  },
+  "endpoints": {
+    "report": "/report/:id",
+    "custom": {
+      "id": "custom",
+      "endpoint": "/report/custom",
+      "title": "Custom Report — Build Your Own",
+      "description": "Request any combination of supported indicators, economies and years. Priced by request size, so a single-indicator slice is cheap and a wide panel costs more.",
+      "pricingFormula": "USD 0.10 base + 0.03 per indicator + 0.01 per economy, times a data-freshness factor, clamped to [0.20, 0.95]. The ceiling is the per-payment spend cap the x402 buyer libraries apply by default, so no product is ever priced above what a default-configured agent can pay. The exact amount is quoted in every 402 response.",
+      "queryParams": {
+        "indicators": "comma-separated World Bank indicator codes, or \"all\" (default: NY.GDP.MKTP.CD)",
+        "countries": "comma-separated ISO-2 economy codes, or \"all\" (default: the twenty economies the catalog reports cover)",
+        "years": "inclusive range \"YYYY:YYYY\" (default: 2015:2025)",
+        "format": "html (default), json or csv — see /schema/report.json",
+        "title": "optional report title override"
+      }
+    },
+    "bundle": {
+      "id": "bundle",
+      "endpoint": "/report/bundle",
+      "title": "Full Catalog Bundle",
+      "description": "Every catalog report in a single document — the entire dataset surface in one purchase at a substantial discount to buying each report separately. Available as html or json."
+    }
+  },
+  "priceLadder": {
+    "ceilingUsd": 0.95,
+    "ceilingReason": "x402 buyer libraries apply a $1 per-payment spend cap by default and refuse to sign above it, so no product is priced above that ceiling.",
+    "single": {
+      "from": "$0.20",
+      "to": "$0.95",
+      "endpoint": "/report/{id}"
+    },
+    "byCategory": [
+      {
+        "category": "agriculture",
+        "reports": 3,
+        "price": "$0.10",
+        "url": "/report/bundle?category=agriculture"
+      },
+      {
+        "category": "investment",
+        "reports": 1,
+        "price": "$0.11",
+        "url": "/report/bundle?category=investment"
+      },
+      {
+        "category": "structure",
+        "reports": 1,
+        "price": "$0.11",
+        "url": "/report/bundle?category=structure"
+      },
+      {
+        "category": "macro",
+        "reports": 1,
+        "price": "$0.11",
+        "url": "/report/bundle?category=macro"
+      },
+      {
+        "category": "prices",
+        "reports": 3,
+        "price": "$0.14",
+        "url": "/report/bundle?category=prices"
+      },
+      {
+        "category": "environment",
+        "reports": 4,
+        "price": "$0.15",
+        "url": "/report/bundle?category=environment"
+      },
+      {
+        "category": "digital",
+        "reports": 4,
+        "price": "$0.18",
+        "url": "/report/bundle?category=digital"
+      },
+      {
+        "category": "finance",
+        "reports": 3,
+        "price": "$0.20",
+        "url": "/report/bundle?category=finance"
+      },
+      {
+        "category": "labor",
+        "reports": 3,
+        "price": "$0.20",
+        "url": "/report/bundle?category=labor"
+      },
+      {
+        "category": "defense",
+        "reports": 2,
+        "price": "$0.20",
+        "url": "/report/bundle?category=defense"
+      },
+      {
+        "category": "education",
+        "reports": 3,
+        "price": "$0.20",
+        "url": "/report/bundle?category=education"
+      },
+      {
+        "category": "health",
+        "reports": 6,
+        "price": "$0.22",
+        "url": "/report/bundle?category=health"
+      },
+      {
+        "category": "society",
+        "reports": 3,
+        "price": "$0.24",
+        "url": "/report/bundle?category=society"
+      },
+      {
+        "category": "demographics",
+        "reports": 5,
+        "price": "$0.29",
+        "url": "/report/bundle?category=demographics"
+      },
+      {
+        "category": "innovation",
+        "reports": 6,
+        "price": "$0.29",
+        "url": "/report/bundle?category=innovation"
+      },
+      {
+        "category": "energy",
+        "reports": 6,
+        "price": "$0.30",
+        "url": "/report/bundle?category=energy"
+      },
+      {
+        "category": "fiscal",
+        "reports": 4,
+        "price": "$0.34",
+        "url": "/report/bundle?category=fiscal"
+      },
+      {
+        "category": "output",
+        "reports": 7,
+        "price": "$0.36",
+        "url": "/report/bundle?category=output"
+      },
+      {
+        "category": "trade",
+        "reports": 8,
+        "price": "$0.54",
+        "url": "/report/bundle?category=trade"
+      },
+      {
+        "category": "annual",
+        "reports": 7,
+        "price": "$0.60",
+        "url": "/report/bundle?category=annual"
+      }
+    ],
+    "fullCatalog": {
+      "price": "$0.95",
+      "reports": 80,
+      "endpoint": "/report/bundle"
+    }
+  },
+  "reports": [
+    {
+      "id": "macro-gdp",
+      "title": "GDP Comparison Report — Major Economies",
+      "category": "output",
+      "tier": "standard",
+      "endpoint": "/report/macro-gdp",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-gdp",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-gdp",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-gdp",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.13",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "GDP at current US dollars for ten major economies, with period CAGR, share of group total, latest-year growth, volatility and a full year-by-year matrix.",
+      "keywords": [
+        "gdp",
+        "gross domestic product",
+        "economy size",
+        "output",
+        "nominal gdp"
+      ],
+      "indicators": [
+        "NY.GDP.MKTP.CD"
+      ],
+      "indicatorLabels": [
+        "GDP (current US$)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 220,
+      "coveragePct": 100,
+      "latestYear": 2025,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-gdp-per-capita",
+      "title": "GDP per Capita Comparison Report",
+      "category": "output",
+      "tier": "standard",
+      "endpoint": "/report/macro-gdp-per-capita",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-gdp-per-capita",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-gdp-per-capita",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-gdp-per-capita",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.13",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "GDP per capita at current US dollars — a productivity and living-standard proxy with CAGR, ranking and dispersion metrics.",
+      "keywords": [
+        "gdp per capita",
+        "income per person",
+        "living standard",
+        "productivity",
+        "wealth"
+      ],
+      "indicators": [
+        "NY.GDP.PCAP.CD"
+      ],
+      "indicatorLabels": [
+        "GDP per capita (current US$)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 220,
+      "coveragePct": 100,
+      "latestYear": 2025,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-gdp-ppp",
+      "title": "GDP at Purchasing Power Parity Report",
+      "category": "output",
+      "tier": "standard",
+      "endpoint": "/report/macro-gdp-ppp",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-gdp-ppp",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-gdp-ppp",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-gdp-ppp",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.13",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "GDP at PPP in current international dollars — real economic weight adjusted for price levels, a common basis for cross-country ranking.",
+      "keywords": [
+        "ppp",
+        "purchasing power parity",
+        "real economy size",
+        "international dollars"
+      ],
+      "indicators": [
+        "NY.GDP.MKTP.PP.CD"
+      ],
+      "indicatorLabels": [
+        "GDP, PPP (current international $)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 220,
+      "coveragePct": 100,
+      "latestYear": 2025,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-gdp-growth",
+      "title": "GDP Growth Rate Report",
+      "category": "output",
+      "tier": "standard",
+      "endpoint": "/report/macro-gdp-growth",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-gdp-growth",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-gdp-growth",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-gdp-growth",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.13",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Real GDP growth (annual %) — expansion or contraction momentum, average growth, volatility and recession-year detection.",
+      "keywords": [
+        "gdp growth",
+        "economic growth",
+        "recession",
+        "momentum",
+        "expansion"
+      ],
+      "indicators": [
+        "NY.GDP.MKTP.KD.ZG"
+      ],
+      "indicatorLabels": [
+        "GDP growth (annual %)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 220,
+      "coveragePct": 100,
+      "latestYear": 2025,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-inflation",
+      "title": "Inflation Rate Comparison Report",
+      "category": "prices",
+      "tier": "standard",
+      "endpoint": "/report/macro-inflation",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-inflation",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-inflation",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-inflation",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.13",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Consumer-price inflation across ten economies — monetary-policy stance, peak-inflation year and average inflation over the period.",
+      "keywords": [
+        "inflation",
+        "cpi",
+        "consumer prices",
+        "cost of living",
+        "monetary policy"
+      ],
+      "indicators": [
+        "FP.CPI.TOTL.ZG"
+      ],
+      "indicatorLabels": [
+        "Inflation, consumer prices (annual %)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 215,
+      "coveragePct": 97.7,
+      "latestYear": 2025,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-gdp-deflator",
+      "title": "GDP Deflator Inflation Report",
+      "category": "prices",
+      "tier": "basic",
+      "endpoint": "/report/macro-gdp-deflator",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-gdp-deflator",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-gdp-deflator",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-gdp-deflator",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.09",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Inflation measured by the GDP deflator — the broadest domestic price gauge, useful as a cross-check against consumer-price inflation.",
+      "keywords": [
+        "gdp deflator",
+        "broad inflation",
+        "price level",
+        "deflator"
+      ],
+      "indicators": [
+        "NY.GDP.DEFL.KD.ZG"
+      ],
+      "indicatorLabels": [
+        "Inflation, GDP deflator (annual %)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 220,
+      "coveragePct": 100,
+      "latestYear": 2025,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-fx",
+      "title": "Official Exchange Rate Report",
+      "category": "prices",
+      "tier": "standard",
+      "endpoint": "/report/macro-fx",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-fx",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-fx",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-fx",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.13",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Official exchange rate, local currency units per US dollar (period average) — a currency-valuation baseline with cumulative depreciation.",
+      "keywords": [
+        "exchange rate",
+        "currency",
+        "forex",
+        "depreciation",
+        "devaluation",
+        "fx"
+      ],
+      "indicators": [
+        "PA.NUS.FCRF"
+      ],
+      "indicatorLabels": [
+        "Official exchange rate (LCU per US$, period average)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 219,
+      "coveragePct": 99.5,
+      "latestYear": 2025,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-trade",
+      "title": "Merchandise and Services Exports Report",
+      "category": "trade",
+      "tier": "standard",
+      "endpoint": "/report/macro-trade",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-trade",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-trade",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-trade",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.13",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Total exports of goods and services at current US dollars — global trade positioning, export share of the group and growth.",
+      "keywords": [
+        "exports",
+        "trade",
+        "goods and services",
+        "export competitiveness"
+      ],
+      "indicators": [
+        "NE.EXP.GNFS.CD"
+      ],
+      "indicatorLabels": [
+        "Exports of goods and services (current US$)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 218,
+      "coveragePct": 99.1,
+      "latestYear": 2025,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-imports",
+      "title": "Merchandise and Services Imports Report",
+      "category": "trade",
+      "tier": "standard",
+      "endpoint": "/report/macro-imports",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-imports",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-imports",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-imports",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.13",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Total imports of goods and services at current US dollars — domestic demand strength and external dependence.",
+      "keywords": [
+        "imports",
+        "trade",
+        "domestic demand",
+        "import dependence"
+      ],
+      "indicators": [
+        "NE.IMP.GNFS.CD"
+      ],
+      "indicatorLabels": [
+        "Imports of goods and services (current US$)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 218,
+      "coveragePct": 99.1,
+      "latestYear": 2025,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-trade-openness",
+      "title": "Trade Openness Report",
+      "category": "trade",
+      "tier": "standard",
+      "endpoint": "/report/macro-trade-openness",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-trade-openness",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-trade-openness",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-trade-openness",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.13",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Trade as a share of GDP and merchandise trade as a share of GDP — how open each economy is to cross-border flows.",
+      "keywords": [
+        "trade openness",
+        "trade to gdp",
+        "globalisation",
+        "tariff exposure"
+      ],
+      "indicators": [
+        "NE.TRD.GNFS.ZS",
+        "TG.VAL.TOTL.GD.ZS"
+      ],
+      "indicatorLabels": [
+        "Trade (% of GDP)",
+        "Merchandise trade (% of GDP)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 438,
+      "coveragePct": 99.5,
+      "latestYear": 2025,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-current-account",
+      "title": "Current Account Balance Report",
+      "category": "trade",
+      "tier": "premium",
+      "endpoint": "/report/macro-current-account",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-current-account",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-current-account",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-current-account",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.28",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Current account balance at current US dollars — external surplus or deficit position, with a surplus/deficit classification per economy.",
+      "keywords": [
+        "current account",
+        "trade balance",
+        "external balance",
+        "surplus",
+        "deficit"
+      ],
+      "indicators": [
+        "BN.CAB.XOKA.CD"
+      ],
+      "indicatorLabels": [
+        "Current account balance (current US$)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 219,
+      "coveragePct": 99.5,
+      "latestYear": 2025,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-remittances",
+      "title": "Personal Remittances Report",
+      "category": "trade",
+      "tier": "basic",
+      "endpoint": "/report/macro-remittances",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-remittances",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-remittances",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-remittances",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.09",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Personal remittances received at current US dollars — a hard-currency inflow that often dwarfs FDI in emerging economies.",
+      "keywords": [
+        "remittances",
+        "migrant transfers",
+        "diaspora flows",
+        "household income"
+      ],
+      "indicators": [
+        "BX.TRF.PWKR.CD.DT"
+      ],
+      "indicatorLabels": [
+        "Personal remittances, received (current US$)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 219,
+      "coveragePct": 99.5,
+      "latestYear": 2025,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-fdi",
+      "title": "Foreign Direct Investment Net Inflows Report",
+      "category": "investment",
+      "tier": "premium",
+      "endpoint": "/report/macro-fdi",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-fdi",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-fdi",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-fdi",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.28",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "FDI net inflows on a balance-of-payments basis, current US dollars — cross-border capital confidence, share of group inflow and stability.",
+      "keywords": [
+        "fdi",
+        "foreign direct investment",
+        "capital flows",
+        "investment climate"
+      ],
+      "indicators": [
+        "BX.KLT.DINV.CD.WD"
+      ],
+      "indicatorLabels": [
+        "Foreign direct investment, net inflows (current US$)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 219,
+      "coveragePct": 99.5,
+      "latestYear": 2025,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-debt",
+      "title": "External Debt Stock Report",
+      "category": "finance",
+      "tier": "premium",
+      "endpoint": "/report/macro-debt",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-debt",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-debt",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-debt",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.25",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Public and publicly guaranteed external debt stocks at current US dollars — sovereign repayment-risk reference with debt accumulation trend.",
+      "keywords": [
+        "external debt",
+        "sovereign debt",
+        "debt burden",
+        "default risk",
+        "debt stock"
+      ],
+      "indicators": [
+        "DT.DOD.DECT.CD"
+      ],
+      "indicatorLabels": [
+        "External debt stocks, public and publicly guaranteed (current US$)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 38,
+      "coveragePct": 34.5,
+      "latestYear": 2024,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-credit",
+      "title": "Domestic Credit to Private Sector Report",
+      "category": "finance",
+      "tier": "standard",
+      "endpoint": "/report/macro-credit",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-credit",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-credit",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-credit",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.13",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Domestic credit to the private sector as a percentage of GDP — banking-system depth and leverage build-up.",
+      "keywords": [
+        "private credit",
+        "leverage",
+        "banking depth",
+        "credit to gdp",
+        "financial deepening"
+      ],
+      "indicators": [
+        "FS.AST.PRVT.GD.ZS"
+      ],
+      "indicatorLabels": [
+        "Domestic credit to private sector (% of GDP)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 187,
+      "coveragePct": 85,
+      "latestYear": 2025,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-market-cap",
+      "title": "Equity Market Capitalization Report",
+      "category": "finance",
+      "tier": "standard",
+      "endpoint": "/report/macro-market-cap",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-market-cap",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-market-cap",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-market-cap",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.13",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Market capitalization of listed domestic companies at current US dollars — listed-equity depth and capital-market development.",
+      "keywords": [
+        "market cap",
+        "stock market",
+        "equity market",
+        "capitalisation",
+        "listed companies"
+      ],
+      "indicators": [
+        "CM.MKT.LCAP.CD"
+      ],
+      "indicatorLabels": [
+        "Market capitalization of listed companies (current US$)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 185,
+      "coveragePct": 84.1,
+      "latestYear": 2025,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-population",
+      "title": "Population Comparison Report",
+      "category": "demographics",
+      "tier": "basic",
+      "endpoint": "/report/macro-population",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-population",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-population",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-population",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.09",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Total population for ten economies with compound growth and share of the group.",
+      "keywords": [
+        "population",
+        "demographics",
+        "headcount",
+        "population size"
+      ],
+      "indicators": [
+        "SP.POP.TOTL"
+      ],
+      "indicatorLabels": [
+        "Total population"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 220,
+      "coveragePct": 100,
+      "latestYear": 2025,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-population-growth",
+      "title": "Population Growth Report",
+      "category": "demographics",
+      "tier": "standard",
+      "endpoint": "/report/macro-population-growth",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-population-growth",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-population-growth",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-population-growth",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.13",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Annual population growth and urbanisation share — the demographic trajectory behind long-run demand.",
+      "keywords": [
+        "population growth",
+        "urbanisation",
+        "demographic decline",
+        "urban population"
+      ],
+      "indicators": [
+        "SP.POP.GROW",
+        "SP.URB.TOTL.IN.ZS"
+      ],
+      "indicatorLabels": [
+        "Population growth (annual %)",
+        "Urban population (% of total population)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 440,
+      "coveragePct": 100,
+      "latestYear": 2025,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-life-expectancy",
+      "title": "Life Expectancy and Child Mortality Report",
+      "category": "health",
+      "tier": "standard",
+      "endpoint": "/report/macro-life-expectancy",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-life-expectancy",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-life-expectancy",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-life-expectancy",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.12",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Life expectancy at birth and under-5 mortality per 1,000 live births — two complementary population-health measures.",
+      "keywords": [
+        "life expectancy",
+        "mortality",
+        "public health",
+        "human development",
+        "longevity"
+      ],
+      "indicators": [
+        "SP.DYN.LE00.IN",
+        "SH.DYN.MORT"
+      ],
+      "indicatorLabels": [
+        "Life expectancy at birth, total (years)",
+        "Mortality rate, under-5 (per 1,000 live births)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 400,
+      "coveragePct": 90.9,
+      "latestYear": 2024,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-unemployment",
+      "title": "Unemployment Rate Report",
+      "category": "labor",
+      "tier": "standard",
+      "endpoint": "/report/macro-unemployment",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-unemployment",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-unemployment",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-unemployment",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.13",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Total unemployment as a share of the labor force — labor-market slack, best/worst year and period average.",
+      "keywords": [
+        "unemployment",
+        "joblessness",
+        "labour market",
+        "employment",
+        "labour slack"
+      ],
+      "indicators": [
+        "SL.UEM.TOTL.ZS"
+      ],
+      "indicatorLabels": [
+        "Unemployment, total (% of labor force)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 220,
+      "coveragePct": 100,
+      "latestYear": 2025,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-labor-force",
+      "title": "Labor Force Participation Report",
+      "category": "labor",
+      "tier": "standard",
+      "endpoint": "/report/macro-labor-force",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-labor-force",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-labor-force",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-labor-force",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.13",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Labor force participation rate alongside the fertility rate — the two drivers of future labor supply.",
+      "keywords": [
+        "labour force participation",
+        "fertility rate",
+        "workforce",
+        "labour supply",
+        "birth rate"
+      ],
+      "indicators": [
+        "SL.TLF.CACT.ZS",
+        "SP.DYN.TFRT.IN"
+      ],
+      "indicatorLabels": [
+        "Labor force participation rate (% of population 15+)",
+        "Fertility rate (births per woman)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 420,
+      "coveragePct": 95.5,
+      "latestYear": 2025,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-gini",
+      "title": "Income Inequality Report",
+      "category": "labor",
+      "tier": "premium",
+      "endpoint": "/report/macro-gini",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-gini",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-gini",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-gini",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.25",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Gini index (0 = perfect equality, 100 = perfect inequality) — the standard distributional snapshot. Coverage is sparser than other indicators and is reported as such.",
+      "keywords": [
+        "gini",
+        "inequality",
+        "income distribution",
+        "poverty",
+        "wealth gap"
+      ],
+      "indicators": [
+        "SI.POV.GINI"
+      ],
+      "indicatorLabels": [
+        "Gini index (0-100)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 74,
+      "coveragePct": 67.3,
+      "latestYear": 2024,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-economic-structure",
+      "title": "Economic Structure Report — Agriculture, Industry, Services",
+      "category": "structure",
+      "tier": "premium",
+      "endpoint": "/report/macro-economic-structure",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-economic-structure",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-economic-structure",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-economic-structure",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.28",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Value added by agriculture, industry and services as a share of GDP — three indicators rendered together to show each economy's structural composition.",
+      "keywords": [
+        "economic structure",
+        "sector composition",
+        "services share",
+        "industrialisation",
+        "agriculture share"
+      ],
+      "indicators": [
+        "NV.AGR.TOTL.ZS",
+        "NV.IND.TOTL.ZS",
+        "NV.SRV.TOTL.ZS"
+      ],
+      "indicatorLabels": [
+        "Agriculture, forestry and fishing value added (% of GDP)",
+        "Industry value added (% of GDP)",
+        "Services value added (% of GDP)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 636,
+      "coveragePct": 96.4,
+      "latestYear": 2025,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-fiscal",
+      "title": "Fiscal Position Report — Tax, Debt and Education Spending",
+      "category": "fiscal",
+      "tier": "premium",
+      "endpoint": "/report/macro-fiscal",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-fiscal",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-fiscal",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-fiscal",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.25",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Tax revenue, central government debt and education expenditure, all as a share of GDP — a three-indicator view of fiscal capacity.",
+      "keywords": [
+        "fiscal policy",
+        "tax revenue",
+        "government debt",
+        "budget",
+        "public spending",
+        "sovereign"
+      ],
+      "indicators": [
+        "GC.TAX.TOTL.GD.ZS",
+        "GC.DOD.TOTL.GD.ZS",
+        "SE.XPD.TOTL.GD.ZS"
+      ],
+      "indicatorLabels": [
+        "Tax revenue (% of GDP)",
+        "Central government debt, total (% of GDP)",
+        "Government expenditure on education (% of GDP)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 208,
+      "coveragePct": 63,
+      "latestYear": 2024,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-rnd",
+      "title": "Research and Development Expenditure Report",
+      "category": "innovation",
+      "tier": "standard",
+      "endpoint": "/report/macro-rnd",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-rnd",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-rnd",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-rnd",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.12",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Gross domestic expenditure on R&D as a percentage of GDP — national innovation intensity.",
+      "keywords": [
+        "r&d",
+        "research and development",
+        "innovation",
+        "science spending",
+        "technology investment"
+      ],
+      "indicators": [
+        "GB.XPD.RSDV.GD.ZS"
+      ],
+      "indicatorLabels": [
+        "Research and development expenditure (% of GDP)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 166,
+      "coveragePct": 75.5,
+      "latestYear": 2024,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-patents",
+      "title": "Resident Patent Applications Report",
+      "category": "innovation",
+      "tier": "basic",
+      "endpoint": "/report/macro-patents",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-patents",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-patents",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-patents",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.07",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Patent applications filed by residents — a direct measure of domestic inventive output. Coverage is limited to the most recent available years.",
+      "keywords": [
+        "patents",
+        "intellectual property",
+        "innovation output",
+        "ip filings"
+      ],
+      "indicators": [
+        "IP.PAT.RESD"
+      ],
+      "indicatorLabels": [
+        "Patent applications, residents"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 139,
+      "coveragePct": 63.2,
+      "latestYear": 2021,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-energy",
+      "title": "Energy Use and Renewables Report",
+      "category": "energy",
+      "tier": "standard",
+      "endpoint": "/report/macro-energy",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-energy",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-energy",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-energy",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.12",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Energy use per capita (kg of oil equivalent) paired with the renewable share of final energy consumption — the energy-transition scoreboard.",
+      "keywords": [
+        "energy",
+        "energy consumption",
+        "renewables",
+        "energy transition",
+        "oil equivalent",
+        "power"
+      ],
+      "indicators": [
+        "EG.USE.PCAP.KG.OE",
+        "EG.FEC.RNEW.ZS"
+      ],
+      "indicatorLabels": [
+        "Energy use (kg of oil equivalent per capita)",
+        "Renewable energy consumption (% of final energy use)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 334,
+      "coveragePct": 75.9,
+      "latestYear": 2024,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-co2",
+      "title": "CO2 Emissions per Capita Report",
+      "category": "environment",
+      "tier": "standard",
+      "endpoint": "/report/macro-co2",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-co2",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-co2",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-co2",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.12",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Territorial CO2 emissions per capita in tonnes of CO2 equivalent — the standard climate-accounting intensity measure.",
+      "keywords": [
+        "co2",
+        "emissions",
+        "carbon",
+        "climate",
+        "decarbonisation",
+        "greenhouse gas",
+        "esg"
+      ],
+      "indicators": [
+        "EN.GHG.CO2.PC.CE.AR5"
+      ],
+      "indicatorLabels": [
+        "CO2 emissions per capita (t CO2e)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 200,
+      "coveragePct": 90.9,
+      "latestYear": 2024,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-air-quality",
+      "title": "Air Quality and Water Stress Report",
+      "category": "environment",
+      "tier": "standard",
+      "endpoint": "/report/macro-air-quality",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-air-quality",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-air-quality",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-air-quality",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.11",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Mean PM2.5 concentration and freshwater withdrawal as a share of internal resources — environmental stress indicators relevant to operational and sovereign risk.",
+      "keywords": [
+        "air quality",
+        "pm2.5",
+        "pollution",
+        "water stress",
+        "water withdrawal",
+        "esg risk"
+      ],
+      "indicators": [
+        "EN.ATM.PM25.MC.M3",
+        "ER.H2O.FWTL.ZS"
+      ],
+      "indicatorLabels": [
+        "PM2.5 air pollution (micrograms per cubic meter)",
+        "Freshwater withdrawal (% of internal resources)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 340,
+      "coveragePct": 77.3,
+      "latestYear": 2023,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-food",
+      "title": "Food Production Index Report",
+      "category": "environment",
+      "tier": "basic",
+      "endpoint": "/report/macro-food",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-food",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-food",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-food",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.07",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Food production index (2014-2016 = 100) — agricultural output trajectory and food-security supply side.",
+      "keywords": [
+        "food production",
+        "agriculture",
+        "food security",
+        "crop output"
+      ],
+      "indicators": [
+        "AG.PRD.FOOD.XD"
+      ],
+      "indicatorLabels": [
+        "Food production index (2014-2016 = 100)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 160,
+      "coveragePct": 72.7,
+      "latestYear": 2022,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-health",
+      "title": "Health Expenditure Report",
+      "category": "health",
+      "tier": "basic",
+      "endpoint": "/report/macro-health",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-health",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-health",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-health",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.08",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Current health expenditure as a percentage of GDP — the fiscal weight of each health system.",
+      "keywords": [
+        "health expenditure",
+        "healthcare spending",
+        "health system",
+        "medical cost"
+      ],
+      "indicators": [
+        "SH.XPD.CHEX.GD.ZS"
+      ],
+      "indicatorLabels": [
+        "Current health expenditure (% of GDP)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 186,
+      "coveragePct": 84.5,
+      "latestYear": 2024,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-military",
+      "title": "Military Expenditure Report",
+      "category": "defense",
+      "tier": "premium",
+      "endpoint": "/report/macro-military",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-military",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-military",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-military",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.25",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Military expenditure as a percentage of GDP — defence burden and its trend since 2015, when several budgets inflected upward.",
+      "keywords": [
+        "military spending",
+        "defence budget",
+        "defence burden",
+        "arms",
+        "geopolitics"
+      ],
+      "indicators": [
+        "MS.MIL.XPND.GD.ZS"
+      ],
+      "indicatorLabels": [
+        "Military expenditure (% of GDP)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 200,
+      "coveragePct": 90.9,
+      "latestYear": 2024,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-digital",
+      "title": "Digital Adoption Report — Internet and Mobile",
+      "category": "digital",
+      "tier": "standard",
+      "endpoint": "/report/macro-digital",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-digital",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-digital",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-digital",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.13",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Individuals using the Internet (% of population) and mobile cellular subscriptions per 100 people — digital-adoption depth for market sizing.",
+      "keywords": [
+        "internet penetration",
+        "digital adoption",
+        "mobile subscriptions",
+        "connectivity",
+        "technology adoption"
+      ],
+      "indicators": [
+        "IT.NET.USER.ZS",
+        "IT.CEL.SETS.P2"
+      ],
+      "indicatorLabels": [
+        "Individuals using the Internet (% of population)",
+        "Mobile cellular subscriptions (per 100 people)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 401,
+      "coveragePct": 91.1,
+      "latestYear": 2025,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-real-gdp",
+      "title": "Real GDP Report (Constant Prices)",
+      "category": "output",
+      "tier": "standard",
+      "endpoint": "/report/macro-real-gdp",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-real-gdp",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-real-gdp",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-real-gdp",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.13",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "GDP at constant 2015 US dollars — volume growth stripped of price effects, the like-for-like basis for comparing economies over time.",
+      "keywords": [
+        "real gdp",
+        "constant prices",
+        "volume growth",
+        "inflation adjusted output",
+        "real economy"
+      ],
+      "indicators": [
+        "NY.GDP.MKTP.KD"
+      ],
+      "indicatorLabels": [
+        "GDP (constant 2015 US$)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 220,
+      "coveragePct": 100,
+      "latestYear": 2025,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-gni-per-capita",
+      "title": "GNI per Capita Report (Atlas Method)",
+      "category": "output",
+      "tier": "standard",
+      "endpoint": "/report/macro-gni-per-capita",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-gni-per-capita",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-gni-per-capita",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-gni-per-capita",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.13",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Gross national income per capita on the World Bank Atlas method (current US$) — the income yardstick behind development classifications and lending tiers.",
+      "keywords": [
+        "gni per capita",
+        "atlas method",
+        "national income",
+        "income level",
+        "development tier"
+      ],
+      "indicators": [
+        "NY.GNP.PCAP.CD"
+      ],
+      "indicatorLabels": [
+        "GNI per capita, Atlas method (current US$)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 220,
+      "coveragePct": 100,
+      "latestYear": 2025,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-tech-exports",
+      "title": "High-Technology Exports Share Report",
+      "category": "innovation",
+      "tier": "standard",
+      "endpoint": "/report/macro-tech-exports",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-tech-exports",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-tech-exports",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-tech-exports",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.12",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "High-technology exports as a share of manufactured exports — the clearest single proxy for where advanced manufacturing and semiconductor-grade capability sits.",
+      "keywords": [
+        "high technology exports",
+        "semiconductors",
+        "advanced manufacturing",
+        "tech exports",
+        "export sophistication",
+        "ai hardware"
+      ],
+      "indicators": [
+        "TX.VAL.TECH.MF.ZS"
+      ],
+      "indicatorLabels": [
+        "High-technology exports (% of manufactured exports)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 197,
+      "coveragePct": 89.5,
+      "latestYear": 2024,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-scientific-output",
+      "title": "Scientific Research Output Report",
+      "category": "innovation",
+      "tier": "standard",
+      "endpoint": "/report/macro-scientific-output",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-scientific-output",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-scientific-output",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-scientific-output",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.11",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Scientific and technical journal articles published — the volume measure of national research output. Publication lags the reporting period by two to three years.",
+      "keywords": [
+        "research output",
+        "scientific papers",
+        "journal articles",
+        "r&d capacity",
+        "science",
+        "publications"
+      ],
+      "indicators": [
+        "IP.JRN.ARTC.SC"
+      ],
+      "indicatorLabels": [
+        "Scientific and technical journal articles"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 180,
+      "coveragePct": 81.8,
+      "latestYear": 2023,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-tertiary-education",
+      "title": "Tertiary Education Enrolment Report",
+      "category": "education",
+      "tier": "standard",
+      "endpoint": "/report/macro-tertiary-education",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-tertiary-education",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-tertiary-education",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-tertiary-education",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.13",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Gross tertiary enrolment ratio — the share of the school-age cohort entering university, a leading indicator of future skilled-labour supply.",
+      "keywords": [
+        "tertiary education",
+        "university enrolment",
+        "higher education",
+        "skilled labour",
+        "graduate supply"
+      ],
+      "indicators": [
+        "SE.TER.ENRR"
+      ],
+      "indicatorLabels": [
+        "School enrolment, tertiary (% gross)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 189,
+      "coveragePct": 85.9,
+      "latestYear": 2025,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-broadband",
+      "title": "Fixed Broadband Penetration Report",
+      "category": "digital",
+      "tier": "standard",
+      "endpoint": "/report/macro-broadband",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-broadband",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-broadband",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-broadband",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.12",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Fixed broadband subscriptions per 100 people — fixed-line connectivity depth, the infrastructure base for cloud and data-centre demand.",
+      "keywords": [
+        "broadband",
+        "fixed internet",
+        "connectivity",
+        "telecom infrastructure",
+        "cloud readiness"
+      ],
+      "indicators": [
+        "IT.NET.BBND.P2"
+      ],
+      "indicatorLabels": [
+        "Fixed broadband subscriptions (per 100 people)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 199,
+      "coveragePct": 90.5,
+      "latestYear": 2024,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-internet-security",
+      "title": "Secure Internet Servers Report",
+      "category": "digital",
+      "tier": "standard",
+      "endpoint": "/report/macro-internet-security",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-internet-security",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-internet-security",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-internet-security",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.12",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Secure Internet servers (TLS) per 1 million people — the density of encrypted online infrastructure, which tracks where digital business is actually hosted.",
+      "keywords": [
+        "secure servers",
+        "tls",
+        "encryption",
+        "cybersecurity",
+        "internet infrastructure",
+        "hosting"
+      ],
+      "indicators": [
+        "IT.NET.SECR.P6"
+      ],
+      "indicatorLabels": [
+        "Secure Internet servers (per 1 million people)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 200,
+      "coveragePct": 90.9,
+      "latestYear": 2024,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-renewable-power",
+      "title": "Renewable Electricity Output Report",
+      "category": "energy",
+      "tier": "standard",
+      "endpoint": "/report/macro-renewable-power",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-renewable-power",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-renewable-power",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-renewable-power",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.10",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Renewable electricity as a share of total electricity output — the power-mix transition measured at the generation stage.",
+      "keywords": [
+        "renewable electricity",
+        "solar",
+        "wind",
+        "power mix",
+        "energy transition",
+        "clean power"
+      ],
+      "indicators": [
+        "EG.ELC.RNEW.ZS"
+      ],
+      "indicatorLabels": [
+        "Renewable electricity output (% of total electricity output)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 140,
+      "coveragePct": 63.6,
+      "latestYear": 2021,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-fossil-share",
+      "title": "Fossil Fuel Dependence Report",
+      "category": "energy",
+      "tier": "standard",
+      "endpoint": "/report/macro-fossil-share",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-fossil-share",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-fossil-share",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-fossil-share",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.12",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Fossil fuel consumption as a share of total energy use — the inverse of the transition, and a direct read on exposure to fuel-price shocks.",
+      "keywords": [
+        "fossil fuels",
+        "oil dependence",
+        "coal",
+        "gas",
+        "energy security",
+        "carbon intensity"
+      ],
+      "indicators": [
+        "EG.USE.COMM.FO.ZS"
+      ],
+      "indicatorLabels": [
+        "Fossil fuel energy consumption (% of total)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 194,
+      "coveragePct": 88.2,
+      "latestYear": 2024,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-electricity-access",
+      "title": "Electricity Access Report",
+      "category": "energy",
+      "tier": "basic",
+      "endpoint": "/report/macro-electricity-access",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-electricity-access",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-electricity-access",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-electricity-access",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.08",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Share of the population with access to electricity — the electrification baseline that conditions every downstream demand estimate.",
+      "keywords": [
+        "electricity access",
+        "electrification",
+        "energy poverty",
+        "grid coverage",
+        "power access"
+      ],
+      "indicators": [
+        "EG.ELC.ACCS.ZS"
+      ],
+      "indicatorLabels": [
+        "Access to electricity (% of population)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 200,
+      "coveragePct": 90.9,
+      "latestYear": 2024,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-tariffs",
+      "title": "Applied Tariff Rate Report",
+      "category": "trade",
+      "tier": "premium",
+      "endpoint": "/report/macro-tariffs",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-tariffs",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-tariffs",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-tariffs",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.23",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Trade-weighted mean applied tariff across all products — the measured restrictiveness of each economy's border, relevant to supply-chain and sourcing exposure. Published intermittently.",
+      "keywords": [
+        "tariffs",
+        "trade barriers",
+        "protectionism",
+        "import duty",
+        "trade war",
+        "customs"
+      ],
+      "indicators": [
+        "TM.TAX.MRCH.WM.AR.ZS"
+      ],
+      "indicatorLabels": [
+        "Tariff rate, applied, weighted mean, all products (%)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 150,
+      "coveragePct": 68.2,
+      "latestYear": 2022,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-tourism",
+      "title": "International Tourism Receipts Report",
+      "category": "trade",
+      "tier": "basic",
+      "endpoint": "/report/macro-tourism",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-tourism",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-tourism",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-tourism",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.09",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "International tourism receipts as a share of total exports — the service-export concentration of each economy, and its pandemic-era rupture.",
+      "keywords": [
+        "tourism",
+        "travel receipts",
+        "service exports",
+        "visitor economy",
+        "travel and tourism"
+      ],
+      "indicators": [
+        "BX.GSR.TRVL.ZS"
+      ],
+      "indicatorLabels": [
+        "International tourism, receipts (% of total exports)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 219,
+      "coveragePct": 99.5,
+      "latestYear": 2025,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-debt-interest",
+      "title": "Government Interest Burden Report",
+      "category": "fiscal",
+      "tier": "premium",
+      "endpoint": "/report/macro-debt-interest",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-debt-interest",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-debt-interest",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-debt-interest",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.23",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Interest payments as a share of central government expense — how much of each budget is consumed servicing debt rather than funding policy. Only IMF-format reporters are covered.",
+      "keywords": [
+        "interest payments",
+        "debt service",
+        "fiscal burden",
+        "sovereign risk",
+        "budget rigidity"
+      ],
+      "indicators": [
+        "GC.XPN.INTP.ZS"
+      ],
+      "indicatorLabels": [
+        "Interest payments (% of expense)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 143,
+      "coveragePct": 65,
+      "latestYear": 2023,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-population-aging",
+      "title": "Population Ageing Report",
+      "category": "demographics",
+      "tier": "standard",
+      "endpoint": "/report/macro-population-aging",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-population-aging",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-population-aging",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-population-aging",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.13",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Population aged 65 and above as a share of the total — the ageing ratio that drives pension, healthcare and labour-supply projections.",
+      "keywords": [
+        "ageing",
+        "aging population",
+        "pension",
+        "elderly share",
+        "dependency ratio",
+        "demographic cliff"
+      ],
+      "indicators": [
+        "SP.POP.65UP.TO.ZS"
+      ],
+      "indicatorLabels": [
+        "Population ages 65 and above (% of total)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 220,
+      "coveragePct": 100,
+      "latestYear": 2025,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-poverty",
+      "title": "Extreme Poverty Report",
+      "category": "society",
+      "tier": "premium",
+      "endpoint": "/report/macro-poverty",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-poverty",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-poverty",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-poverty",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.25",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Poverty headcount at $2.15 a day (2017 PPP) — the headline development measure. Survey-based, so observations arrive in irregular waves rather than every year.",
+      "keywords": [
+        "poverty",
+        "extreme poverty",
+        "development",
+        "living standards",
+        "sdg",
+        "income floor"
+      ],
+      "indicators": [
+        "SI.POV.DDAY"
+      ],
+      "indicatorLabels": [
+        "Poverty headcount ratio at $2.15 a day (2017 PPP, % of population)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 74,
+      "coveragePct": 67.3,
+      "latestYear": 2024,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-gender-parliament",
+      "title": "Women in Parliament Report",
+      "category": "society",
+      "tier": "basic",
+      "endpoint": "/report/macro-gender-parliament",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-gender-parliament",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-gender-parliament",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-gender-parliament",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.09",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Proportion of national parliamentary seats held by women — a governance and institutional-quality measure used in ESG screening.",
+      "keywords": [
+        "gender equality",
+        "women in parliament",
+        "governance",
+        "esg",
+        "representation",
+        "diversity"
+      ],
+      "indicators": [
+        "SG.GEN.PARL.ZS"
+      ],
+      "indicatorLabels": [
+        "Proportion of seats held by women in national parliaments (%)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 219,
+      "coveragePct": 99.5,
+      "latestYear": 2025,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-forest",
+      "title": "Forest Area Report",
+      "category": "environment",
+      "tier": "basic",
+      "endpoint": "/report/macro-forest",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-forest",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-forest",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-forest",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.07",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Forest area as a share of land area — land-use change and carbon-sink capacity, reported at multi-year intervals.",
+      "keywords": [
+        "forest",
+        "deforestation",
+        "land use",
+        "carbon sink",
+        "biodiversity",
+        "esg"
+      ],
+      "indicators": [
+        "AG.LND.FRST.ZS"
+      ],
+      "indicatorLabels": [
+        "Forest area (% of land area)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 180,
+      "coveragePct": 81.8,
+      "latestYear": 2023,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-undernourishment",
+      "title": "Undernourishment Report",
+      "category": "agriculture",
+      "tier": "standard",
+      "endpoint": "/report/macro-undernourishment",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-undernourishment",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-undernourishment",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-undernourishment",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.11",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Prevalence of undernourishment — the food-security stress measure, published as a model-based estimate in three-year windows.",
+      "keywords": [
+        "food security",
+        "undernourishment",
+        "hunger",
+        "nutrition",
+        "crop failure",
+        "supply risk"
+      ],
+      "indicators": [
+        "SN.ITK.DEFC.ZS"
+      ],
+      "indicatorLabels": [
+        "Prevalence of undernourishment (% of population)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 171,
+      "coveragePct": 77.7,
+      "latestYear": 2023,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-hospital-beds",
+      "title": "Hospital Beds and Physicians Report",
+      "category": "health",
+      "tier": "standard",
+      "endpoint": "/report/macro-hospital-beds",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-hospital-beds",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-hospital-beds",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-hospital-beds",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.11",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Hospital beds and physicians per 1,000 people — the physical capacity of each health system, a key pandemic-preparedness input.",
+      "keywords": [
+        "hospital beds",
+        "physicians",
+        "health capacity",
+        "healthcare infrastructure",
+        "pandemic preparedness"
+      ],
+      "indicators": [
+        "SH.MED.BEDS.ZS",
+        "SH.MED.PHYS.ZS"
+      ],
+      "indicatorLabels": [
+        "Hospital beds (per 1,000 people)",
+        "Physicians (per 1,000 people)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 301,
+      "coveragePct": 68.4,
+      "latestYear": 2023,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-military-spend",
+      "title": "Military Expenditure in Dollars Report",
+      "category": "defense",
+      "tier": "premium",
+      "endpoint": "/report/macro-military-spend",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-military-spend",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-military-spend",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-military-spend",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.25",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Military expenditure in current US dollars alongside armed-forces personnel — defence spending measured in absolute terms rather than as a GDP share.",
+      "keywords": [
+        "military spending",
+        "defence budget dollars",
+        "armed forces",
+        "troop strength",
+        "arms race",
+        "geopolitics"
+      ],
+      "indicators": [
+        "MS.MIL.XPND.CD",
+        "MS.MIL.TOTL.P1"
+      ],
+      "indicatorLabels": [
+        "Military expenditure (current US$)",
+        "Armed forces personnel, total"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 320,
+      "coveragePct": 72.7,
+      "latestYear": 2024,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "theme-growth-quality",
+      "title": "Growth, Inflation and Unemployment — Macro Stress Report",
+      "category": "macro",
+      "tier": "premium",
+      "endpoint": "/report/theme-growth-quality",
+      "url": "https://reportbazaar.app.workbuddy.host/report/theme-growth-quality",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/theme-growth-quality",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/theme-growth-quality",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.28",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Real growth, consumer-price inflation and unemployment side by side, with the pooled correlation between them — the three variables that define a stagflation or overheating call.",
+      "keywords": [
+        "stagflation",
+        "macro stress",
+        "growth inflation unemployment",
+        "phillips curve",
+        "misery index",
+        "business cycle",
+        "overheating"
+      ],
+      "indicators": [
+        "NY.GDP.MKTP.KD.ZG",
+        "FP.CPI.TOTL.ZG",
+        "SL.UEM.TOTL.ZS"
+      ],
+      "indicatorLabels": [
+        "GDP growth (annual %)",
+        "Inflation, consumer prices (annual %)",
+        "Unemployment, total (% of labor force)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 655,
+      "coveragePct": 99.2,
+      "latestYear": 2025,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "theme-energy-transition",
+      "title": "Energy Transition Scoreboard",
+      "category": "energy",
+      "tier": "premium",
+      "endpoint": "/report/theme-energy-transition",
+      "url": "https://reportbazaar.app.workbuddy.host/report/theme-energy-transition",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/theme-energy-transition",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/theme-energy-transition",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.25",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Renewable generation share, fossil dependence, electricity access and CO2 intensity in one document, with the cross-indicator correlation matrix — the transition measured from four directions at once.",
+      "keywords": [
+        "energy transition",
+        "decarbonisation",
+        "net zero",
+        "renewables",
+        "fossil dependence",
+        "co2 intensity",
+        "esg scoreboard",
+        "climate policy"
+      ],
+      "indicators": [
+        "EG.ELC.RNEW.ZS",
+        "EG.USE.COMM.FO.ZS",
+        "EG.ELC.ACCS.ZS",
+        "EN.GHG.CO2.PC.CE.AR5"
+      ],
+      "indicatorLabels": [
+        "Renewable electricity output (% of total electricity output)",
+        "Fossil fuel energy consumption (% of total)",
+        "Access to electricity (% of population)",
+        "CO2 emissions per capita (t CO2e)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 734,
+      "coveragePct": 83.4,
+      "latestYear": 2024,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "theme-tech-capability",
+      "title": "Technology Capability Report — Exports, Research and Infrastructure",
+      "category": "innovation",
+      "tier": "premium",
+      "endpoint": "/report/theme-tech-capability",
+      "url": "https://reportbazaar.app.workbuddy.host/report/theme-tech-capability",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/theme-tech-capability",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/theme-tech-capability",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.25",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "High-technology export share, secure-server density, scientific publication volume and broadband penetration, correlated against each other — a four-axis view of where advanced capability actually accumulates.",
+      "keywords": [
+        "technology capability",
+        "ai capacity",
+        "semiconductors",
+        "research output",
+        "digital infrastructure",
+        "innovation index",
+        "tech stack"
+      ],
+      "indicators": [
+        "TX.VAL.TECH.MF.ZS",
+        "IT.NET.SECR.P6",
+        "IP.JRN.ARTC.SC",
+        "IT.NET.BBND.P2"
+      ],
+      "indicatorLabels": [
+        "High-technology exports (% of manufactured exports)",
+        "Secure Internet servers (per 1 million people)",
+        "Scientific and technical journal articles",
+        "Fixed broadband subscriptions (per 100 people)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 776,
+      "coveragePct": 88.2,
+      "latestYear": 2024,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "theme-fiscal-space",
+      "title": "Fiscal Space Report — Debt, Interest and Revenue",
+      "category": "fiscal",
+      "tier": "premium",
+      "endpoint": "/report/theme-fiscal-space",
+      "url": "https://reportbazaar.app.workbuddy.host/report/theme-fiscal-space",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/theme-fiscal-space",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/theme-fiscal-space",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.25",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Central government debt, the interest share of spending and tax revenue together — whether a sovereign still has room to borrow, and how much of the budget is already spoken for.",
+      "keywords": [
+        "fiscal space",
+        "sovereign debt",
+        "debt service",
+        "tax revenue",
+        "austerity",
+        "bond risk",
+        "fiscal sustainability"
+      ],
+      "indicators": [
+        "GC.DOD.TOTL.GD.ZS",
+        "GC.XPN.INTP.ZS",
+        "GC.TAX.TOTL.GD.ZS"
+      ],
+      "indicatorLabels": [
+        "Central government debt, total (% of GDP)",
+        "Interest payments (% of expense)",
+        "Tax revenue (% of GDP)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 203,
+      "coveragePct": 61.5,
+      "latestYear": 2024,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "theme-demographic-shift",
+      "title": "Demographic Shift Report — Age Structure and Growth",
+      "category": "demographics",
+      "tier": "premium",
+      "endpoint": "/report/theme-demographic-shift",
+      "url": "https://reportbazaar.app.workbuddy.host/report/theme-demographic-shift",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/theme-demographic-shift",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/theme-demographic-shift",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.28",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "The full age structure — children, working age and retired shares — plus population growth, in one document. This is the demographic dividend or drag behind every long-horizon demand forecast.",
+      "keywords": [
+        "demographics",
+        "age structure",
+        "working age population",
+        "demographic dividend",
+        "dependency ratio",
+        "population decline",
+        "labour supply"
+      ],
+      "indicators": [
+        "SP.POP.0014.TO.ZS",
+        "SP.POP.1564.TO.ZS",
+        "SP.POP.65UP.TO.ZS",
+        "SP.POP.GROW"
+      ],
+      "indicatorLabels": [
+        "Population ages 0-14 (% of total)",
+        "Population ages 15-64 (% of total)",
+        "Population ages 65 and above (% of total)",
+        "Population growth (annual %)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 880,
+      "coveragePct": 100,
+      "latestYear": 2025,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "theme-trade-exposure",
+      "title": "Trade Exposure Report — Flows, Intensity and Tariffs",
+      "category": "trade",
+      "tier": "premium",
+      "endpoint": "/report/theme-trade-exposure",
+      "url": "https://reportbazaar.app.workbuddy.host/report/theme-trade-exposure",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/theme-trade-exposure",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/theme-trade-exposure",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.28",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Export and import intensity as a share of GDP alongside applied tariff rates — how exposed each economy is to cross-border trade, and how open its own border is.",
+      "keywords": [
+        "trade exposure",
+        "tariffs",
+        "export intensity",
+        "import dependence",
+        "supply chain",
+        "protectionism",
+        "trade war",
+        "reshoring"
+      ],
+      "indicators": [
+        "NE.EXP.GNFS.ZS",
+        "NE.IMP.GNFS.ZS",
+        "TM.TAX.MRCH.WM.AR.ZS"
+      ],
+      "indicatorLabels": [
+        "Exports of goods and services (% of GDP)",
+        "Imports of goods and services (% of GDP)",
+        "Tariff rate, applied, weighted mean, all products (%)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 586,
+      "coveragePct": 88.8,
+      "latestYear": 2025,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "theme-human-capital",
+      "title": "Human Capital Report — Education and Research Capacity",
+      "category": "education",
+      "tier": "premium",
+      "endpoint": "/report/theme-human-capital",
+      "url": "https://reportbazaar.app.workbuddy.host/report/theme-human-capital",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/theme-human-capital",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/theme-human-capital",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.28",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Tertiary and secondary enrolment alongside research spending as a share of GDP — the pipeline that determines an economy's skilled-labour supply a decade out.",
+      "keywords": [
+        "human capital",
+        "education",
+        "enrolment",
+        "research spending",
+        "skill supply",
+        "talent pipeline",
+        "r&d intensity"
+      ],
+      "indicators": [
+        "SE.TER.ENRR",
+        "SE.SEC.ENRR",
+        "GB.XPD.RSDV.GD.ZS"
+      ],
+      "indicatorLabels": [
+        "School enrolment, tertiary (% gross)",
+        "School enrolment, secondary (% gross)",
+        "Research and development expenditure (% of GDP)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 534,
+      "coveragePct": 80.9,
+      "latestYear": 2025,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "theme-inclusion-poverty",
+      "title": "Inclusion and Poverty Report — Income, Access and Services",
+      "category": "society",
+      "tier": "premium",
+      "endpoint": "/report/theme-inclusion-poverty",
+      "url": "https://reportbazaar.app.workbuddy.host/report/theme-inclusion-poverty",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/theme-inclusion-poverty",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/theme-inclusion-poverty",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.25",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Extreme-poverty headcount, income inequality, financial-account ownership and basic drinking-water access together — the distributional and service-access picture behind social-risk assessments.",
+      "keywords": [
+        "inclusion",
+        "poverty",
+        "inequality",
+        "financial inclusion",
+        "water access",
+        "social risk",
+        "development",
+        "esg social"
+      ],
+      "indicators": [
+        "SI.POV.DDAY",
+        "SI.POV.GINI",
+        "FX.OWN.TOTL.ZS",
+        "SH.H2O.BASW.ZS"
+      ],
+      "indicatorLabels": [
+        "Poverty headcount ratio at $2.15 a day (2017 PPP, % of population)",
+        "Gini index (0-100)",
+        "Account ownership at a financial institution (% of population 15+)",
+        "People using at least basic drinking water services (% of population)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 278,
+      "coveragePct": 63.2,
+      "latestYear": 2024,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-real-gdp-per-capita",
+      "title": "Real GDP per Capita Report (Constant Prices)",
+      "category": "output",
+      "tier": "standard",
+      "endpoint": "/report/macro-real-gdp-per-capita",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-real-gdp-per-capita",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-real-gdp-per-capita",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-real-gdp-per-capita",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.13",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "GDP per capita at constant 2015 US dollars — inflation-adjusted living-standard trajectory, the like-for-like complement to the nominal per-capita series.",
+      "keywords": [
+        "real gdp per capita",
+        "constant prices",
+        "living standard",
+        "inflation adjusted income",
+        "real income"
+      ],
+      "indicators": [
+        "NY.GDP.PCAP.KD"
+      ],
+      "indicatorLabels": [
+        "GDP per capita (constant 2015 US$)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 220,
+      "coveragePct": 100,
+      "latestYear": 2025,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-ict-exports",
+      "title": "ICT Service Exports Report",
+      "category": "digital",
+      "tier": "basic",
+      "endpoint": "/report/macro-ict-exports",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-ict-exports",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-ict-exports",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-ict-exports",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.09",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "ICT service exports as a share of total service exports — the weight of high-margin digital trade in each economy's services balance.",
+      "keywords": [
+        "ict exports",
+        "digital trade",
+        "service exports",
+        "software exports",
+        "telecom exports"
+      ],
+      "indicators": [
+        "BX.GSR.CMCP.ZS"
+      ],
+      "indicatorLabels": [
+        "ICT service exports (% of service exports)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 219,
+      "coveragePct": 99.5,
+      "latestYear": 2025,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-urban-growth",
+      "title": "Urban Population Growth Report",
+      "category": "demographics",
+      "tier": "basic",
+      "endpoint": "/report/macro-urban-growth",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-urban-growth",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-urban-growth",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-urban-growth",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.09",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Annual urban population growth — the pace of city expansion behind infrastructure, housing and congestion demand.",
+      "keywords": [
+        "urban growth",
+        "urbanisation",
+        "city growth",
+        "megacity",
+        "urban demand"
+      ],
+      "indicators": [
+        "SP.URB.GROW"
+      ],
+      "indicatorLabels": [
+        "Urban population growth (annual %)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 220,
+      "coveragePct": 100,
+      "latestYear": 2025,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-life-expectancy-sex",
+      "title": "Life Expectancy by Sex Report",
+      "category": "health",
+      "tier": "basic",
+      "endpoint": "/report/macro-life-expectancy-sex",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-life-expectancy-sex",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-life-expectancy-sex",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-life-expectancy-sex",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.08",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Life expectancy at birth for females and males separately — the gender gap in longevity that the all-sex average hides.",
+      "keywords": [
+        "life expectancy female",
+        "life expectancy male",
+        "gender life gap",
+        "longevity",
+        "public health"
+      ],
+      "indicators": [
+        "SP.DYN.LE00.FE.IN",
+        "SP.DYN.LE00.MA.IN"
+      ],
+      "indicatorLabels": [
+        "Life expectancy at birth, female (years)",
+        "Life expectancy at birth, male (years)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 400,
+      "coveragePct": 90.9,
+      "latestYear": 2024,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-net-lending",
+      "title": "Government Net Lending Report",
+      "category": "fiscal",
+      "tier": "standard",
+      "endpoint": "/report/macro-net-lending",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-net-lending",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-net-lending",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-net-lending",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.12",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Net lending (+) or net borrowing (-) of general government as a percentage of GDP — the bottom-line fiscal stance after all revenue and spending.",
+      "keywords": [
+        "net lending",
+        "fiscal balance",
+        "budget surplus",
+        "budget deficit",
+        "government balance"
+      ],
+      "indicators": [
+        "GC.NLD.TOTL.GD.ZS"
+      ],
+      "indicatorLabels": [
+        "Net lending (+) / net borrowing (-) (% of GDP)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 163,
+      "coveragePct": 74.1,
+      "latestYear": 2024,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-literacy",
+      "title": "Adult Literacy Report",
+      "category": "education",
+      "tier": "basic",
+      "endpoint": "/report/macro-literacy",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-literacy",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-literacy",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-literacy",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.08",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Adult literacy rate for people aged 15 and above — the foundational human-capital gate that precedes every higher-education measure.",
+      "keywords": [
+        "literacy",
+        "adult literacy",
+        "education",
+        "human capital",
+        "basic skills"
+      ],
+      "indicators": [
+        "SE.ADT.LITR.ZS"
+      ],
+      "indicatorLabels": [
+        "Adult literacy rate (% of people ages 15 and above)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 53,
+      "coveragePct": 24.1,
+      "latestYear": 2024,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-patents-nonresident",
+      "title": "Nonresident Patent Applications Report",
+      "category": "innovation",
+      "tier": "basic",
+      "endpoint": "/report/macro-patents-nonresident",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-patents-nonresident",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-patents-nonresident",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-patents-nonresident",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.06",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Patent applications filed by nonresidents — the inbound side of inventive activity, complementing the resident-applicant series as a foreign-confidence signal.",
+      "keywords": [
+        "nonresident patents",
+        "foreign patents",
+        "ip filings",
+        "invention inflow",
+        "technology transfer"
+      ],
+      "indicators": [
+        "IP.PAT.NRES"
+      ],
+      "indicatorLabels": [
+        "Patent applications, nonresidents"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 139,
+      "coveragePct": 63.2,
+      "latestYear": 2021,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-energy-imports",
+      "title": "Net Energy Import Dependence Report",
+      "category": "energy",
+      "tier": "basic",
+      "endpoint": "/report/macro-energy-imports",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-energy-imports",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-energy-imports",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-energy-imports",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.07",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Net energy imports as a share of energy use — how much of each economy's energy it must source from abroad, the flip side of the fossil-dependence measure.",
+      "keywords": [
+        "energy imports",
+        "energy dependence",
+        "energy security",
+        "imported energy"
+      ],
+      "indicators": [
+        "EG.IMP.CONS.ZS"
+      ],
+      "indicatorLabels": [
+        "Energy imports, net (% of energy use)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 178,
+      "coveragePct": 80.9,
+      "latestYear": 2023,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-agri-land",
+      "title": "Agricultural Land Report",
+      "category": "agriculture",
+      "tier": "basic",
+      "endpoint": "/report/macro-agri-land",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-agri-land",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-agri-land",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-agri-land",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.07",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Agricultural land as a share of total land area — the land base available for food and fibre production, the complement to forest-area cover.",
+      "keywords": [
+        "agricultural land",
+        "farmland",
+        "land use",
+        "arable land",
+        "food production base"
+      ],
+      "indicators": [
+        "AG.LND.AGRI.ZS"
+      ],
+      "indicatorLabels": [
+        "Agricultural land (% of land area)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 180,
+      "coveragePct": 81.8,
+      "latestYear": 2023,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-cereal-yield",
+      "title": "Cereal Yield Report",
+      "category": "agriculture",
+      "tier": "basic",
+      "endpoint": "/report/macro-cereal-yield",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-cereal-yield",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-cereal-yield",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-cereal-yield",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.08",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Cereal yield in kilograms per hectare — the productivity of the grain base that feeds most calorie supply, distinct from the food-production index.",
+      "keywords": [
+        "cereal yield",
+        "crop yield",
+        "agricultural productivity",
+        "grain",
+        "food security"
+      ],
+      "indicators": [
+        "AG.YLD.CREL.KG"
+      ],
+      "indicatorLabels": [
+        "Cereal yield (kg per hectare)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 189,
+      "coveragePct": 85.9,
+      "latestYear": 2024,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-measles-immunization",
+      "title": "Measles Immunization Report",
+      "category": "health",
+      "tier": "basic",
+      "endpoint": "/report/macro-measles-immunization",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-measles-immunization",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-measles-immunization",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-measles-immunization",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.08",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Measles immunization coverage among children aged 12-23 months — a frontline indicator of primary-health-system reach.",
+      "keywords": [
+        "immunization",
+        "measles",
+        "vaccination",
+        "child health",
+        "preventive care"
+      ],
+      "indicators": [
+        "SH.IMM.MEAS"
+      ],
+      "indicatorLabels": [
+        "Immunization, measles (% of children ages 12-23 months)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 200,
+      "coveragePct": 90.9,
+      "latestYear": 2024,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "macro-sanitation",
+      "title": "Basic Sanitation Access Report",
+      "category": "health",
+      "tier": "basic",
+      "endpoint": "/report/macro-sanitation",
+      "url": "https://reportbazaar.app.workbuddy.host/report/macro-sanitation",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/macro-sanitation",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/macro-sanitation",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.08",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "People using at least basic sanitation services as a share of the population — the sanitation-policy counterpart to basic drinking-water access.",
+      "keywords": [
+        "sanitation",
+        "basic sanitation",
+        "water and sanitation",
+        "public health",
+        "hygiene"
+      ],
+      "indicators": [
+        "SH.STA.BASS.ZS"
+      ],
+      "indicatorLabels": [
+        "People using at least basic sanitation services (% of population)"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2025",
+      "dataPoints": 192,
+      "coveragePct": 87.3,
+      "latestYear": 2024,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "yearbook-2019",
+      "title": "2019 Yearbook — World Economy, 2015-2019",
+      "category": "annual",
+      "tier": "premium",
+      "endpoint": "/report/yearbook-2019",
+      "url": "https://reportbazaar.app.workbuddy.host/report/yearbook-2019",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/yearbook-2019",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/yearbook-2019",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.20",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Year-in-review for 2019: output, real growth, consumer inflation, unemployment and population for twenty economies over the five years 2015-2019. Carries the full cross-indicator correlation matrix, per-economy trend and momentum, outlier-year flags and the year-by-year matrix, so it answers both \"where does 2019 sit\" and \"how did it get there\".",
+      "keywords": [
+        "2019",
+        "year in review",
+        "yearbook",
+        "annual review",
+        "world economy",
+        "economic outlook 2019",
+        "macro snapshot",
+        "country comparison 2019"
+      ],
+      "indicators": [
+        "NY.GDP.MKTP.CD",
+        "NY.GDP.MKTP.KD.ZG",
+        "FP.CPI.TOTL.ZG",
+        "SL.UEM.TOTL.ZS",
+        "SP.POP.TOTL"
+      ],
+      "indicatorLabels": [
+        "GDP (current US$)",
+        "GDP growth (annual %)",
+        "Inflation, consumer prices (annual %)",
+        "Unemployment, total (% of labor force)",
+        "Total population"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2015:2019",
+      "dataPoints": 497,
+      "coveragePct": 99.4,
+      "latestYear": 2019,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "yearbook-2020",
+      "title": "2020 Yearbook — World Economy, 2016-2020",
+      "category": "annual",
+      "tier": "premium",
+      "endpoint": "/report/yearbook-2020",
+      "url": "https://reportbazaar.app.workbuddy.host/report/yearbook-2020",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/yearbook-2020",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/yearbook-2020",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.20",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Year-in-review for 2020: output, real growth, consumer inflation, unemployment and population for twenty economies over the five years 2016-2020. Carries the full cross-indicator correlation matrix, per-economy trend and momentum, outlier-year flags and the year-by-year matrix, so it answers both \"where does 2020 sit\" and \"how did it get there\".",
+      "keywords": [
+        "2020",
+        "year in review",
+        "yearbook",
+        "annual review",
+        "world economy",
+        "economic outlook 2020",
+        "macro snapshot",
+        "country comparison 2020"
+      ],
+      "indicators": [
+        "NY.GDP.MKTP.CD",
+        "NY.GDP.MKTP.KD.ZG",
+        "FP.CPI.TOTL.ZG",
+        "SL.UEM.TOTL.ZS",
+        "SP.POP.TOTL"
+      ],
+      "indicatorLabels": [
+        "GDP (current US$)",
+        "GDP growth (annual %)",
+        "Inflation, consumer prices (annual %)",
+        "Unemployment, total (% of labor force)",
+        "Total population"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2016:2020",
+      "dataPoints": 498,
+      "coveragePct": 99.6,
+      "latestYear": 2020,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "yearbook-2021",
+      "title": "2021 Yearbook — World Economy, 2017-2021",
+      "category": "annual",
+      "tier": "premium",
+      "endpoint": "/report/yearbook-2021",
+      "url": "https://reportbazaar.app.workbuddy.host/report/yearbook-2021",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/yearbook-2021",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/yearbook-2021",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.20",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Year-in-review for 2021: output, real growth, consumer inflation, unemployment and population for twenty economies over the five years 2017-2021. Carries the full cross-indicator correlation matrix, per-economy trend and momentum, outlier-year flags and the year-by-year matrix, so it answers both \"where does 2021 sit\" and \"how did it get there\".",
+      "keywords": [
+        "2021",
+        "year in review",
+        "yearbook",
+        "annual review",
+        "world economy",
+        "economic outlook 2021",
+        "macro snapshot",
+        "country comparison 2021"
+      ],
+      "indicators": [
+        "NY.GDP.MKTP.CD",
+        "NY.GDP.MKTP.KD.ZG",
+        "FP.CPI.TOTL.ZG",
+        "SL.UEM.TOTL.ZS",
+        "SP.POP.TOTL"
+      ],
+      "indicatorLabels": [
+        "GDP (current US$)",
+        "GDP growth (annual %)",
+        "Inflation, consumer prices (annual %)",
+        "Unemployment, total (% of labor force)",
+        "Total population"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2017:2021",
+      "dataPoints": 499,
+      "coveragePct": 99.8,
+      "latestYear": 2021,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "yearbook-2022",
+      "title": "2022 Yearbook — World Economy, 2018-2022",
+      "category": "annual",
+      "tier": "premium",
+      "endpoint": "/report/yearbook-2022",
+      "url": "https://reportbazaar.app.workbuddy.host/report/yearbook-2022",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/yearbook-2022",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/yearbook-2022",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.23",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Year-in-review for 2022: output, real growth, consumer inflation, unemployment and population for twenty economies over the five years 2018-2022. Carries the full cross-indicator correlation matrix, per-economy trend and momentum, outlier-year flags and the year-by-year matrix, so it answers both \"where does 2022 sit\" and \"how did it get there\".",
+      "keywords": [
+        "2022",
+        "year in review",
+        "yearbook",
+        "annual review",
+        "world economy",
+        "economic outlook 2022",
+        "macro snapshot",
+        "country comparison 2022"
+      ],
+      "indicators": [
+        "NY.GDP.MKTP.CD",
+        "NY.GDP.MKTP.KD.ZG",
+        "FP.CPI.TOTL.ZG",
+        "SL.UEM.TOTL.ZS",
+        "SP.POP.TOTL"
+      ],
+      "indicatorLabels": [
+        "GDP (current US$)",
+        "GDP growth (annual %)",
+        "Inflation, consumer prices (annual %)",
+        "Unemployment, total (% of labor force)",
+        "Total population"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2018:2022",
+      "dataPoints": 500,
+      "coveragePct": 100,
+      "latestYear": 2022,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "yearbook-2023",
+      "title": "2023 Yearbook — World Economy, 2019-2023",
+      "category": "annual",
+      "tier": "premium",
+      "endpoint": "/report/yearbook-2023",
+      "url": "https://reportbazaar.app.workbuddy.host/report/yearbook-2023",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/yearbook-2023",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/yearbook-2023",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.23",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Year-in-review for 2023: output, real growth, consumer inflation, unemployment and population for twenty economies over the five years 2019-2023. Carries the full cross-indicator correlation matrix, per-economy trend and momentum, outlier-year flags and the year-by-year matrix, so it answers both \"where does 2023 sit\" and \"how did it get there\".",
+      "keywords": [
+        "2023",
+        "year in review",
+        "yearbook",
+        "annual review",
+        "world economy",
+        "economic outlook 2023",
+        "macro snapshot",
+        "country comparison 2023"
+      ],
+      "indicators": [
+        "NY.GDP.MKTP.CD",
+        "NY.GDP.MKTP.KD.ZG",
+        "FP.CPI.TOTL.ZG",
+        "SL.UEM.TOTL.ZS",
+        "SP.POP.TOTL"
+      ],
+      "indicatorLabels": [
+        "GDP (current US$)",
+        "GDP growth (annual %)",
+        "Inflation, consumer prices (annual %)",
+        "Unemployment, total (% of labor force)",
+        "Total population"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2019:2023",
+      "dataPoints": 500,
+      "coveragePct": 100,
+      "latestYear": 2023,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "yearbook-2024",
+      "title": "2024 Yearbook — World Economy, 2020-2024",
+      "category": "annual",
+      "tier": "premium",
+      "endpoint": "/report/yearbook-2024",
+      "url": "https://reportbazaar.app.workbuddy.host/report/yearbook-2024",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/yearbook-2024",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/yearbook-2024",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.31",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Year-in-review for 2024: output, real growth, consumer inflation, unemployment and population for twenty economies over the five years 2020-2024. Carries the full cross-indicator correlation matrix, per-economy trend and momentum, outlier-year flags and the year-by-year matrix, so it answers both \"where does 2024 sit\" and \"how did it get there\".",
+      "keywords": [
+        "2024",
+        "year in review",
+        "yearbook",
+        "annual review",
+        "world economy",
+        "economic outlook 2024",
+        "macro snapshot",
+        "country comparison 2024"
+      ],
+      "indicators": [
+        "NY.GDP.MKTP.CD",
+        "NY.GDP.MKTP.KD.ZG",
+        "FP.CPI.TOTL.ZG",
+        "SL.UEM.TOTL.ZS",
+        "SP.POP.TOTL"
+      ],
+      "indicatorLabels": [
+        "GDP (current US$)",
+        "GDP growth (annual %)",
+        "Inflation, consumer prices (annual %)",
+        "Unemployment, total (% of labor force)",
+        "Total population"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2020:2024",
+      "dataPoints": null,
+      "coveragePct": null,
+      "latestYear": null,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    },
+    {
+      "id": "yearbook-2025",
+      "title": "2025 Yearbook — World Economy, 2021-2025",
+      "category": "annual",
+      "tier": "premium",
+      "endpoint": "/report/yearbook-2025",
+      "url": "https://reportbazaar.app.workbuddy.host/report/yearbook-2025",
+      "sampleUrl": "https://reportbazaar.app.workbuddy.host/sample/yearbook-2025",
+      "previewUrl": "https://reportbazaar.app.workbuddy.host/preview/yearbook-2025",
+      "schemaUrl": "https://reportbazaar.app.workbuddy.host/schema/report.json",
+      "price": "$0.31",
+      "mimeType": "text/html",
+      "formats": [
+        "html",
+        "json",
+        "csv",
+        "summary-csv"
+      ],
+      "description": "Year-in-review for 2025: output, real growth, consumer inflation, unemployment and population for twenty economies over the five years 2021-2025. Carries the full cross-indicator correlation matrix, per-economy trend and momentum, outlier-year flags and the year-by-year matrix, so it answers both \"where does 2025 sit\" and \"how did it get there\".",
+      "keywords": [
+        "2025",
+        "year in review",
+        "yearbook",
+        "annual review",
+        "world economy",
+        "economic outlook 2025",
+        "macro snapshot",
+        "country comparison 2025"
+      ],
+      "indicators": [
+        "NY.GDP.MKTP.CD",
+        "NY.GDP.MKTP.KD.ZG",
+        "FP.CPI.TOTL.ZG",
+        "SL.UEM.TOTL.ZS",
+        "SP.POP.TOTL"
+      ],
+      "indicatorLabels": [
+        "GDP (current US$)",
+        "GDP growth (annual %)",
+        "Inflation, consumer prices (annual %)",
+        "Unemployment, total (% of labor force)",
+        "Total population"
+      ],
+      "countries": [
+        "US",
+        "CN",
+        "JP",
+        "DE",
+        "IN",
+        "GB",
+        "FR",
+        "BR",
+        "RU",
+        "KR",
+        "CA",
+        "IT",
+        "MX",
+        "ID",
+        "TR",
+        "SA",
+        "AU",
+        "ZA",
+        "AR",
+        "ES"
+      ],
+      "years": "2021:2025",
+      "dataPoints": null,
+      "coveragePct": null,
+      "latestYear": null,
+      "dynamicPricing": true,
+      "sources": [
+        {
+          "name": "World Bank Open Data",
+          "license": "CC BY 4.0",
+          "url": "https://data.worldbank.org"
+        }
+      ]
+    }
+  ],
+  "attribution": "World Bank Open Data (CC BY 4.0)"
+}

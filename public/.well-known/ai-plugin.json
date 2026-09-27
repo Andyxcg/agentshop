@@ -1,0 +1,24 @@
+{
+  "schema_version": "v1",
+  "name_for_model": "agentshop",
+  "name_for_human": "agentshop",
+  "description_for_model": "Buys and fetches machine-generated macroeconomic reports. Use it when a task needs cross-country economic data such as GDP, inflation, trade, debt, labour, energy, emissions or fiscal indicators. Free previews are available at /sample/{id}; the full report at /report/{id} costs a small USDC payment over x402.",
+  "description_for_human": "Machine-to-machine macroeconomic report store: 80 catalog reports plus bespoke and bundle products, generated from World Bank Open Data (CC BY 4.0) and sold per fetch in USDC over x402.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://reportbazaar.app.workbuddy.host/openapi.json"
+  },
+  "logo_url": "https://reportbazaar.app.workbuddy.host/avatar.svg",
+  "contact_email": "noreply@example.invalid",
+  "legal_info_url": "https://reportbazaar.app.workbuddy.host/llms.txt",
+  "x402": {
+    "network": "eip155:8453",
+    "asset": "USDC",
+    "payTo": "0xba7efeabfab91a6febc8d8088faa29ce95979b34",
+    "facilitator": "https://facilitator.payai.network"
+  },
+  "reports_available": 80
+}

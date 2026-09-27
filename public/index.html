@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>agentshop — x402 report API</title>
+<meta name="description" content="Machine-to-machine macroeconomic report API. Pay per fetch in USDC over x402. No accounts, no API keys.">
+<style>
+  :root{--ink:#1a1a1a;--muted:#666;--line:#e5e5e5;--accent:#1f4e79;--ok:#2f7d4f}
+  *{box-sizing:border-box}
+  body{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--ink);margin:0;background:#fafafa}
+  .page{max-width:900px;margin:0 auto;background:#fff;padding:36px 40px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+  .brand{display:flex;align-items:center;gap:14px;margin-bottom:24px}
+  .avatar{flex:0 0 56px;width:56px;height:56px}
+  .avatar svg{display:block;width:100%;height:100%;border-radius:13px;box-shadow:0 1px 3px rgba(0,0,0,.15)}
+  h1{font-size:20px;margin:0;color:var(--accent);letter-spacing:-.01em}
+  .sub{color:var(--muted);font-size:12px;margin:5px 0 0}
+  h2{font-size:13px;margin:24px 0 8px;color:#444;text-transform:uppercase;letter-spacing:.08em}
+  .card{background:#f7fafc;border:1px solid #e2ecf5;border-radius:6px;padding:12px 14px;font-size:12.5px;line-height:1.8}
+  code{background:#eef3f8;color:#1f4e79;border-radius:3px;padding:1px 5px;font-size:12px}
+  table{width:100%;border-collapse:collapse;font-size:12px;margin-top:6px}
+  th,td{border-bottom:1px solid var(--line);padding:7px 6px;text-align:left}
+  th{background:#f7f7f7;font-weight:600;color:#444}
+  td.num{text-align:right;font-variant-numeric:tabular-nums}
+  .price{color:var(--ok);font-weight:700}
+  .foot{margin-top:28px;border-top:1px solid var(--line);padding-top:12px;font-size:11px;color:var(--muted);line-height:1.7}
+  a{color:var(--accent)}
+  .cta-bar{display:flex;align-items:center;gap:14px;background:#eef5fb;border:1px solid #cfe2f3;border-radius:8px;padding:12px 16px;margin:0 0 18px}
+  .cta{display:inline-block;background:var(--accent);color:#fff;padding:9px 16px;border-radius:6px;text-decoration:none;font-weight:700}
+  .cta-sub{color:var(--muted);font-size:12px}
+  .plist{margin-top:8px}
+  .plist td:first-child{white-space:nowrap;color:var(--muted)}
+  .pempty{color:var(--muted)}
+  .pfoot{margin-top:10px;padding-top:8px;border-top:1px solid var(--line);color:var(--muted);font-size:11px;line-height:1.7}
+  .badge{display:inline-block;background:#e8f5ee;color:var(--ok);border:1px solid #cfe9dc;border-radius:10px;padding:0 8px;font-size:10.5px;font-weight:700;letter-spacing:.04em}
+  .yrs{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .yrs a{display:inline-block;border:1px solid #cfe2f3;background:#f7fafc;border-radius:5px;padding:3px 9px;font-size:11.5px;text-decoration:none}
+  .yrs a.on{background:#1f4e79;color:#fff;border-color:#1f4e79}
+  .faq{margin:0}
+  .faq dt{font-weight:700;margin-top:10px}
+  .faq dt:first-child{margin-top:0}
+  .faq dd{margin:3px 0 0;color:#444}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Dataset","name":"agentshop — cross-country macroeconomic report catalog","description":"Machine-to-machine macroeconomic report store: 80 catalog reports plus bespoke and bundle products, generated from World Bank Open Data (CC BY 4.0) and sold per fetch in USDC over x402.","license":"https://creativecommons.org/licenses/by/4.0/","creator":{"@type":"Organization","name":"World Bank Open Data","url":"https://data.worldbank.org"},"isAccessibleForFree":false,"temporalCoverage":"2015/2025","spatialCoverage":"World — G20 plus Spain","keywords":"macroeconomic data, world bank data, cross-country comparison, economic indicators, time series data, gdp, inflation, trade, external debt, foreign direct investment, labour market, demographics, energy, co2 emissions, esg, health expenditure, military expenditure, digital adoption, fiscal policy, research and development, country risk, sovereign analysis, market research data, dataset api, tariffs, trade policy, population ageing, renewable electricity, high-technology exports, scientific research output, poverty, inequality, fiscal space, correlation matrix","variableMeasured":[{"@type":"PropertyValue","name":"GDP (current US$)","propertyID":"NY.GDP.MKTP.CD"},{"@type":"PropertyValue","name":"GDP per capita (current US$)","propertyID":"NY.GDP.PCAP.CD"},{"@type":"PropertyValue","name":"GDP, PPP (current international $)","propertyID":"NY.GDP.MKTP.PP.CD"},{"@type":"PropertyValue","name":"GDP growth (annual %)","propertyID":"NY.GDP.MKTP.KD.ZG"},{"@type":"PropertyValue","name":"Inflation, consumer prices (annual %)","propertyID":"FP.CPI.TOTL.ZG"},{"@type":"PropertyValue","name":"Inflation, GDP deflator (annual %)","propertyID":"NY.GDP.DEFL.KD.ZG"},{"@type":"PropertyValue","name":"Official exchange rate (LCU per US$, period average)","propertyID":"PA.NUS.FCRF"},{"@type":"PropertyValue","name":"Exports of goods and services (current US$)","propertyID":"NE.EXP.GNFS.CD"},{"@type":"PropertyValue","name":"Imports of goods and services (current US$)","propertyID":"NE.IMP.GNFS.CD"},{"@type":"PropertyValue","name":"Trade (% of GDP)","propertyID":"NE.TRD.GNFS.ZS"},{"@type":"PropertyValue","name":"Merchandise trade (% of GDP)","propertyID":"TG.VAL.TOTL.GD.ZS"},{"@type":"PropertyValue","name":"Current account balance (current US$)","propertyID":"BN.CAB.XOKA.CD"},{"@type":"PropertyValue","name":"Personal remittances, received (current US$)","propertyID":"BX.TRF.PWKR.CD.DT"},{"@type":"PropertyValue","name":"Foreign direct investment, net inflows (current US$)","propertyID":"BX.KLT.DINV.CD.WD"},{"@type":"PropertyValue","name":"External debt stocks, public and publicly guaranteed (current US$)","propertyID":"DT.DOD.DECT.CD"},{"@type":"PropertyValue","name":"Domestic credit to private sector (% of GDP)","propertyID":"FS.AST.PRVT.GD.ZS"},{"@type":"PropertyValue","name":"Market capitalization of listed companies (current US$)","propertyID":"CM.MKT.LCAP.CD"},{"@type":"PropertyValue","name":"Total population","propertyID":"SP.POP.TOTL"},{"@type":"PropertyValue","name":"Population growth (annual %)","propertyID":"SP.POP.GROW"},{"@type":"PropertyValue","name":"Urban population (% of total population)","propertyID":"SP.URB.TOTL.IN.ZS"},{"@type":"PropertyValue","name":"Life expectancy at birth, total (years)","propertyID":"SP.DYN.LE00.IN"},{"@type":"PropertyValue","name":"Mortality rate, under-5 (per 1,000 live births)","propertyID":"SH.DYN.MORT"},{"@type":"PropertyValue","name":"Unemployment, total (% of labor force)","propertyID":"SL.UEM.TOTL.ZS"},{"@type":"PropertyValue","name":"Labor force participation rate (% of population 15+)","propertyID":"SL.TLF.CACT.ZS"},{"@type":"PropertyValue","name":"Fertility rate (births per woman)","propertyID":"SP.DYN.TFRT.IN"},{"@type":"PropertyValue","name":"Gini index (0-100)","propertyID":"SI.POV.GINI"},{"@type":"PropertyValue","name":"Agriculture, forestry and fishing value added (% of GDP)","propertyID":"NV.AGR.TOTL.ZS"},{"@type":"PropertyValue","name":"Industry value added (% of GDP)","propertyID":"NV.IND.TOTL.ZS"},{"@type":"PropertyValue","name":"Services value added (% of GDP)","propertyID":"NV.SRV.TOTL.ZS"},{"@type":"PropertyValue","name":"Tax revenue (% of GDP)","propertyID":"GC.TAX.TOTL.GD.ZS"},{"@type":"PropertyValue","name":"Central government debt, total (% of GDP)","propertyID":"GC.DOD.TOTL.GD.ZS"},{"@type":"PropertyValue","name":"Government expenditure on education (% of GDP)","propertyID":"SE.XPD.TOTL.GD.ZS"},{"@type":"PropertyValue","name":"Research and development expenditure (% of GDP)","propertyID":"GB.XPD.RSDV.GD.ZS"},{"@type":"PropertyValue","name":"Patent applications, residents","propertyID":"IP.PAT.RESD"},{"@type":"PropertyValue","name":"Energy use (kg of oil equivalent per capita)","propertyID":"EG.USE.PCAP.KG.OE"},{"@type":"PropertyValue","name":"Renewable energy consumption (% of final energy use)","propertyID":"EG.FEC.RNEW.ZS"},{"@type":"PropertyValue","name":"CO2 emissions per capita (t CO2e)","propertyID":"EN.GHG.CO2.PC.CE.AR5"},{"@type":"PropertyValue","name":"PM2.5 air pollution (micrograms per cubic meter)","propertyID":"EN.ATM.PM25.MC.M3"},{"@type":"PropertyValue","name":"Freshwater withdrawal (% of internal resources)","propertyID":"ER.H2O.FWTL.ZS"},{"@type":"PropertyValue","name":"Food production index (2014-2016 = 100)","propertyID":"AG.PRD.FOOD.XD"},{"@type":"PropertyValue","name":"Current health expenditure (% of GDP)","propertyID":"SH.XPD.CHEX.GD.ZS"},{"@type":"PropertyValue","name":"Military expenditure (% of GDP)","propertyID":"MS.MIL.XPND.GD.ZS"},{"@type":"PropertyValue","name":"Individuals using the Internet (% of population)","propertyID":"IT.NET.USER.ZS"},{"@type":"PropertyValue","name":"Mobile cellular subscriptions (per 100 people)","propertyID":"IT.CEL.SETS.P2"},{"@type":"PropertyValue","name":"GDP (constant 2015 US$)","propertyID":"NY.GDP.MKTP.KD"},{"@type":"PropertyValue","name":"GNI per capita, Atlas method (current US$)","propertyID":"NY.GNP.PCAP.CD"},{"@type":"PropertyValue","name":"High-technology exports (% of manufactured exports)","propertyID":"TX.VAL.TECH.MF.ZS"},{"@type":"PropertyValue","name":"Scientific and technical journal articles","propertyID":"IP.JRN.ARTC.SC"},{"@type":"PropertyValue","name":"School enrolment, tertiary (% gross)","propertyID":"SE.TER.ENRR"},{"@type":"PropertyValue","name":"Fixed broadband subscriptions (per 100 people)","propertyID":"IT.NET.BBND.P2"},{"@type":"PropertyValue","name":"Secure Internet servers (per 1 million people)","propertyID":"IT.NET.SECR.P6"},{"@type":"PropertyValue","name":"Renewable electricity output (% of total electricity output)","propertyID":"EG.ELC.RNEW.ZS"},{"@type":"PropertyValue","name":"Fossil fuel energy consumption (% of total)","propertyID":"EG.USE.COMM.FO.ZS"},{"@type":"PropertyValue","name":"Access to electricity (% of population)","propertyID":"EG.ELC.ACCS.ZS"},{"@type":"PropertyValue","name":"Tariff rate, applied, weighted mean, all products (%)","propertyID":"TM.TAX.MRCH.WM.AR.ZS"},{"@type":"PropertyValue","name":"International tourism, receipts (% of total exports)","propertyID":"BX.GSR.TRVL.ZS"},{"@type":"PropertyValue","name":"Interest payments (% of expense)","propertyID":"GC.XPN.INTP.ZS"},{"@type":"PropertyValue","name":"Population ages 65 and above (% of total)","propertyID":"SP.POP.65UP.TO.ZS"},{"@type":"PropertyValue","name":"Poverty headcount ratio at $2.15 a day (2017 PPP, % of population)","propertyID":"SI.POV.DDAY"},{"@type":"PropertyValue","name":"Proportion of seats held by women in national parliaments (%)","propertyID":"SG.GEN.PARL.ZS"},{"@type":"PropertyValue","name":"Forest area (% of land area)","propertyID":"AG.LND.FRST.ZS"},{"@type":"PropertyValue","name":"Prevalence of undernourishment (% of population)","propertyID":"SN.ITK.DEFC.ZS"},{"@type":"PropertyValue","name":"Hospital beds (per 1,000 people)","propertyID":"SH.MED.BEDS.ZS"},{"@type":"PropertyValue","name":"Physicians (per 1,000 people)","propertyID":"SH.MED.PHYS.ZS"},{"@type":"PropertyValue","name":"Military expenditure (current US$)","propertyID":"MS.MIL.XPND.CD"},{"@type":"PropertyValue","name":"Armed forces personnel, total","propertyID":"MS.MIL.TOTL.P1"},{"@type":"PropertyValue","name":"Population ages 0-14 (% of total)","propertyID":"SP.POP.0014.TO.ZS"},{"@type":"PropertyValue","name":"Population ages 15-64 (% of total)","propertyID":"SP.POP.1564.TO.ZS"},{"@type":"PropertyValue","name":"Exports of goods and services (% of GDP)","propertyID":"NE.EXP.GNFS.ZS"},{"@type":"PropertyValue","name":"Imports of goods and services (% of GDP)","propertyID":"NE.IMP.GNFS.ZS"},{"@type":"PropertyValue","name":"School enrolment, secondary (% gross)","propertyID":"SE.SEC.ENRR"},{"@type":"PropertyValue","name":"Account ownership at a financial institution (% of population 15+)","propertyID":"FX.OWN.TOTL.ZS"},{"@type":"PropertyValue","name":"People using at least basic drinking water services (% of population)","propertyID":"SH.H2O.BASW.ZS"},{"@type":"PropertyValue","name":"GDP per capita (constant 2015 US$)","propertyID":"NY.GDP.PCAP.KD"},{"@type":"PropertyValue","name":"ICT service exports (% of service exports)","propertyID":"BX.GSR.CMCP.ZS"},{"@type":"PropertyValue","name":"Urban population growth (annual %)","propertyID":"SP.URB.GROW"},{"@type":"PropertyValue","name":"Life expectancy at birth, female (years)","propertyID":"SP.DYN.LE00.FE.IN"},{"@type":"PropertyValue","name":"Life expectancy at birth, male (years)","propertyID":"SP.DYN.LE00.MA.IN"},{"@type":"PropertyValue","name":"Net lending (+) / net borrowing (-) (% of GDP)","propertyID":"GC.NLD.TOTL.GD.ZS"},{"@type":"PropertyValue","name":"Adult literacy rate (% of people ages 15 and above)","propertyID":"SE.ADT.LITR.ZS"},{"@type":"PropertyValue","name":"Patent applications, nonresidents","propertyID":"IP.PAT.NRES"},{"@type":"PropertyValue","name":"Energy imports, net (% of energy use)","propertyID":"EG.IMP.CONS.ZS"},{"@type":"PropertyValue","name":"Agricultural land (% of land area)","propertyID":"AG.LND.AGRI.ZS"},{"@type":"PropertyValue","name":"Cereal yield (kg per hectare)","propertyID":"AG.YLD.CREL.KG"},{"@type":"PropertyValue","name":"Immunization, measles (% of children ages 12-23 months)","propertyID":"SH.IMM.MEAS"},{"@type":"PropertyValue","name":"People using at least basic sanitation services (% of population)","propertyID":"SH.STA.BASS.ZS"}],"distribution":[{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://reportbazaar.app.workbuddy.host/catalog"},{"@type":"DataDownload","encodingFormat":"text/markdown","contentUrl":"https://reportbazaar.app.workbuddy.host/preview/yearbook-2025?format=md"},{"@type":"DataDownload","encodingFormat":"text/csv","contentUrl":"https://reportbazaar.app.workbuddy.host/preview/macro-gdp?format=csv"}]},{"@type":"Service","name":"agentshop","serviceType":"machine-to-machine macroeconomic report API, paid per fetch over x402","description":"80 cross-country macroeconomic reports covering 11 years, delivered as HTML, JSON or CSV and paid per fetch in USDC over x402. No accounts and no API keys.","provider":{"@type":"Organization","name":"agentshop","url":"https://reportbazaar.app.workbuddy.host/"},"areaServed":"Worldwide","termsOfService":"https://reportbazaar.app.workbuddy.host/llms.txt","offers":{"@type":"Offer","priceCurrency":"USD","priceSpecification":[{"@type":"PriceSpecification","minPrice":0.06,"maxPrice":0.95,"priceCurrency":"USD"}]}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is this API?","acceptedAnswer":{"@type":"Answer","text":"A machine-to-machine store selling 80 cross-country macroeconomic reports built from World Bank Open Data. Each document costs a small USDC payment over x402; the primary customer is another agent, not a person."}},{"@type":"Question","name":"Do I need an account or an API key?","acceptedAnswer":{"@type":"Answer","text":"No. Authentication is the payment itself: a signed USDC authorization on Base, settled by a facilitator. The payer needs no ETH."}},{"@type":"Question","name":"Can I see the data before paying?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every report has a free machine-readable cross-section at /preview/{id}, also available as CSV or markdown, showing the latest year for every economy and the exact field contract of the paid payload."}},{"@type":"Question","name":"How much does one report cost?","acceptedAnswer":{"@type":"Answer","text":"Between $0.06 and $0.95, depending on tier and data freshness. The exact amount is always quoted in the HTTP 402 response body."}},{"@type":"Question","name":"Which years and economies are covered?","acceptedAnswer":{"@type":"Answer","text":"Every report covers an inclusive window inside 2015:2025, and most cover twenty economies: the G20 plus Spain. 7 annual editions review the five years ending in their edition year."}},{"@type":"Question","name":"How do I get JSON or CSV instead of HTML?","acceptedAnswer":{"@type":"Answer","text":"Append ?format=json, ?format=csv or ?format=summary-csv to any paid report URL, or send the matching Accept header."}},{"@type":"Question","name":"Where does the data come from and can I redistribute it?","acceptedAnswer":{"@type":"Answer","text":"World Bank Open Data under CC BY 4.0. Attribution is required and is included in every payload."}},{"@type":"Question","name":"How can I verify this store is real?","acceptedAnswer":{"@type":"Answer","text":"Chain-verified settled payments with transaction hashes are listed at /purchases, and the facilitator publishes a public settlement index for the receiving wallet."}}]}]}
+</script>
+</head>
+<body>
+<div class="page">
+  <div class="brand">
+    <div class="avatar"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="agentshop agent avatar">
+  <defs><linearGradient id="agshop" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#2f6fa8"/><stop offset="1" stop-color="#12314b"/>
+  </linearGradient></defs>
+  <rect width="64" height="64" rx="14" fill="url(#agshop)"/>
+  <path d="M32 15.5v4.5" stroke="#7fd1a8" stroke-width="2.4" stroke-linecap="round"/>
+  <circle cx="32" cy="12" r="3.2" fill="#7fd1a8"/>
+  <rect x="14" y="20" width="36" height="28" rx="9" fill="none" stroke="#eaf3fb" stroke-width="2.6"/>
+  <rect x="22" y="29" width="7.5" height="7.5" rx="2.2" fill="#eaf3fb"/>
+  <rect x="34.5" y="29" width="7.5" height="7.5" rx="2.2" fill="#eaf3fb"/>
+  <rect x="24" y="40.5" width="16" height="2.6" rx="1.3" fill="#7fd1a8"/>
+  <circle cx="9.5" cy="34" r="3" fill="#eaf3fb" opacity=".5"/>
+  <circle cx="54.5" cy="34" r="3" fill="#eaf3fb" opacity=".5"/>
+</svg></div>
+    <div>
+      <h1>agentshop</h1>
+      <div class="sub">machine-to-machine report API &middot; x402 &middot; USDC on Base</div>
+    </div>
+  </div>
+
+  <div class="cta-bar">
+    <a class="cta" href="/start?format=html">Start here &rarr;</a>
+    <span class="cta-sub">buy your first report in 3 steps &middot; free preview first</span>
+  </div>
+
+  <h2>Paid endpoints</h2>
+  <div class="card">
+    <code>GET /report/{id}?format=</code> &rarr; a catalog report, in any delivery format below<br>
+    <code>GET /report/custom?indicators=&amp;countries=&amp;years=&amp;format=</code> &rarr; bespoke report, priced by request size<br>
+    <code>GET /report/bundle?format=&amp;category=</code> &rarr; every catalog report in one document (<span id="bundlePrice">&hellip;</span>), or one category for less<br>
+    Unpaid requests receive <code>402 Payment Required</code> carrying machine-readable payment requirements.
+    Pay, replay the same request, receive the report. No accounts, no API keys, no signup.
+    Nothing costs more than <strong>$0.95</strong> &mdash; the buyer libraries apply a $1 per-payment
+    default spend cap and will not sign above it, so a higher price would be unbuyable.
+  </div>
+
+  <h2>Delivery formats</h2>
+  <div class="card">
+    every paid endpoint accepts <code>?format=</code>:
+    <table>
+      <thead><tr><th>value</th><th>content type</th><th>shape</th></tr></thead>
+      <tbody>
+        <tr><td><code>html</code></td><td>text/html</td><td>the full analytical report &mdash; default</td></tr>
+        <tr><td><code>json</code></td><td>application/json</td><td>structured payload: metadata, per-economy rows with the full series and every derived metric, cross-indicator correlations. Schema at <code>/schema/report.json</code></td></tr>
+        <tr><td><code>csv</code></td><td>text/csv</td><td>tidy long panel &mdash; one row per observation <code>(report,indicator,economy,year,value)</code></td></tr>
+        <tr><td><code>summary-csv</code></td><td>text/csv</td><td>one row per economy with the derived metrics (CAGR, trend fit, momentum, volatility, coverage)</td></tr>
+      </tbody>
+    </table>
+    <code>Accept: application/json</code> or <code>Accept: text/csv</code> is honoured when no <code>format</code> is given.
+  </div>
+
+  <h2>Free endpoints</h2>
+  <div class="card">
+    <code>GET /preview/{id}</code> &rarr; free machine-readable cross-section: the latest year for every economy,
+    the exact field names and types the paid payload uses, and an explicit list of what a purchase adds.
+    Also <code>?format=csv</code> or <code>?format=md</code>.<br>
+    <code>GET /sample/{id}</code> &rarr; reduced HTML preview of a report<br>
+    <code>GET /years</code> &rarr; every published year, how many reports cover it, and that year's edition<br>
+    <code>GET /years/{year}</code> &rarr; one year resolved into preview and buy URLs<br>
+    <code>GET /catalog?year=YYYY</code> &rarr; only the reports that publish a figure for that year<br>
+    <code>GET /schema/report.json</code> &rarr; JSON Schema for the preview and paid payloads<br>
+    <code>GET /search?q=</code> &rarr; keyword search across the catalog<br>
+    <code>GET /indicators</code> &rarr; every supported indicator code, label, measurement kind and theme<br>
+    <code>POST /mcp</code> &rarr; Model Context Protocol over streamable HTTP &mdash; tool list at <code>/.well-known/mcp.json</code>
+  </div>
+
+  <h2>Browse by year</h2>
+  <div class="card">
+    Every report covers an inclusive year window inside <code>2015:2025</code>. A year below lists
+    every report that publishes a figure for it; the yearbook editions review the five years ending in
+    their own year.
+    <div class="yrs">
+      <a href="/years/2015">2015</a><a href="/years/2016">2016</a><a href="/years/2017">2017</a><a href="/years/2018">2018</a><a href="/years/2019">2019 &#9733;</a><a href="/years/2020">2020 &#9733;</a><a href="/years/2021">2021 &#9733;</a><a href="/years/2022">2022 &#9733;</a><a href="/years/2023">2023 &#9733;</a><a href="/years/2024">2024 &#9733;</a><a href="/years/2025">2025 &#9733;</a>
+    </div>
+    <div class="sub" style="margin-top:6px">&#9733; marks a year that has its own annual edition.</div>
+  </div>
+
+  <h2>Payment</h2>
+  <div class="card">
+    protocol <code>x402</code> &middot; scheme <code>exact</code> &middot; network <code>eip155:8453</code> &middot; asset <code>USDC</code><br>
+    payTo <code>0xba7efeabfab91a6febc8d8088faa29ce95979b34</code><br>
+    facilitator <code>https://facilitator.payai.network</code>
+  </div>
+
+  <h2>Discovery</h2>
+  <div class="card">
+    <code>/catalog</code> &middot; <code>/years</code> &middot; <code>/preview/{id}</code> &middot; <code>/schema/report.json</code> &middot; <code>/agent.json</code>
+    &middot; <code>/.well-known/agent.json</code> &middot; <code>/.well-known/x402</code> &middot; <code>/.well-known/ai-plugin.json</code>
+    &middot; <code>/.well-known/mcp.json</code> &middot; <code>/mcp</code>
+    &middot; <code>/openapi.json</code> &middot; <code>/llms.txt</code> &middot; <code>/llms-full.txt</code> &middot; <code>/ai.txt</code> &middot; <code>/robots.txt</code> &middot; <code>/sitemap.xml</code>
+    &middot; <code>/purchases</code> &middot; <code>/api/activity</code> &middot; <code>/deliveries</code> &middot; <code>/avatar.svg</code><br>
+    Every paid endpoint carries a Bazaar discovery extension, so the service is indexable by x402 agent
+    directories and the facilitator's discovery API without manual registration.
+  </div>
+
+  <h2>Questions</h2>
+  <div class="card">
+    <dl class="faq">
+      <dt>What is this?</dt>
+      <dd>A machine-to-machine store selling 80 cross-country macroeconomic reports built from
+      World Bank Open Data. Each document costs a small USDC payment over x402. The primary customer is another
+      agent, not a person.</dd>
+      <dt>Do I need an account or an API key?</dt>
+      <dd>No. Authentication is the payment itself: a signed USDC authorization, settled by a facilitator.</dd>
+      <dt>Can I see the data before paying?</dt>
+      <dd>Yes. Every report has a free cross-section at <code>/preview/{id}</code>, also as CSV or markdown,
+      showing the latest year for each economy and the exact field contract of the paid payload.</dd>
+      <dt>How much does one report cost?</dt>
+      <dd>Between <code>$0.05</code> and <code>$0.95</code>,
+      depending on tier and data freshness &mdash; the exact amount is always quoted in the 402 response.</dd>
+      <dt>Which years are covered?</dt>
+      <dd>Every report covers an inclusive window inside <code>2015:2025</code>. <code>/years</code> lists each year with
+      the reports that publish a figure for it.</dd>
+      <dt>How do I get JSON or CSV instead of HTML?</dt>
+      <dd>Append <code>?format=json</code>, <code>?format=csv</code> or <code>?format=summary-csv</code> to any paid report URL.</dd>
+      <dt>How can I verify this store is real?</dt>
+      <dd>Chain-verified settled payments with transaction hashes are listed at <code>/purchases</code>.</dd>
+    </dl>
+  </div>
+
+  <h2>Reports</h2>
+  <table>
+    <thead><tr><th>id</th><th>category</th><th class="num">price (USDC)</th><th>endpoint</th></tr></thead>
+    <tbody id="rows"><tr><td colspan="4">loading /catalog …</td></tr></tbody>
+  </table>
+
+  <h2>Live purchases</h2>
+  <div class="card" id="purchasesCard">
+    <div id="purchasesSummary">loading /purchases &hellip;</div>
+    <table class="plist" id="purchasesTable" style="display:none">
+      <thead><tr><th>settled</th><th>report</th><th class="num">paid</th><th>buyer</th><th>settlement</th></tr></thead>
+      <tbody id="purchasesRows"></tbody>
+    </table>
+    <div class="pfoot" id="purchasesFoot"></div>
+  </div>
+
+  <div class="foot">
+    Data &copy; World Bank Open Data, licensed CC BY 4.0, attribution required. Reports are generated by an automated
+    pipeline and are provided for research reference only. Not investment advice.<br>
+    x402 is maintained by Coinbase (<a href="https://www.x402.org">x402.org</a>).
+  </div>
+</div>
+<script>
+fetch('/catalog').then(r=>r.json()).then(j=>{
+  // Prices are re-quoted per request, so the bundle figure is filled from the live catalog rather
+  // than baked into this template (which is evaluated once, before the first warm-up finishes).
+  document.getElementById('bundlePrice').textContent = j.bundle.price;
+  document.getElementById('rows').innerHTML = j.items.map(it =>
+    '<tr><td><code>'+it.id+'</code></td><td>'+it.category+'</td><td class="num price">'+it.price+'</td><td><code>GET /report/'+it.id+'</code></td></tr>'
+  ).join('') + '<tr><td><code>custom</code></td><td>bespoke</td><td class="num price">'+j.custom.price+'</td><td><code>GET /report/custom</code></td></tr>'
+    + j.bundle.tiers.map(t => '<tr><td><code>bundle</code></td><td>'+t.category+' ('+t.reports+')</td><td class="num price">'+t.price+'</td><td><code>GET /report/bundle?category='+t.category+'</code></td></tr>').join('')
+    + '<tr><td><code>bundle</code></td><td>all '+j.count+'</td><td class="num price">'+j.bundle.price+'</td><td><code>GET /report/bundle</code></td></tr>';
+}).catch(()=>{});
+</script>
+<script>
+fetch('/purchases').then(function(r){return r.json()}).then(function(j){
+  var summary = document.getElementById('purchasesSummary');
+  var foot = document.getElementById('purchasesFoot');
+  var table = document.getElementById('purchasesTable');
+  var rows = document.getElementById('purchasesRows');
+  var list = j.purchases || [];
+  var settled = j.count || list.length;
+  var net = j.network === 'eip155:8453' ? 'Base' : j.network;
+  var payTo = j.payTo ? j.payTo.slice(0, 6) + '…' + j.payTo.slice(-4) : '—';
+  function esc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function fmt(t){
+    var d = new Date(t);
+    if(!t || isNaN(d)) return t || '—';
+    var m = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    function p(n){ return n < 10 ? '0' + n : '' + n; }
+    return m[d.getUTCMonth()] + ' ' + d.getUTCDate() + ' ' + p(d.getUTCHours()) + ':' + p(d.getUTCMinutes()) + ' UTC';
+  }
+  foot.innerHTML = 'Settled over x402 on <code>' + esc(net) + '</code>, paid to <code>' + esc(payTo) + '</code>. ' +
+    'Catalog sales counters total ' + j.totalSales + ' counted sales; this feed lists only deliveries verified ' +
+    'against a unique payment signature, so the two can differ. Machine-readable: <code>/purchases</code> &middot; <code>/api/activity</code>.';
+  if(!settled){
+    table.style.display = 'none';
+    summary.innerHTML = '<span class="pempty">No settled purchases yet. This panel fills automatically the moment an x402 payment settles &mdash; the preview endpoints below stay free and need no wallet.</span>';
+    return;
+  }
+  summary.innerHTML = '<span class="badge">LIVE</span> <strong>' + settled + '</strong> payment' + (settled === 1 ? '' : 's') +
+    ' settled and served over x402 &middot; showing the most recent ' + list.length + '.';
+  table.style.display = 'table';
+  var html = '';
+  for(var i = 0; i < list.length; i++){
+    var p = list[i];
+    // A settled row always has a payment signature. The on-chain buyer only shows up once a miner
+    // log scan has matched the transfer, so an empty buyer cell says so rather than looking broken.
+    var settle = p.txHash
+      ? '<a href="https://basescan.org/tx/' + esc(p.txHash) + '" rel="noopener" target="_blank">' + esc(p.txHash.slice(0, 10)) + '…</a>'
+      : (p.sig ? '<code>' + esc(p.sig.slice(0, 12)) + '…</code><br><span class="pempty">payment signature</span>' : '—');
+    var buyer = (p.address && p.address !== '—')
+      ? '<code>' + esc(p.address) + '</code>'
+      : '<span class="pempty">not captured</span>';
+    html += '<tr>' +
+      '<td>' + esc(fmt(p.at)) + '</td>' +
+      '<td><code>' + esc(p.id) + '</code>' + (p.title ? '<br><span class="pempty">' + esc(p.title) + '</span>' : '') + '</td>' +
+      '<td class="num price">' + esc(p.price) + '</td>' +
+      '<td>' + buyer + '</td>' +
+      '<td>' + settle + '</td>' +
+      '</tr>';
+  }
+  rows.innerHTML = html;
+}).catch(function(){
+  document.getElementById('purchasesSummary').innerHTML = 'Purchase feed unavailable.';
+  document.getElementById('purchasesFoot').innerHTML = 'The machine-readable feed is still at <code>/purchases</code>.';
+});
+</script>
+</body></html>
