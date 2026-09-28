@@ -23,3 +23,6 @@ outreach-report.json
 registry-report.json
 stripe-signup.png
 awesome-x402-pr.md
+
+# WorkBuddy project memory / local data (not for public repo)
+.workbuddy/
