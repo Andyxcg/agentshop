@@ -18,7 +18,7 @@ Every number here was measured against the live service, Base mainnet and the Pa
 | Network | `eip155:8453` (Base mainnet) |
 | Asset | USDC `0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913` |
 | Facilitator | `https://facilitator.payai.network` |
-| Catalog | 98 reports in 23 categories · 86 indicators · 20 economies · 2015–2025 |
+| Catalog | 115 reports in 24 categories · 86 indicators · 20 economies · 2015–2025 |
 | Data volume | 19,651 published observations across the catalog (38–880 per report) |
 | Delivery | `html` · `json` · `csv` (tidy long panel) · `summary-csv` (one row per economy of derived metrics) |
 | Single report | **$0.06 – $0.31** (mean $0.159) |
