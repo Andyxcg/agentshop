@@ -325,7 +325,7 @@ decision rather than a marketing one. Status is what is actually true today, not
 | **PayAPI Market** | web form + their own paid verification call | free | **LIVE & VERIFIED** — `payapi.market/api/agentshop`, verified against `/report/macro-patents` ($0.07, tx `0xef261de3…`) |
 | **x402arena.gg** | `POST core.x402arena.gg/register` (name + endpoint) | free, no auth | **LIVE** — registered 2026-09-23, self-verified on a real 402, `bazaarCompatible: true` |
 | **Circle Agent Marketplace** | web intake form + human review | free | **SUBMITTED** — waiting on review |
-| **x402-list.com** | `POST /api/v1/submit`, auto-probes for 402, human review | free from own domain | **429 RATE-LIMITED** — one submission per email per 7 days; retry scheduled |
+| **x402-list.com** | `POST /api/v1/submit`, auto-probes for 402, human review | free from own domain | **RE-SUBMITTED 2026-10-09** — `201 pending`, `29 endpoints_found`, `0 errors`. Cooling window (7-day + 14-day rejection) had elapsed so the resubmission was free, no 402 gate |
 | **Coinbase CDP Bazaar / agentic.market** | no submission endpoint: indexes on settlement + valid Bazaar extension | free | **AUTOMATIC** — every paid route already carries the Bazaar extension; a settlement through a Bazaar-feeding facilitator is the whole trigger |
 | **x402scan.com** | one field on `/resources/register`; it reads `{origin}/openapi.json`, lists what it found, then registers on confirm | free | **LIVE & REGISTERED 2026-09-23T11:59Z** — 184 of 184 resources accepted (82 paid + 102 free), 0 deprecated. Origin `78714cd6-a8ec-4c07-b145-3a7fd3c3c837`, listing at [`/server/78714cd6-…`](https://www.x402scan.com/server/78714cd6-a8ec-4c07-b145-3a7fd3c3c837). The write is a browser step (signed by the wallet you are signed in as); type the bare host (`reportbazaar.app.workbuddy.host`, no scheme, no path) |
 | **x402scout.com** | `POST /register` | free | **DEAD** — service suspended by its owner (confirmed 2026-09-26); drop from outreach |
@@ -344,7 +344,7 @@ that cannot see the price cannot decide to pay it.
 | Channel | How | Blocker |
 |---|---|---|
 | **registry.modelcontextprotocol.io** (official) | `mcp-publisher` CLI + a `server.json` with a `remotes[]` entry — remote-only servers are publishable | needs a namespace identity (GitHub login, or a DNS/HTTP challenge on the domain) |
-| **smithery.ai / glama.ai / mcp.so / pulsemcp.com** | downstream directories that ingest the official registry or crawl a GitHub repo | all key off a public repository |
+| **smithery.ai / glama.ai / mcp.so / pulsemcp.com** | downstream directories that ingest the official registry or crawl a GitHub repo | all key off a public repository | **Glama measured 2026-10-09: `GET /mcp/servers/github/Andyxcg/agentshop` → `not_found` — repo has been public 11 days but Glama has NOT auto-ingested it. Manual submit at https://glama.ai/mcp/servers (paste the GitHub URL) is required to open this traffic tap; the other three follow the same repo prerequisite |
 
 **The one prerequisite that unlocks four registries at once: a public GitHub repository.** Publish a
 `server.json` (and `smithery.yaml` for Smithery) there, publish to the official registry, and the

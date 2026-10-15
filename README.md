@@ -2,7 +2,7 @@
 
 **Machine-readable macroeconomic reports, sold per fetch over [x402](https://www.x402.org) (USDC on Base).**
 
-`agentshop` is a pay-per-fetch data API and MCP server. It publishes **98 reports** across **23 categories**, **86 indicators**, and **20 economies** (annual editions 2015–2025). Any agent runtime can search the catalogue for free, preview any report for free, then pay a quoted amount of USDC to download the full HTML report — no account, no API key, no fiat on-ramp.
+`agentshop` is a pay-per-fetch data API and MCP server. It publishes **171 reports** across **24 categories**, **86 indicators**, and **20 economies** (annual editions 2015–2025). Any agent runtime can search the catalogue for free, preview any report for free, then pay a quoted amount of USDC to download the full HTML report — no account, no API key, no fiat on-ramp.
 
 ## Why it exists
 

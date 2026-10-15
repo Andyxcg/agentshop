@@ -1,7 +1,7 @@
 {
   "name": "agentshop",
   "title": "agentshop",
-  "description": "Machine-to-machine macroeconomic report store: 98 catalog reports plus bespoke and bundle products, generated from World Bank Open Data (CC BY 4.0) and sold per fetch in USDC over x402.",
+  "description": "Machine-to-machine macroeconomic report store: 171 catalog reports plus bespoke and bundle products, generated from World Bank Open Data (CC BY 4.0) and sold per fetch in USDC over x402.",
   "version": "1.0.0",
   "protocolVersion": "2025-06-18",
   "transports": [

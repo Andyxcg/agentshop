@@ -2912,6 +2912,25 @@ app.use((req, res, next) => {
   next();
 });
 
+// Monid provider surface — agent-marketplace routing. Bypasses the x402 gate: Monid
+// authenticates with a provider key (X-API-Key) and settles with its own users, then shares
+// revenue per call. No on-chain payment happens here. Registered BEFORE the x402 middleware so it
+// is never challenged for a 402.
+app.get('/monid/report', (req, res) => {
+  const expected = process.env.MONID_PROVIDER_KEY;
+  const key = req.headers['x-api-key'] || req.query.key;
+  if (!expected || key !== expected) {
+    return res.status(401).type('json').json({ error: 'unauthorized monid provider request' });
+  }
+  const id = String(req.query.id || '').trim();
+  if (!CATALOG[id]) {
+    try { recordMiss(req.path); } catch {}
+    return res.status(404).type('json').json({ error: 'unknown report id', see: `${baseUrl(req)}/catalog` });
+  }
+  countDelivery(id, req);
+  return deliverReport(req, res, { def: CATALOG[id], price: null });
+});
+
 app.use(paymentMiddleware(routes, resourceServer));
 
 // ---------------------------------------------------------------- delivery formats

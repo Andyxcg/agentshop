@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0",
   "name": "io.github.Andyxcg/agentshop",
-  "description": "x402 paywalled cross-country macroeconomic report API + MCP server (98 reports, USDC on Base).",
+  "description": "x402 paywalled cross-country macroeconomic report API + MCP server (171 reports, USDC on Base).",
   "repository": {
     "type": "git",
     "url": "https://github.com/Andyxcg/agentshop"

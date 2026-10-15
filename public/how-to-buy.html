@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How agents buy World Bank macro data automatically — agentshop</title>
+<meta name="description" content="A step-by-step guide for AI agents to discover, preview and pay for cross-country macroeconomic reports over x402 (USDC on Base), with curl and MCP examples.">
+<style>
+  :root{--ink:#1a1a1a;--muted:#666;--line:#e5e5e5;--accent:#1f4e79;--ok:#2f7d4f}
+  *{box-sizing:border-box}
+  body{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--ink);margin:0;background:#fafafa}
+  .page{max-width:900px;margin:0 auto;background:#fff;padding:36px 40px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+  .brand{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+  .avatar{flex:0 0 56px;width:56px;height:56px}
+  h1{font-size:20px;margin:0;color:var(--accent);letter-spacing:-.01em}
+  .sub{color:var(--muted);font-size:12px;margin:5px 0 0}
+  h2{font-size:13px;margin:26px 0 8px;color:#444;text-transform:uppercase;letter-spacing:.08em}
+  p,li{font-size:13px;line-height:1.75;color:#333}
+  .card{background:#f7fafc;border:1px solid #e2ecf5;border-radius:6px;padding:12px 14px;font-size:12.5px;line-height:1.8}
+  code{background:#eef3f8;color:#1f4e79;border-radius:3px;padding:1px 5px;font-size:12px}
+  pre{background:#0f1c2b;color:#d8e6f2;border-radius:6px;padding:12px 14px;overflow:auto;font-size:12px;line-height:1.6}
+  pre code{background:none;color:inherit;padding:0}
+  .step{display:flex;gap:12px;align-items:flex-start;margin:10px 0}
+  .step .n{flex:0 0 26px;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px}
+  .step .b{flex:1}
+  a{color:var(--accent)}
+  .cta-bar{display:flex;align-items:center;gap:14px;background:#eef5fb;border:1px solid #cfe2f3;border-radius:8px;padding:12px 16px;margin:0 0 8px}
+  .cta{display:inline-block;background:var(--accent);color:#fff;padding:9px 16px;border-radius:6px;text-decoration:none;font-weight:700}
+  .cta-sub{color:var(--muted);font-size:12px}
+  .foot{margin-top:28px;border-top:1px solid var(--line);padding-top:12px;font-size:11px;color:var(--muted);line-height:1.7}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="brand">
+    <div class="avatar"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="agentshop">
+  <defs><linearGradient id="agshop" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#2f6fa8"/><stop offset="1" stop-color="#12314b"/>
+  </linearGradient></defs>
+  <rect width="64" height="64" rx="14" fill="url(#agshop)"/>
+  <path d="M32 15.5v4.5" stroke="#7fd1a8" stroke-width="2.4" stroke-linecap="round"/>
+  <circle cx="32" cy="12" r="3.2" fill="#7fd1a8"/>
+  <rect x="14" y="20" width="36" height="28" rx="9" fill="none" stroke="#eaf3fb" stroke-width="2.6"/>
+  <rect x="22" y="29" width="7.5" height="7.5" rx="2.2" fill="#eaf3fb"/>
+  <rect x="34.5" y="29" width="7.5" height="7.5" rx="2.2" fill="#eaf3fb"/>
+  <rect x="24" y="40.5" width="16" height="2.6" rx="1.3" fill="#7fd1a8"/>
+</svg></div>
+    <div>
+      <h1>How agents buy World Bank macro data automatically</h1>
+      <div class="sub">machine-to-machine &middot; x402 &middot; USDC on Base &middot; no accounts, no API keys</div>
+    </div>
+  </div>
+
+  <div class="cta-bar">
+    <a class="cta" href="/">&larr; Back to store</a>
+    <span class="cta-sub">171 cross-country reports, generated on demand from World Bank Open Data (CC BY 4.0).</span>
+  </div>
+
+  <h2>Why</h2>
+  <p>Retrieval and analysis agents frequently need structured macroeconomic data — GDP, inflation, trade,
+  debt, labour, energy, emissions — across many countries and years. Most sources hide it behind login
+  walls or per-seat SaaS contracts that an autonomous agent cannot sign. <strong>agentshop</strong> exposes
+  the same data through a machine-native payment rail: an HTTP <code>402</code> carries the exact price,
+  the buyer signs one USDC transfer, and the report is served. No human, no account, no fiat on-ramp.</p>
+
+  <h2>The flow in three steps</h2>
+  <div class="step"><div class="n">1</div><div class="b">
+    <strong>Search for free.</strong> Find the report id by keyword — GDP, "renewable energy", "2024 economy".
+    <pre><code>curl https://reportbazaar.app.workbuddy.host/search?q=inflation</code></pre>
+  </div></div>
+  <div class="step"><div class="n">2</div><div class="b">
+    <strong>Preview for free.</strong> Fetch the latest year for every economy in the exact field names the
+    paid payload uses, so the agent can verify coverage before paying.
+    <pre><code>curl https://reportbazaar.app.workbuddy.host/preview/macro-inflation
+curl https://reportbazaar.app.workbuddy.host/preview/macro-inflation?format=csv</code></pre>
+  </div></div>
+  <div class="step"><div class="n">3</div><div class="b">
+    <strong>Pay and fetch.</strong> Request the paid report; the <code>402</code> response carries the exact
+    x402 payment requirements (amount, asset, network, payTo, facilitator). Sign one USDC transfer, replay
+    the same request with the payment header, and receive the report in HTML, JSON or CSV.
+    <pre><code># First call returns 402 + x402 payment requirements
+curl https://reportbazaar.app.workbuddy.host/report/macro-inflation?format=json
+# Sign the quoted USDC amount, then replay with the payment proof:
+curl -H "X-PAYMENT: &lt;signed-payment-header&gt;" \
+     https://reportbazaar.app.workbuddy.host/report/macro-inflation?format=json</code></pre>
+    Any x402 client library (e.g. <code>x402</code> for TypeScript/Python) automates steps 3's sign-and-replay.
+  </div></div>
+
+  <h2>Via MCP (Model Context Protocol)</h2>
+  <p>An MCP-aware runtime can install agentshop as a tool source with no human reading a README. The free
+  tools answer inline; the paid tool returns the exact quote so the runtime can decide to pay.</p>
+  <pre><code>{
+  "mcpServers": {
+    "agentshop": {
+      "url": "https://reportbazaar.app.workbuddy.host/mcp"
+    }
+  }
+}</code></pre>
+  <p>Tools: <code>search_reports</code>, <code>list_catalog</code>, <code>list_years</code>,
+  <code>preview_report</code> (all free), <code>report_payment_requirements</code> (quote), and
+  <code>buy_report</code> (resolve delivery URL + x402 requirements). Pass <code>id="bundle"</code> to the
+  quote/buy tools for the full-catalog bundle — every report in one payment.</p>
+
+  <h2>Pricing</h2>
+  <div class="card">
+    Single reports: <code>$0.05</code>–<code>$0.95</code> USDC, quoted live in the 402.<br>
+    Full-catalog bundle: one x402 payment unlocks all 171 reports at a steep discount to buying them separately.<br>
+    Category bundles: buy one theme (e.g. <code>energy</code>, <code>trade</code>) for less.<br>
+    Nothing costs more than <strong>$0.95</strong> — buyer libraries apply a $1 per-payment spend cap.
+  </div>
+
+  <h2>Best value</h2>
+  <p>If you need breadth across the catalog, buy the bundle first — it is cheaper than two single reports and
+  one signature covers the whole dataset. Single reports and <code>/report/custom</code> remain the right call
+  for narrow, one-off questions. Every report is generated on demand from the World Bank API, so freshness
+  tracks the source.</p>
+
+  <div class="cta-bar">
+    <a class="cta" href="/catalog">Browse the catalog &rarr;</a>
+    <span class="cta-sub">or start with <a href="/preview/macro-gdp">a free GDP preview</a>.</span>
+  </div>
+
+  <div class="foot">
+    Data &copy; World Bank Open Data, licensed CC BY 4.0, attribution required. Reports are generated by an
+    automated pipeline and are provided for research reference only. Not investment advice.<br>
+    x402 is maintained by Coinbase (<a href="https://www.x402.org">x402.org</a>).
+  </div>
+</div>
+</body></html>
